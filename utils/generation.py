@@ -14,3 +14,10 @@ def generateNodes(number_of_nodes: int) -> list:
             node = PowNode(name="Node {}".format(i), data="test")
         nodes.append(node)
     return nodes
+
+
+def selected_to_dict(selected_clients: list) -> dict:
+    clients = {}
+    for client in selected_clients:
+        clients[client.get_name()] = client.get_id()
+    return clients
