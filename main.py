@@ -1,7 +1,7 @@
 from colorama import init, Fore
-from utils.generation import generateNodes
+from utils.generation import generateNodes, selected_to_dict
+from utils.stats import count_clients
 from ClientSelection import RandomClientSelection
-from node import PowNode, MidNode, LowNode
 
 init(autoreset=True)
 
@@ -12,22 +12,14 @@ if __name__ == '__main__':
     K = int(input("{0}What percentage of participating clients do you want?\n".format(Fore.YELLOW)))
     K = K / 100
     selected_clients = RandomClientSelection(nodes=clients, K=K, debug_mode=False).randomClientSelection()
-    number_weak_nodes = 0
-    number_mid_nodes = 0
-    number_powerful_nodes = 0
-    clients = {}
-    for client in selected_clients:
-        clients[client.get_name()] = client.get_id()
-        if isinstance(client, LowNode):
-            number_weak_nodes = number_weak_nodes + 1
-        if isinstance(client, MidNode):
-            number_mid_nodes = number_mid_nodes + 1
-        if isinstance(client, PowNode):
-            number_powerful_nodes = number_powerful_nodes + 1
+
+    selected_clients_list = selected_to_dict(selected_clients)
+
+    number_weak_nodes, number_mid_nodes, number_powerful_nodes = count_clients(selected_clients)
 
     print("{0}Selected clients are : ".format(Fore.MAGENTA))
     print("{0}---------------------------------------------------------".format(Fore.MAGENTA))
-    print(clients)
+    print(selected_clients_list)
     print("{0}---------------------------------------------------------".format(Fore.MAGENTA))
     print("[*] {0}{1} ({2}%) clients has been selected".format(Fore.MAGENTA, len(selected_clients), K * 100))
     print("[*] {0} There is {1} Weak nodes".format(Fore.RED, number_weak_nodes))
