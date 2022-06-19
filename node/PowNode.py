@@ -2,8 +2,8 @@ from node import Node
 
 
 class PowNode(Node):
-    def __init__(self, name: str, data: str):
-        super().__init__(name, data)
+    def __init__(self, name: str, data: str,  mobility_mode: bool = False):
+        super().__init__(name, data, mobility_mode)
         self.energy = 4000000
         self.cpu_power = 50
         self.memory = 4092
