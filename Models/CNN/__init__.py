@@ -1,0 +1,1 @@
+from .CNNMnist import CNNMnist
