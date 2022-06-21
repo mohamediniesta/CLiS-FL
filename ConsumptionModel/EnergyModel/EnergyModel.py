@@ -21,6 +21,7 @@ class EnergyModel(object):
         battery_p = (self.node.get_current_energy() / self.node.get_total_energy()) * 100
 
         if battery_p <= 5:
+            self.node.set_status(0)
             return False
         else:
             return True
