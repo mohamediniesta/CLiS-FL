@@ -1,9 +1,4 @@
-import uuid
-
-
-def generate_node_id() -> str:
-    node_id: str = uuid.uuid4().hex
-    return node_id
+from utils.generation import generate_node_id
 
 
 class Node(object):

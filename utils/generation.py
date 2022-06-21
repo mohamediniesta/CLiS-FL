@@ -2,6 +2,12 @@ import random
 import numpy as np
 from node import PowNode, MidNode, LowNode
 from ConsumptionModel.StorageModel.StorageModel import StorageModel
+import uuid
+
+
+def generate_node_id() -> str:
+    node_id: str = uuid.uuid4().hex
+    return node_id
 
 
 def generateNodes(number_of_nodes: int) -> list:
