@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
+from ConsumptionModel.EnergyModel.EnergyModel import EnergyModel
 
 
 class DatasetSplit(Dataset):
@@ -20,12 +21,14 @@ class DatasetSplit(Dataset):
 
 
 class LocalUpdate(object):
-    def __init__(self, dataset, idxs):
+    def __init__(self, dataset, idxs, node):
         self.trainloader, self.validloader, self.testloader = self.train_val_test(
             dataset, list(idxs))
         self.device = 'cpu'
         # Default criterion set to NLL loss function
+        self.node = node
         self.criterion = nn.NLLLoss().to(self.device)
+        self.energy_model = EnergyModel(node=self.node)
 
     def train_val_test(self, dataset, idxs):
         """
@@ -56,6 +59,14 @@ class LocalUpdate(object):
                                     momentum=0.5)
         local_ep = 10
         for iter in range(local_ep):
+            if self.node.get_total_energy() is not None:
+                new_energy = self.energy_model.consume_energy()
+                self.node.set_current_energy(new_energy)
+                battery_p = (self.node.get_current_energy() / self.node.get_total_energy()) * 100
+                #  print("Battery percentage : {:.1f}%".format(battery_p))
+            else:
+                battery_p = 100
+                # print("Without battery: {}%".format(battery_p))
             batch_loss = []
             for batch_idx, (images, labels) in enumerate(self.trainloader):
                 images, labels = images.to(self.device), labels.to(self.device)
