@@ -10,3 +10,6 @@ class LowNode(Node):
         super().set_current_energy(current_energy)
         energy_consumption = random.uniform(11, 15)
         super().set_energy_consumption(energy_consumption)
+
+        super().set_total_storage(2000)  # [Mega byte]
+        super().set_current_storage(random.uniform(1000, 2000))
