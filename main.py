@@ -71,7 +71,11 @@ if __name__ == '__main__':
     train_loss, train_accuracy = [], []
     i = 1
     for client in selected_clients:
-        print("{}Client Nº{} -  Begin training with {} ({})".format(Fore.CYAN, i, client.get_name(), client.get_id()))
+        if client.get_status() == 0:
+            print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.get_name()))
+            i = i + 1
+            continue
+        print("{0}Client Nº{1} -  Begin training with {2} ({3})".format(Fore.CYAN, i, client.get_name(), client.get_id()))
         local_model = LocalUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
         w, loss = local_model.update_weights(
             model=copy.deepcopy(global_model), global_round=1)
@@ -82,7 +86,7 @@ if __name__ == '__main__':
         else:
             battery_p = 100
         storage_p = (client.get_current_storage() / client.get_total_storage()) * 100
-        print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f})".format(Fore.GREEN, client.get_name(),
+        print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f}%)".format(Fore.GREEN, client.get_name(),
               battery_p, storage_p))
         i = i + 1
 
