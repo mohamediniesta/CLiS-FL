@@ -1,1 +1,2 @@
-from ConsumptionModel.EnergyModel import EnergyModel
+from ConsumptionModel.EnergyModel.EnergyModel import EnergyModel
+from ConsumptionModel.StorageModel.StorageModel import StorageModel
