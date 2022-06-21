@@ -1,18 +1,12 @@
 from node import Node
+import random
 
 
 class LowNode(Node):
     def __init__(self, name: str, data: str, mobility_mode: bool = False):
         super().__init__(name, data, mobility_mode)
-        self.energy = 1000
-        self.cpu_power = 50
-        self.memory = 100
-
-    def get_energy(self):
-        return self.energy
-
-    def get_cpu_power(self):
-        return self.cpu_power
-
-    def get_memory(self):
-        return self.memory
+        super().set_total_energy(600)
+        current_energy = random.uniform(400, 600)
+        super().set_current_energy(current_energy)
+        energy_consumption = random.uniform(11, 15)
+        super().set_energy_consumption(energy_consumption)

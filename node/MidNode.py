@@ -1,18 +1,12 @@
 from node import Node
+import random
 
 
 class MidNode(Node):
-    def __init__(self, name: str, data: str,  mobility_mode: bool = False):
+    def __init__(self, name: str, data: str, mobility_mode: bool = False):
         super().__init__(name, data, mobility_mode)
-        self.energy = 10000
-        self.cpu_power = 50
-        self.memory = 1024
-
-    def get_energy(self):
-        return self.energy
-
-    def get_cpu_power(self):
-        return self.cpu_power
-
-    def get_memory(self):
-        return self.memory
+        super().set_total_energy(2000)  # [mAh]
+        current_energy = random.uniform(1000, 2000)
+        super().set_current_energy(current_energy)
+        energy_consumption = random.uniform(25, 37)
+        super().set_energy_consumption(energy_consumption)
