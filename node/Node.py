@@ -16,42 +16,56 @@ class Node(object):
         self.data: str = data
         self.data_type: str = data_type
         self.name: str = name
-        self.cpu_usage: int = None
-        self.memory_usage: int = None
+        #  Energy Model
         self.battery_usage: int = None
         self.total_energy: float = None
         self.energy_consumption: float = None
         self.current_energy: float = None
-        self.cpu_power: float = None
-        self.memory: int = None
-        self.storage: int = None
+        #  Storage Model
+        self.total_storage: int = None
+        self.current_storage: int = None
 
-    def get_total_energy(self):
+        self.cpu_power: float = None
+        self.cpu_usage: int = None
+
+        self.memory: int = None
+        self.memory_usage: int = None
+
+    def get_total_energy(self) -> float:
         return self.total_energy
 
-    def set_total_energy(self, total_energy):
+    def set_total_energy(self, total_energy: float):
         self.total_energy = total_energy
 
-    def get_energy_consumption(self):
+    def get_energy_consumption(self) -> float:
         return self.energy_consumption
 
-    def set_energy_consumption(self, energy_consumption):
+    def set_energy_consumption(self, energy_consumption: float):
         self.energy_consumption = energy_consumption
 
-    def get_current_energy(self):
+    def get_current_energy(self) -> float:
         return self.current_energy
 
-    def set_current_energy(self, current_energy):
+    def set_current_energy(self, current_energy: float):
         self.current_energy = current_energy
 
-    def get_cpu_power(self):
+    def get_cpu_power(self) -> float:
         return self.cpu_power
 
-    def get_memory(self):
+    def get_memory(self) -> int:
         return self.memory
 
-    def get_storage(self):
-        return self.storage
+    def get_total_storage(self) -> int:
+        return self.total_storage
+
+    def set_total_storage(self, total_storage: int):
+        self.total_storage = total_storage
+
+    def get_current_storage(self) -> int:
+        return self.current_storage
+
+    def set_current_storage(self, current_storage: int):
+        self.current_storage = current_storage
 
     def get_id(self) -> str:
         return self.node_id
