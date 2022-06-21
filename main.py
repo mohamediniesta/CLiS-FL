@@ -8,11 +8,23 @@ from torchvision import datasets, transforms
 from Models.CNN.CNNMnist import CNNMnist
 from update import LocalUpdate
 import numpy as np
+import warnings
 
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 init(autoreset=True)
 
 if __name__ == '__main__':
+    print("""{}
+  ______ _                  _____ _                 _       _   _             
+ |  ____| |                / ____(_)               | |     | | (_)            
+ | |__  | |       ______  | (___  _ _ __ ___  _   _| | __ _| |_ _  ___  _ __  
+ |  __| | |      |______|  \___ \| | '_ ` _ \| | | | |/ _` | __| |/ _ \| '_ \ 
+ | |    | |____            ____) | | | | | | | |_| | | (_| | |_| | (_) | | | |
+ |_|    |______|          |_____/|_|_| |_| |_|\__,_|_|\__,_|\__|_|\___/|_| |_|
+                                                                              """.format(Fore.CYAN))
+    print("{}🤖 {}By AICHE Mohamed".format(Fore.YELLOW, Fore.MAGENTA))
+    print(Fore.MAGENTA + "-" * 20)
     # Client generation and selection process.
     number_of_nodes = int(input("{0}How Many nodes do you want to simulate ?\n".format(Fore.YELLOW)))
     clients = generateNodes(number_of_nodes=number_of_nodes)
@@ -26,6 +38,8 @@ if __name__ == '__main__':
     display_client_information(selected_clients_list=selected_clients_list, selected_clients=selected_clients,
                                number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
                                number_powerful_nodes=number_powerful_nodes, K=K)
+
+    # exit(0)
     # Choosing the dataset.
     dataset_list = {1: "mnist", 2: "fashion_mnist", 3: "cifar"}
     dataset_id = int(input('''{0}Which dataset do you want to use ?
@@ -49,22 +63,27 @@ if __name__ == '__main__':
 
     gpu_mode = False
 
-    device = 'cuda' if gpu_mode else 'cpu'
-
     global_model = CNNMnist(num_channels=1, num_classes=10)
-    global_model.to(device)
+
     global_model.train()
 
     local_weights, local_losses = [], []
     train_loss, train_accuracy = [], []
+    i = 1
     for client in selected_clients:
-        print("Begin training with {}".format(client.get_name()))
-        local_model = LocalUpdate(dataset=train_dataset,
-                                  idxs=client.get_data())
+        print("{}Client Nº{} -  Begin training with {} ({})".format(Fore.CYAN, i, client.get_name(), client.get_id()))
+        local_model = LocalUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
         w, loss = local_model.update_weights(
             model=copy.deepcopy(global_model), global_round=1)
         local_weights.append(copy.deepcopy(w))
         local_losses.append(copy.deepcopy(loss))
+        if client.get_total_energy() is not None:
+            battery_p = (client.get_current_energy() / client.get_total_energy()) * 100
+        else:
+            battery_p = 100
+        print("{}Learning is complete for {} (Battery : {:.1f}%)".format(Fore.GREEN, client.get_name(),
+              battery_p))
+        i = i + 1
 
     global_weights = average_weights(local_weights)
     global_model.load_state_dict(global_weights)
