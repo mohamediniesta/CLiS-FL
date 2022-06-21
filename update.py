@@ -2,6 +2,7 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from ConsumptionModel.EnergyModel.EnergyModel import EnergyModel
+from ConsumptionModel.StorageModel.StorageModel import StorageModel
 
 
 class DatasetSplit(Dataset):
@@ -29,6 +30,7 @@ class LocalUpdate(object):
         self.node = node
         self.criterion = nn.NLLLoss().to(self.device)
         self.energy_model = EnergyModel(node=self.node)
+        self.storage_model = StorageModel(node=self.node)
 
     def train_val_test(self, dataset, idxs):
         """
@@ -85,6 +87,7 @@ class LocalUpdate(object):
                 batch_loss.append(loss.item())
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
 
+        self.storage_model.add_to_storage(number_of_mega_bytes=100)
         return model.state_dict(), sum(epoch_loss) / len(epoch_loss)
 
     def inference(self, model):
