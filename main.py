@@ -6,7 +6,7 @@ from utils.computation import average_weights
 from ClientSelection import RandomClientSelection
 from torchvision import datasets, transforms
 from Models.CNN.CNNMnist import CNNMnist
-from update import LocalUpdate
+from Models.update import LocalUpdate
 import numpy as np
 import warnings
 
@@ -81,8 +81,9 @@ if __name__ == '__main__':
             battery_p = (client.get_current_energy() / client.get_total_energy()) * 100
         else:
             battery_p = 100
-        print("{}Learning is complete for {} (Battery : {:.1f}%)".format(Fore.GREEN, client.get_name(),
-              battery_p))
+        storage_p = (client.get_current_storage() / client.get_total_storage()) * 100
+        print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f})".format(Fore.GREEN, client.get_name(),
+              battery_p, storage_p))
         i = i + 1
 
     global_weights = average_weights(local_weights)
