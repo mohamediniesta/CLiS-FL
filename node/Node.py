@@ -16,9 +16,42 @@ class Node(object):
         self.data: str = data
         self.data_type: str = data_type
         self.name: str = name
-        self.cpu_usage: int = 0
-        self.memory_usage: int = 0
-        self.battery_usage: int = 0
+        self.cpu_usage: int = None
+        self.memory_usage: int = None
+        self.battery_usage: int = None
+        self.total_energy: float = None
+        self.energy_consumption: float = None
+        self.current_energy: float = None
+        self.cpu_power: float = None
+        self.memory: int = None
+        self.storage: int = None
+
+    def get_total_energy(self):
+        return self.total_energy
+
+    def set_total_energy(self, total_energy):
+        self.total_energy = total_energy
+
+    def get_energy_consumption(self):
+        return self.energy_consumption
+
+    def set_energy_consumption(self, energy_consumption):
+        self.energy_consumption = energy_consumption
+
+    def get_current_energy(self):
+        return self.current_energy
+
+    def set_current_energy(self, current_energy):
+        self.current_energy = current_energy
+
+    def get_cpu_power(self):
+        return self.cpu_power
+
+    def get_memory(self):
+        return self.memory
+
+    def get_storage(self):
+        return self.storage
 
     def get_id(self) -> str:
         return self.node_id
