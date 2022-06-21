@@ -16,6 +16,7 @@ class Node(object):
         self.data: str = data
         self.data_type: str = data_type
         self.name: str = name
+        self.status: int = 1
         #  Energy Model
         self.battery_usage: int = None
         self.total_energy: float = None
@@ -30,6 +31,12 @@ class Node(object):
 
         self.memory: int = None
         self.memory_usage: int = None
+
+    def get_status(self):
+        return self.status
+
+    def set_status(self, status: int):
+        self.status = status
 
     def get_total_energy(self) -> float:
         return self.total_energy
