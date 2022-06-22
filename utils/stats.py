@@ -1,6 +1,7 @@
 from node import PowNode, MidNode, LowNode
 from colorama import Fore
 
+
 def count_clients(selected_clients: list) -> (int, int, int):
     number_weak_nodes = 0
     number_mid_nodes = 0

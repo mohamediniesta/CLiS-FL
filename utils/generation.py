@@ -1,8 +1,8 @@
+import uuid
 import random
 import numpy as np
 from node import PowNode, MidNode, LowNode
 from ConsumptionModel.StorageModel.StorageModel import StorageModel
-import uuid
 
 
 def generate_node_id() -> str:
@@ -31,7 +31,7 @@ def selected_to_dict(selected_clients: list) -> dict:
     return clients
 
 
-def sampling_data_to_clients(data, selected_client):
+def sampling_data_to_clients(data: list, selected_client: list):
     num_clients = len(selected_client)
     num_items = int(len(data) / num_clients)
     dict_users, all_idxs = {}, [i for i in range(len(data))]
