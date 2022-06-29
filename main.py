@@ -46,12 +46,12 @@ if __name__ == '__main__':
 
     # Choosing the dataset.
     dataset_list = {1: "mnist", 2: "fashion_mnist", 3: "cifar"}
-    dataset_id = int(input('''{0}Which dataset do you want to use ?
-1 - Mnist  
-2 - Fashion Mnist 
-3 - Cifar\n'''.format(Fore.YELLOW)))
+    # dataset_id = int(input('''{0}Which dataset do you want to use ?
+    # 1 - Mnist
+    # 2 - Fashion Mnist
+    # 3 - Cifar\n'''.format(Fore.YELLOW)))
 
-    dataset = dataset_list[dataset_id]
+    # dataset = dataset_list[dataset_id]
 
     # Begin training on each client.
     apply_transform = transforms.Compose([
@@ -101,6 +101,25 @@ if __name__ == '__main__':
     global_model.load_state_dict(global_weights)
     loss_avg = sum(local_losses) / len(local_losses)
     train_loss.append(loss_avg)
-    print(f'Training Loss : {np.mean(np.array(train_loss))}')
+
+    list_acc, list_loss = [], []
+    global_model.eval()
+    clients_acc = {}
+
+    for client in selected_clients:
+        local_model = LocalUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
+        acc, loss = local_model.inference(model=global_model)
+        clients_acc[client.get_name()] = "{:.2f}%".format(100 * acc)
+        list_acc.append(acc)
+        list_loss.append(loss)
+    train_accuracy.append(sum(list_acc) / len(list_acc))
+
+    print("-" * 30)
+    print('Global Training Accuracy: {:.2f}% \n'.format(100 * train_accuracy[-1]))
+    print(f'Global Training Loss : {np.mean(np.array(train_loss))}')
+    print("Local accuracy of each client : ")
+    print("-" * 30)
+    print(clients_acc)
+    print("-" * 30)
 
     exit(0)
