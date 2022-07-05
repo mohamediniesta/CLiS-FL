@@ -1,6 +1,6 @@
 import copy
 from colorama import init, Fore
-from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients
+from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients, choose_dataset
 from utils.stats import count_clients, display_client_information
 from utils.displays import display_author
 from utils.computation import average_weights
@@ -41,14 +41,10 @@ if __name__ == '__main__':
                                number_powerful_nodes=number_powerful_nodes, K=selection_percentage)
 
     # ! -------------------------------------------- End of client selection process -----------------------------------
-    # ? Choosing the dataset.
-    dataset_list = {1: "mnist", 2: "fashion_mnist", 3: "cifar"}
-    # dataset_id = int(input('''{0}Which dataset do you want to use ?
-    # 1 - Mnist
-    # 2 - Fashion Mnist
-    # 3 - Cifar\n'''.format(Fore.YELLOW)))
 
-    # dataset = dataset_list[dataset_id]
+    # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
+    # ? Choosing the dataset.
+    dataset = choose_dataset()
 
     # ? Begin training on each client.
     apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
@@ -57,7 +53,11 @@ if __name__ == '__main__':
     test_dataset = datasets.MNIST("datasets/mnist/", train=False, download=True, transform=apply_transform)
 
     # ? Split dataset into the clients.
-    sampling_data_to_clients(train_dataset, selected_clients)
+    sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
+
+    # ! ---------------------------------------------------- End ! -----------------------------------------------------
+
+    # ! -------------------------------------------- Start Federated Learning  -----------------------------------------
 
     global_model = CNNMnist(num_channels=NUM_CHANNELS, num_classes=NUM_CLASSES)
 
@@ -107,6 +107,8 @@ if __name__ == '__main__':
         list_loss.append(loss)
     train_accuracy.append(sum(list_acc) / len(list_acc))
 
+    # ! ---------------------------------------------------- End ! -----------------------------------------------------
+
     print("-" * 30)
     print('Global Training Accuracy: {:.2f}% \n'.format(100 * train_accuracy[-1]))
     print(f'Global Training Loss : {np.mean(np.array(train_loss))}')
@@ -114,5 +116,3 @@ if __name__ == '__main__':
     print("-" * 30)
     print(clients_acc)
     print("-" * 30)
-
-    exit(0)
