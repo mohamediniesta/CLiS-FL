@@ -8,6 +8,7 @@ from ClientSelection import RandomClientSelection
 from torchvision import datasets, transforms
 from Models.CNN.CNNMnist import CNNMnist
 from Models.update import LocalUpdate
+from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 import numpy as np
 import warnings
 
@@ -58,7 +59,7 @@ if __name__ == '__main__':
     # ? Split dataset into the clients.
     sampling_data_to_clients(train_dataset, selected_clients)
 
-    global_model = CNNMnist(num_channels=1, num_classes=10)
+    global_model = CNNMnist(num_channels=NUM_CHANNELS, num_classes=NUM_CLASSES)
 
     global_model.train()  # ? Generic model.
 
