@@ -1,19 +1,20 @@
-import copy
-from colorama import init, Fore
 from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients, choose_dataset
 from utils.stats import count_clients, display_client_information
-from utils.displays import display_author
-from utils.computation import average_weights
+from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from ClientSelection import RandomClientSelection
+from utils.computation import average_weights
 from torchvision import datasets, transforms
+from utils.displays import display_author
 from Models.CNN.CNNMnist import CNNMnist
 from Models.update import LocalUpdate
-from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
+from colorama import init, Fore
 import numpy as np
 import warnings
+import copy
+
 
 # todo: Draw energy consumption in the process and the global process by each node.
-# todo: Draw accuracy of each row and global accuracy by each round.
+# todo: Draw the global accuracy by each round.
 # todo: Draw how many down node by each round.
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -27,18 +28,34 @@ if __name__ == '__main__':
 
     # ? Choose how many nodes you want to simulate.
     number_of_nodes = int(input("{0}How Many nodes do you want to simulate ?\n".format(Fore.YELLOW)))
+
     # ? Specify the percentage of choice of the participant clients.
     selection_percentage = int(input("{0}What percentage of participating clients do you want?\n".
                                      format(Fore.YELLOW))) / 100
+
+    # ? Choosing the dataset.
+    dataset = choose_dataset()
+
+    # ? Apply transform and splitting datasets intro train and test.
+    apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
+
+    PATH = "datasets/mnist/"
+    train_dataset = datasets.MNIST(PATH, train=True, download=True, transform=apply_transform)
+    test_dataset = datasets.MNIST(PATH, train=False, download=True, transform=apply_transform)
+
     # ? Generate the number chosen of nodes.
     clients = generateNodes(number_of_nodes=number_of_nodes)
+
     # ? Call Random client selection module to select random clients.
     selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
                                              debug_mode=False).randomClientSelection()
+
     # ? Convert the output of random clients to list.
     selected_clients_list = selected_to_dict(selected_clients=selected_clients)
+
     # ? Get the number of weak, mid and powerful nodes.
     number_weak_nodes, number_mid_nodes, number_powerful_nodes = count_clients(selected_clients=selected_clients)
+
     # ? Display some stats about selected clients.
     display_client_information(selected_clients_list=selected_clients_list, selected_clients=selected_clients,
                                number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
@@ -47,16 +64,7 @@ if __name__ == '__main__':
     # ! -------------------------------------------- End of client selection process -----------------------------------
 
     # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
-    # ? Choosing the dataset.
-    dataset = choose_dataset()
-
     # ? Begin training on each client.
-    apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
-
-    PATH = "datasets/mnist/"
-
-    train_dataset = datasets.MNIST(PATH, train=True, download=True, transform=apply_transform)
-    test_dataset = datasets.MNIST(PATH, train=False, download=True, transform=apply_transform)
 
     # ? Split dataset into the clients.
     sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
