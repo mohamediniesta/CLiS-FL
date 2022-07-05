@@ -4,7 +4,7 @@ from ClientSelection.ClientSelection import ClientSelection
 
 
 class RandomClientSelection(ClientSelection):
-    def __init__(self, nodes: list, K: int = 0.1, debug_mode: bool = False):
+    def __init__(self, nodes: list, K: float = 0.1, debug_mode: bool = False):
         super().__init__(nodes, debug_mode)
         self.K = K
         self.debug_mode = debug_mode

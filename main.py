@@ -12,7 +12,6 @@ import numpy as np
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-
 init(autoreset=True)
 
 if __name__ == '__main__':

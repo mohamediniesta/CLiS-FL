@@ -18,8 +18,8 @@ def count_clients(selected_clients: list) -> (int, int, int):
     return number_weak_nodes, number_mid_nodes, number_powerful_nodes
 
 
-def display_client_information(selected_clients_list: list, selected_clients: list, number_weak_nodes: int,
-                               number_mid_nodes: int, number_powerful_nodes: int, K: int):
+def display_client_information(selected_clients_list: dict, selected_clients: list, number_weak_nodes: int,
+                               number_mid_nodes: int, number_powerful_nodes: int, K: float):
     print("{0}Selected clients are : ".format(Fore.MAGENTA))
     print("{0}---------------------------------------------------------".format(Fore.MAGENTA))
     print(selected_clients_list)
