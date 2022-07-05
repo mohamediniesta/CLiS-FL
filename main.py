@@ -12,12 +12,16 @@ from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 import numpy as np
 import warnings
 
+# todo: Draw energy consumption in the process and the global process by each node.
+# todo: Draw accuracy of each row and global accuracy by each round.
+# todo: Draw how many down node by each round.
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 init(autoreset=True)
 
 if __name__ == '__main__':
 
-    display_author()
+    display_author()  # * Display authors information
 
     # ! -------------------------------------------- Generation and client selection process --------------------------
 
@@ -49,8 +53,10 @@ if __name__ == '__main__':
     # ? Begin training on each client.
     apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
 
-    train_dataset = datasets.MNIST("datasets/mnist/", train=True, download=True, transform=apply_transform)
-    test_dataset = datasets.MNIST("datasets/mnist/", train=False, download=True, transform=apply_transform)
+    PATH = "datasets/mnist/"
+
+    train_dataset = datasets.MNIST(PATH, train=True, download=True, transform=apply_transform)
+    test_dataset = datasets.MNIST(PATH, train=False, download=True, transform=apply_transform)
 
     # ? Split dataset into the clients.
     sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
