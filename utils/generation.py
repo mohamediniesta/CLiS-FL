@@ -1,6 +1,7 @@
 import uuid
 import random
 import numpy as np
+from colorama import Fore
 from node import PowNode, MidNode, LowNode
 from ConsumptionModel.StorageModel.StorageModel import StorageModel
 from torchvision.datasets import MNIST
@@ -23,6 +24,17 @@ def generateNodes(number_of_nodes: int) -> list:
             node = PowNode(name="Node {}".format(i), data="test")
         nodes.append(node)
     return nodes
+
+
+def choose_dataset():
+    dataset_list = {1: "mnist", 2: "fashion_mnist", 3: "cifar"}
+    dataset_id = int(input('''{0}Which dataset do you want to use ?
+    1 - Mnist
+    2 - Fashion Mnist
+    3 - Cifar\n'''.format(Fore.YELLOW)))
+
+    dataset = dataset_list[dataset_id]
+    return dataset
 
 
 def selected_to_dict(selected_clients: list) -> dict:
