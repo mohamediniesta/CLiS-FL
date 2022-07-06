@@ -1,6 +1,16 @@
 from node import PowNode, MidNode, LowNode
 import matplotlib.pyplot as plt
 from colorama import Fore
+import numpy as np
+
+
+def show_results(train_loss, clients_acc):
+    print("-" * 30)
+    print(f'Global Training Loss : {np.mean(np.array(train_loss))}')
+    print("Local accuracy of each client : ")
+    print("-" * 30)
+    print(clients_acc)
+    print("-" * 30)
 
 
 def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: dict = None):
