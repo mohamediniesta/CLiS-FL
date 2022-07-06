@@ -1,5 +1,5 @@
 from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients, choose_dataset
-from utils.stats import count_clients, display_client_information
+from utils.stats import count_clients, display_client_information, draw_graph, count_rejected_clients
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from ClientSelection import RandomClientSelection
 from utils.computation import average_weights
@@ -11,7 +11,6 @@ from colorama import init, Fore
 import numpy as np
 import warnings
 import copy
-
 
 # todo: Draw energy consumption in the process and the global process by each node.
 # todo: Draw the global accuracy by each round.
@@ -34,7 +33,7 @@ if __name__ == '__main__':
                                      format(Fore.YELLOW))) / 100
 
     # ? Choosing the dataset.
-    dataset = choose_dataset()
+    # dataset = choose_dataset()
 
     # ? Apply transform and splitting datasets intro train and test.
     apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
@@ -64,7 +63,6 @@ if __name__ == '__main__':
     # ! -------------------------------------------- End of client selection process -----------------------------------
 
     # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
-    # ? Begin training on each client.
 
     # ? Split dataset into the clients.
     sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
@@ -73,12 +71,14 @@ if __name__ == '__main__':
 
     # ! -------------------------------------------- Start Federated Learning  -----------------------------------------
 
+    # ? Begin training on each client.
     global_model = CNNMnist(num_channels=NUM_CHANNELS, num_classes=NUM_CLASSES)
 
     global_model.train()  # ? Generic model.
 
     local_weights, local_losses = [], []
     train_loss, train_accuracy = [], []
+    total_energy = 0
     i = 1
     for client in selected_clients:  # ? For each client in the selected clients.
         if client.get_status() == 0:  # ? Check the status of client it's down or not.
@@ -88,8 +88,9 @@ if __name__ == '__main__':
         print(
             "{0}Client Nº{1} -  Begin training with {2} ({3})".format(Fore.CYAN, i, client.get_name(), client.get_id()))
         local_model = LocalUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
-        w, loss = local_model.update_weights(
+        w, loss, e = local_model.update_weights(
             model=copy.deepcopy(global_model), global_round=1)
+        total_energy = total_energy + e
         local_weights.append(copy.deepcopy(w))
         local_losses.append(copy.deepcopy(loss))
         if client.get_total_energy() is not None:  # ? if the node is on battery mode.
@@ -130,3 +131,10 @@ if __name__ == '__main__':
     print("-" * 30)
     print(clients_acc)
     print("-" * 30)
+    method = "Vanila FL"
+    number_rejected_clients = count_rejected_clients(clients)
+    accuracy_data = {method: 100 * train_accuracy[-1]}
+    energy_data = {method: total_energy}
+    down_data = {method: number_rejected_clients}
+
+    draw_graph(accuracy_data=accuracy_data, energy_data=energy_data, down_data=down_data)
