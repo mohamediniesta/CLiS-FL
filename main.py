@@ -12,10 +12,6 @@ import numpy as np
 import warnings
 import copy
 
-# todo: Draw energy consumption in the process and the global process by each node.
-# todo: Draw the global accuracy by each round.
-# todo: Draw how many down node by each round.
-
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 init(autoreset=True)
 
@@ -23,7 +19,7 @@ if __name__ == '__main__':
 
     display_author()  # * Display authors information
 
-    # ! -------------------------------------------- Generation and client selection process --------------------------
+    # ! -------------------------------------------- Generation process ------------------------------------------------
 
     # ? Choose how many nodes you want to simulate.
     number_of_nodes = int(input("{0}How Many nodes do you want to simulate ?\n".format(Fore.YELLOW)))
@@ -45,6 +41,19 @@ if __name__ == '__main__':
     # ? Generate the number chosen of nodes.
     clients = generateNodes(number_of_nodes=number_of_nodes)
 
+    # ! ---------------------------------------------------- End ! -----------------------------------------------------
+
+    # ! -------------------------------------------- Generic Model ----------------------------------------------------
+
+    global_model = CNNMnist(num_channels=NUM_CHANNELS, num_classes=NUM_CLASSES)
+
+    global_model.train()  # ? Generic model.
+
+    global_weights = global_model.state_dict()
+
+    # ! ---------------------------------------------------- End ! -----------------------------------------------------
+
+    # ! -------------------------------------------- Client selection process ------------------------------------------
     # ? Call Random client selection module to select random clients.
     selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
                                              debug_mode=False).randomClientSelection()
@@ -72,9 +81,6 @@ if __name__ == '__main__':
     # ! -------------------------------------------- Start Federated Learning  -----------------------------------------
 
     # ? Begin training on each client.
-    global_model = CNNMnist(num_channels=NUM_CHANNELS, num_classes=NUM_CLASSES)
-
-    global_model.train()  # ? Generic model.
 
     local_weights, local_losses = [], []
     train_loss, train_accuracy = [], []
