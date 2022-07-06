@@ -1,5 +1,43 @@
 from node import PowNode, MidNode, LowNode
+import matplotlib.pyplot as plt
 from colorama import Fore
+
+
+def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: dict = None):
+    accuracy_data = {'Vanila FL': 20}
+    methods = list(accuracy_data.keys())
+    values = list(accuracy_data.values())
+
+    fig, (ax0, ax1, ax2) = plt.subplots(nrows=1, ncols=3, sharex=True,
+                                        figsize=(16, 8))
+
+    fig.canvas.set_window_title('Federated Learning simulation')
+
+    # ? creating the bar plot
+    ax0.bar(methods, values, color='maroon', width=0.4)
+    ax0.set_title("Global Accuracy By Round")
+    ax0.set_xlabel("Methods")
+    ax0.set_ylabel("Accuracy (%)")
+
+    energy_data = {'Vanila FL': 1500}
+    methods = list(energy_data.keys())
+    values = list(energy_data.values())
+
+    ax1.bar(methods, values, color='gold', width=0.4)
+    ax1.set_title("Energy Consumption")
+    ax1.set_ylabel("Energy ( mAh)")
+    ax1.set_xlabel("Methods")
+
+    down_data = {'Vanila FL': 150}
+    methods = list(down_data.keys())
+    values = list(down_data.values())
+
+    ax2.bar(methods, values, color='purple', width=0.4)
+    ax2.set_title("Rejected Clients")
+    ax2.set_ylabel("Number of rejected clients")
+    ax2.set_xlabel("Methods")
+
+    plt.show()
 
 
 def count_clients(selected_clients: list) -> (int, int, int):
