@@ -1,14 +1,14 @@
+from utils.stats import count_clients, display_client_information, draw_graph, count_rejected_clients, show_results
 from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients, choose_dataset
-from utils.stats import count_clients, display_client_information, draw_graph, count_rejected_clients
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from DistribuedLearning.DistribuedLearning import dist_learning
 from ClientSelection import RandomClientSelection
+from constants.federated_learning import ROUNDS
 from torchvision import datasets, transforms
 from utils.displays import display_author
 from Models.CNN.CNNMnist import CNNMnist
 from colorama import init, Fore
 from tqdm import tqdm
-import numpy as np
 import warnings
 
 
@@ -54,8 +54,11 @@ if __name__ == '__main__':
     train_loss, train_accuracy = [], []
     total_energy = 0
 
-    for epoch in tqdm(range(2)):
+    for epoch in range(ROUNDS):
         print(f'\n | Global Training Round : {epoch + 1} |\n')
+
+        global_model.train()
+
     # ! -------------------------------------------- Client selection process ------------------------------------------
         # ? Call Random client selection module to select random clients.
         selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
@@ -81,12 +84,14 @@ if __name__ == '__main__':
 
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
-    # ! -------------------------------------------- Start Federated Learning  -----------------------------------------
+    # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
 
         # ? Begin training on each client.
 
-        loss_avg, list_acc, clients_acc, energy = dist_learning(selected_clients=selected_clients_list, train_dataset=
-                                                                train_dataset, global_model=global_model)
+        loss_avg, list_acc, clients_acc, energy = dist_learning(selected_clients=selected_clients,
+                                                                train_dataset=train_dataset,
+                                                                global_model=global_model,
+                                                                global_round=epoch)
 
     train_accuracy.append(sum(list_acc) / len(list_acc))
     train_loss.append(loss_avg)
@@ -94,18 +99,17 @@ if __name__ == '__main__':
 
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
-    print("-" * 30)
-    print('Global Training Accuracy: {:.2f}% \n'.format(100 * train_accuracy[-1]))
-    print(f'Global Training Loss : {np.mean(np.array(train_loss))}')
-    print("Local accuracy of each client : ")
-    print("-" * 30)
-    print(clients_acc)
-    print("-" * 30)
+    # ! ---------------------------------------------------- Results ---------------------------------------------------
+
+    show_results() # ? Print loss and the accuracy of each node.
 
     method = "Vanila FL"
+
     number_rejected_clients = count_rejected_clients(clients)
-    accuracy_data = {method: 100 * train_accuracy[-1]}
-    energy_data = {method: total_energy}
-    down_data = {method: number_rejected_clients}
+
+    accuracy_data, energy_data, down_data = {method: 100 * train_accuracy[-1]}, {method: total_energy}, \
+                                            {method: number_rejected_clients}
 
     draw_graph(accuracy_data=accuracy_data, energy_data=energy_data, down_data=down_data)
+
+    # ! ---------------------------------------------------- End ! -----------------------------------------------------
