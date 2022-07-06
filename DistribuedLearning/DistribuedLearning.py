@@ -4,7 +4,7 @@ from colorama import Fore
 import copy
 
 
-def dist_learning(train_dataset, selected_clients: list, global_model):
+def dist_learning(train_dataset, selected_clients: list, global_model, global_round):
     local_weights, local_losses = [], []
     energy = 0
     i = 1
@@ -17,7 +17,7 @@ def dist_learning(train_dataset, selected_clients: list, global_model):
             "{0}Client Nº{1} -  Begin training with {2} ({3})".format(Fore.CYAN, i, client.get_name(), client.get_id()))
         local_model = LocalUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
         w, loss, e = local_model.update_weights(
-            model=copy.deepcopy(global_model), global_round=global_model)
+            model=copy.deepcopy(global_model), global_round=global_round)
         energy = energy + e
         local_weights.append(copy.deepcopy(w))
         local_losses.append(copy.deepcopy(loss))
