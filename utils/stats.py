@@ -4,7 +4,6 @@ from colorama import Fore
 
 
 def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: dict = None):
-    accuracy_data = {'Vanila FL': 20}
     methods = list(accuracy_data.keys())
     values = list(accuracy_data.values())
 
@@ -19,7 +18,6 @@ def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: 
     ax0.set_xlabel("Methods")
     ax0.set_ylabel("Accuracy (%)")
 
-    energy_data = {'Vanila FL': 1500}
     methods = list(energy_data.keys())
     values = list(energy_data.values())
 
@@ -28,7 +26,6 @@ def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: 
     ax1.set_ylabel("Energy ( mAh)")
     ax1.set_xlabel("Methods")
 
-    down_data = {'Vanila FL': 150}
     methods = list(down_data.keys())
     values = list(down_data.values())
 
@@ -38,6 +35,14 @@ def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: 
     ax2.set_xlabel("Methods")
 
     plt.show()
+
+
+def count_rejected_clients(clients: list) -> int:
+    n = 0
+    for client in clients:
+        if client.get_status() == 0:
+            n = n + 1
+    return n
 
 
 def count_clients(selected_clients: list) -> (int, int, int):
