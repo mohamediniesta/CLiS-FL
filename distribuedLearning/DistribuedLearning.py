@@ -1,4 +1,4 @@
-from Models.update import LocalUpdate
+from models.update import LocalUpdate
 from utils.computation import average_weights
 from colorama import Fore
 import copy
