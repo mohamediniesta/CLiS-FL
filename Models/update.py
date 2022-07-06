@@ -52,6 +52,7 @@ class LocalUpdate(object):
 
     def update_weights(self, model, global_round):
         # Set mode to train model
+        energy = 0
         model.train()
         epoch_loss = []
 
@@ -64,6 +65,7 @@ class LocalUpdate(object):
             if self.node.get_total_energy() is not None:
                 new_energy = self.energy_model.consume_energy()
                 self.node.set_current_energy(new_energy)
+                energy = energy + self.node.get_energy_consumption()
                 battery_p = (self.node.get_current_energy() / self.node.get_total_energy()) * 100
                 #  print("Battery percentage : {:.1f}%".format(battery_p))
             else:
@@ -88,7 +90,7 @@ class LocalUpdate(object):
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
 
         self.storage_model.add_to_storage(number_of_mega_bytes=100)
-        return model.state_dict(), sum(epoch_loss) / len(epoch_loss)
+        return model.state_dict(), sum(epoch_loss) / len(epoch_loss), energy
 
     def inference(self, model):
         """ Returns the inference accuracy and loss.
