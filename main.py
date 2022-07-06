@@ -8,7 +8,6 @@ from torchvision import datasets, transforms
 from utils.displays import display_author
 from models.CNN.CNNMnist import CNNMnist
 from colorama import init, Fore
-from tqdm import tqdm
 import warnings
 
 
