@@ -1,6 +1,6 @@
 import random
 from colorama import Fore, Style
-from ClientSelection.ClientSelection import ClientSelection
+from clientSelection.ClientSelection import ClientSelection
 
 
 class RandomClientSelection(ClientSelection):

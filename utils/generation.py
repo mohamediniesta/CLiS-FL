@@ -3,7 +3,7 @@ import random
 import numpy as np
 from colorama import Fore
 from node import PowNode, MidNode, LowNode
-from ConsumptionModel.StorageModel.StorageModel import StorageModel
+from consumptionModel.StorageModel.StorageModel import StorageModel
 from torchvision.datasets import MNIST
 
 

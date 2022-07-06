@@ -1,8 +1,8 @@
 from utils.stats import count_clients, display_client_information, draw_graph, count_rejected_clients, show_results
 from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients, choose_dataset
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
-from DistribuedLearning.DistribuedLearning import dist_learning
-from ClientSelection import RandomClientSelection
+from distribuedLearning.DistribuedLearning import dist_learning
+from clientSelection import RandomClientSelection
 from constants.federated_learning import ROUNDS
 from torchvision import datasets, transforms
 from utils.displays import display_author

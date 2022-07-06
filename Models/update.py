@@ -1,8 +1,8 @@
 import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
-from ConsumptionModel.EnergyModel.EnergyModel import EnergyModel
-from ConsumptionModel.StorageModel.StorageModel import StorageModel
+from consumptionModel.EnergyModel.EnergyModel import EnergyModel
+from consumptionModel.StorageModel.StorageModel import StorageModel
 
 
 class DatasetSplit(Dataset):
