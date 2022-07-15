@@ -10,9 +10,16 @@ from models.CNN.CNNMnist import CNNMnist
 from colorama import init, Fore
 import warnings
 
-
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 init(autoreset=True)
+
+# TODO : Adding stop accuracy percentage.
+
+# TODO : Optimize Battery Modeling.
+
+# TODO : Adding noise process to clients randomly.
+
+# TODO: choose dataset function.
 
 if __name__ == '__main__':
     display_author()  # * Display authors information
@@ -100,7 +107,7 @@ if __name__ == '__main__':
 
     # ! ---------------------------------------------------- Results ---------------------------------------------------
 
-    show_results() # ? Print loss and the accuracy of each node.
+    show_results(train_loss=train_loss, clients_acc=clients_acc)  # ? Print loss and the accuracy of each node.
 
     method = "Vanila FL"
 
