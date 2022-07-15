@@ -3,8 +3,9 @@ from utils.generation import generateNodes, selected_to_dict, sampling_data_to_c
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from distribuedLearning.DistribuedLearning import dist_learning
 from clientSelection import RandomClientSelection
-from constants.federated_learning import ROUNDS
-from torchvision import datasets, transforms
+from constants.federated_learning import ROUNDS, FINAL_ACCURACY
+from torchvision import transforms
+from torchvision.datasets import MNIST
 from utils.displays import display_author
 from models.CNN.CNNMnist import CNNMnist
 from colorama import init, Fore
@@ -40,8 +41,8 @@ if __name__ == '__main__':
     apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
 
     PATH = "datasets/mnist/"
-    train_dataset = datasets.MNIST(PATH, train=True, download=True, transform=apply_transform)
-    test_dataset = datasets.MNIST(PATH, train=False, download=True, transform=apply_transform)
+    train_dataset = MNIST(PATH, download=True, transform=apply_transform)
+    test_dataset = MNIST(PATH, train=False, download=True, transform=apply_transform)
 
     # ? Generate the number chosen of nodes.
     clients = generateNodes(number_of_nodes=number_of_nodes)
