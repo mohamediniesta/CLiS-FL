@@ -114,7 +114,8 @@ if __name__ == '__main__':
 
     number_rejected_clients = count_rejected_clients(clients)
 
-    accuracy_data, energy_data, down_data = {method: 100 * train_accuracy[-1]}, {method: total_energy}, \
+    accuracy_data, energy_data, down_data = {method: 100 * train_accuracy[-1]},\
+                                            {method: total_energy}, \
                                             {method: number_rejected_clients}
 
     draw_graph(accuracy_data=accuracy_data, energy_data=energy_data, down_data=down_data)

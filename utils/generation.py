@@ -33,13 +33,13 @@ def choose_dataset():
     dataset_id = int(input('''{0}Which dataset do you want to use ?{1}
     1 - Mnist
     2 - Fashion Mnist
-    3 - Cifar\n> '''.format(Fore.LIGHTYELLOW_EX, Fore.YELLOW)))
+    3 - Cifar\n{0}> '''.format(Fore.LIGHTYELLOW_EX, Fore.YELLOW)))
     while dataset_id != 1 and dataset_id != 2 and dataset_id != 3:
         print("{0}[-] Error !, Please select id from 1 to 3".format(Fore.LIGHTRED_EX))
         dataset_id = int(input('''{0}Which dataset do you want to use ?{1}
         1 - Mnist
         2 - Fashion Mnist
-        3 - Cifar\n> '''.format(Fore.LIGHTYELLOW_EX, Fore.YELLOW)))
+        3 - Cifar\n{0}> '''.format(Fore.LIGHTYELLOW_EX, Fore.YELLOW)))
 
     dataset = dataset_list[dataset_id]
     apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
@@ -57,7 +57,7 @@ def choose_dataset():
         train_dataset = CIFAR100(PATH, download=True, transform=apply_transform)
         test_dataset = CIFAR100(PATH, train=False, download=True, transform=apply_transform)
 
-    print("{0}[+] You Have chose {1} dataset".format(Fore.LIGHTMAGENTA_EX, dataset))
+    print("{0}[+] You Have chose {1} dataset".format(Fore.LIGHTMAGENTA_EX, dataset.upper()))
 
     sleep(1.5)
 
