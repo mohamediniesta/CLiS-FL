@@ -1,45 +1,46 @@
 import copy
 from colorama import Fore
-from models.update import LocalUpdate
+from models.update import ClientUpdate
 from utils.computation import average_weights
 
 
 def dist_learning(train_dataset, selected_clients: list, global_model, global_round: int) -> (float, list, dict, float):
     local_weights, local_losses = [], []
     energy = 0
-    i = 1
+    index = 1
 
     for client in selected_clients:  # ? For each client in the selected clients.
 
         if client.get_status() == 0:  # ? Check the status of client it's down or not.
             print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.get_name()))
-            i += 1
+            index += 1
             continue
 
-        print(
-            "{0}Client Nº{1} -  Begin training with {2} ({3})".format(Fore.CYAN, i, client.get_name(), client.get_id()))
+        print("{0}Client Nº{1} -  Begin training with {2} ({3})".format(Fore.CYAN, index, client.get_name(),
+                                                                        client.get_id()))
 
-        local_model = LocalUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
+        local_model = ClientUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
 
-        w, loss, e = local_model.update_weights(model=copy.deepcopy(global_model), global_round=global_round)
+        local_weight, local_loss, local_energy = local_model.update_weights(model=copy.deepcopy(global_model),
+                                                                            global_round=global_round)
 
-        energy = energy + e
+        energy = energy + local_energy
 
-        local_weights.append(copy.deepcopy(w))
-        local_losses.append(copy.deepcopy(loss))
+        local_weights.append(copy.deepcopy(local_weight))
 
-        if client.get_total_energy() is not None:  # ? if the node is on battery mode.
-            # ? Calculate the percentage of battery.
-            battery_p = (client.get_current_energy() / client.get_total_energy()) * 100
-        else:
-            battery_p = 100
+        local_losses.append(copy.deepcopy(local_loss))
+
+        # ? if the node is on battery mode.
+        battery_percent = (client.get_current_energy() / client.get_total_energy()) * 100 \
+            if client.get_total_energy() is not None else 100
+
         # ? Calculate the percentage of storage.
-        storage_p = (client.get_current_storage() / client.get_total_storage()) * 100
+        storage_percent = (client.get_current_storage() / client.get_total_storage()) * 100
 
         print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f}%)"
               .format(Fore.GREEN, client.get_name(),
-                      battery_p, storage_p))
-        i += 1
+                      battery_percent, storage_percent))
+        index += 1
 
     global_weights = average_weights(local_weights)  # ? Model's aggregation.
     global_model.load_state_dict(global_weights)
@@ -52,7 +53,7 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
     # ? Inference Phase (Test our model on test data).
 
     for client in selected_clients:
-        local_model = LocalUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
+        local_model = ClientUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
         acc, loss = local_model.inference(model=global_model)
         clients_acc[client.get_name()] = "{:.2f}%".format(100 * acc)
         list_acc.append(acc)
