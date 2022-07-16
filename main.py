@@ -8,6 +8,7 @@ from utils.displays import display_author
 from models.CNN.CNNMnist import CNNMnist
 from models.CNN.CNNCifar import CNNCifar
 from colorama import init, Fore
+from time import sleep
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -25,11 +26,11 @@ if __name__ == '__main__':
     # ! -------------------------------------------- Generation process ------------------------------------------------
 
     # ? Choose how many nodes you want to simulate.
-    number_of_nodes = int(input("{0}How Many nodes do you want to simulate ?\n".format(Fore.YELLOW)))
+    number_of_nodes = int(input("{0}How Many nodes do you want to simulate ?\n> ".format(Fore.LIGHTYELLOW_EX)))
 
     # ? Specify the percentage of choice of the participant clients.
-    selection_percentage = int(input("{0}What percentage of participating clients do you want?\n".
-                                     format(Fore.YELLOW))) / 100
+    selection_percentage = int(input("{0}What percentage of participating clients do you want?\n> ".
+                                     format(Fore.LIGHTYELLOW_EX))) / 100
 
     # ? Choosing the dataset ( 1 = MNIST, 2 = Fashion MNIST, 3 = CIFAR 100).
     dataset_id, train_dataset, test_dataset = choose_dataset()
@@ -51,7 +52,9 @@ if __name__ == '__main__':
     total_energy = 0
 
     for epoch in range(ROUNDS):
-        print("\n{0}Global Training Round : {1}\n".format(Fore.LIGHTRED_EX, epoch + 1))
+        print("\n{0}Global Training Round : {1}\n".format(Fore.LIGHTYELLOW_EX, epoch + 1))
+
+        sleep(2)
 
         global_model.train()
 

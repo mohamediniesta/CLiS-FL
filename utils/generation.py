@@ -1,6 +1,7 @@
 import uuid
 import random
 import numpy as np
+from time import sleep
 from colorama import Fore
 from node import PowNode, MidNode, LowNode
 from consumptionModel.StorageModel.StorageModel import StorageModel
@@ -29,16 +30,16 @@ def generateNodes(number_of_nodes: int) -> list:
 
 def choose_dataset():
     dataset_list = {1: "mnist", 2: "fashion_mnist", 3: "cifar"}
-    dataset_id = int(input('''{0}Which dataset do you want to use ?
+    dataset_id = int(input('''{0}Which dataset do you want to use ?{1}
     1 - Mnist
     2 - Fashion Mnist
-    3 - Cifar\n'''.format(Fore.YELLOW)))
+    3 - Cifar\n> '''.format(Fore.LIGHTYELLOW_EX, Fore.YELLOW)))
     while dataset_id != 1 and dataset_id != 2 and dataset_id != 3:
-        print("! Error, Please select id from 1 to 3")
-        dataset_id = int(input('''{0}Which dataset do you want to use ?
+        print("{0}[-] Error !, Please select id from 1 to 3".format(Fore.LIGHTRED_EX))
+        dataset_id = int(input('''{0}Which dataset do you want to use ?{1}
         1 - Mnist
         2 - Fashion Mnist
-        3 - Cifar\n'''.format(Fore.YELLOW)))
+        3 - Cifar\n> '''.format(Fore.LIGHTYELLOW_EX, Fore.YELLOW)))
 
     dataset = dataset_list[dataset_id]
     apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
@@ -56,6 +57,10 @@ def choose_dataset():
         train_dataset = CIFAR100(PATH, download=True, transform=apply_transform)
         test_dataset = CIFAR100(PATH, train=False, download=True, transform=apply_transform)
 
+    print("{0}[+] You Have chose {1} dataset".format(Fore.LIGHTMAGENTA_EX, dataset))
+
+    sleep(1.5)
+
     return dataset_id, train_dataset, test_dataset
 
 
@@ -69,7 +74,6 @@ def selected_to_dict(selected_clients: list) -> dict:
 def sampling_data_to_clients(data, selected_client: list):
     num_clients = len(selected_client)
     num_items = int(len(data) / num_clients)
-    print("Data length ", len(data))
     dict_users, all_idxs = {}, [i for i in range(len(data))]
     for CLIENT in selected_client:
         storage_model = StorageModel(node=CLIENT)
