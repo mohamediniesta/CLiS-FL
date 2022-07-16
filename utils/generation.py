@@ -4,7 +4,8 @@ import numpy as np
 from colorama import Fore
 from node import PowNode, MidNode, LowNode
 from consumptionModel.StorageModel.StorageModel import StorageModel
-from torchvision.datasets import MNIST
+from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
+from torchvision import transforms
 
 
 def generate_node_id() -> str:
@@ -32,9 +33,30 @@ def choose_dataset():
     1 - Mnist
     2 - Fashion Mnist
     3 - Cifar\n'''.format(Fore.YELLOW)))
+    while dataset_id != 1 and dataset_id != 2 and dataset_id != 3:
+        print("! Error, Please select id from 1 to 3")
+        dataset_id = int(input('''{0}Which dataset do you want to use ?
+        1 - Mnist
+        2 - Fashion Mnist
+        3 - Cifar\n'''.format(Fore.YELLOW)))
 
     dataset = dataset_list[dataset_id]
-    return dataset
+    apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
+
+    PATH = "datasets/{0}/".format(dataset)
+    if dataset_id == 1:
+        train_dataset = MNIST(PATH, download=True, transform=apply_transform)
+        test_dataset = MNIST(PATH, train=False, download=True, transform=apply_transform)
+
+    if dataset_id == 2:
+        train_dataset = FashionMNIST(PATH, download=True, transform=apply_transform)
+        test_dataset = FashionMNIST(PATH, train=False, download=True, transform=apply_transform)
+
+    if dataset_id == 3:
+        train_dataset = CIFAR100(PATH, download=True, transform=apply_transform)
+        test_dataset = CIFAR100(PATH, train=False, download=True, transform=apply_transform)
+
+    return dataset_id, train_dataset, test_dataset
 
 
 def selected_to_dict(selected_clients: list) -> dict:
@@ -44,9 +66,10 @@ def selected_to_dict(selected_clients: list) -> dict:
     return clients
 
 
-def sampling_data_to_clients(data: MNIST, selected_client: list):
+def sampling_data_to_clients(data, selected_client: list):
     num_clients = len(selected_client)
     num_items = int(len(data) / num_clients)
+    print("Data length ", len(data))
     dict_users, all_idxs = {}, [i for i in range(len(data))]
     for CLIENT in selected_client:
         storage_model = StorageModel(node=CLIENT)
