@@ -4,23 +4,20 @@ from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from distribuedLearning.DistribuedLearning import dist_learning
 from clientSelection import RandomClientSelection
 from constants.federated_learning import ROUNDS, FINAL_ACCURACY
-from torchvision import transforms
-from torchvision.datasets import MNIST
 from utils.displays import display_author
 from models.CNN.CNNMnist import CNNMnist
+from models.CNN.CNNCifar import CNNCifar
 from colorama import init, Fore
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 init(autoreset=True)
 
-# TODO : Adding stop accuracy percentage.
-
 # TODO : Optimize Battery Modeling.
 
 # TODO : Adding noise process to clients randomly.
 
-# TODO: choose dataset function.
+# TODO: Generating sphinx documentations.
 
 if __name__ == '__main__':
     display_author()  # * Display authors information
@@ -34,15 +31,8 @@ if __name__ == '__main__':
     selection_percentage = int(input("{0}What percentage of participating clients do you want?\n".
                                      format(Fore.YELLOW))) / 100
 
-    # ? Choosing the dataset.
-    # dataset = choose_dataset()
-
-    # ? Apply transform and splitting datasets intro train and test.
-    apply_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
-
-    PATH = "datasets/mnist/"
-    train_dataset = MNIST(PATH, download=True, transform=apply_transform)
-    test_dataset = MNIST(PATH, train=False, download=True, transform=apply_transform)
+    # ? Choosing the dataset ( 1 = MNIST, 2 = Fashion MNIST, 3 = CIFAR 100).
+    dataset_id, train_dataset, test_dataset = choose_dataset()
 
     # ? Generate the number chosen of nodes.
     clients = generateNodes(number_of_nodes=number_of_nodes)
@@ -50,8 +40,7 @@ if __name__ == '__main__':
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
     # ! -------------------------------------------- Generic Model ----------------------------------------------------
-
-    global_model = CNNMnist(num_channels=NUM_CHANNELS, num_classes=NUM_CLASSES)
+    global_model = CNNCifar() if dataset_id == 3 else CNNMnist(num_channels=NUM_CHANNELS, num_classes=NUM_CLASSES)
 
     global_model.train()  # ? Generic model.
 
@@ -62,7 +51,7 @@ if __name__ == '__main__':
     total_energy = 0
 
     for epoch in range(ROUNDS):
-        print(f'\n | Global Training Round : {epoch + 1} |\n')
+        print("\n{0}Global Training Round : {1}\n".format(Fore.LIGHTRED_EX, epoch + 1))
 
         global_model.train()
 
@@ -100,9 +89,17 @@ if __name__ == '__main__':
                                                                 global_model=global_model,
                                                                 global_round=epoch)
 
-    train_accuracy.append(sum(list_acc) / len(list_acc))
-    train_loss.append(loss_avg)
-    total_energy = total_energy + energy
+        global_acc = sum(list_acc) / len(list_acc)
+
+        print("Global accuracy : {0} %".format(global_acc * 100))
+
+        train_accuracy.append(global_acc)
+        train_loss.append(loss_avg)
+        total_energy = total_energy + energy
+
+        if global_acc >= FINAL_ACCURACY / 100:
+            print("{0}[+] Global accuracy reached !! No more rounds for FL".format(Fore.LIGHTGREEN_EX))
+            break
 
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
