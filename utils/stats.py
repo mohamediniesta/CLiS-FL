@@ -24,7 +24,7 @@ def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: 
 
     # ? creating the bar plot
     ax0.bar(methods, values, color='maroon', width=0.4)
-    ax0.set_title("Global Accuracy By Round")
+    ax0.set_title("Global Accuracy")
     ax0.set_xlabel("Methods")
     ax0.set_ylabel("Accuracy (%)")
 
