@@ -3,7 +3,7 @@ from utils.generation import generateNodes, selected_to_dict, sampling_data_to_c
     split_nodes_networks
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from distribuedLearning.DistribuedLearning import dist_learning
-from clientSelection import RandomClientSelection
+from clientSelection import LeaderClientSelection, RandomClientSelection
 from constants.federated_learning import ROUNDS, FINAL_ACCURACY
 from leaderElection.leaderElection import LeaderElection
 from utils.displays import display_author
@@ -54,6 +54,9 @@ if __name__ == '__main__':
                                                                                         leader.get_id(),
                                                                                         leader.get_ip_addr()))
 
+    leader_selection = LeaderClientSelection(nodes=clients, K=0.1, networks=networks, debug_mode=False) \
+        .gathering_process()
+
     exit(0)
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
@@ -75,7 +78,7 @@ if __name__ == '__main__':
 
         global_model.train()
 
-    # ! -------------------------------------------- Client selection process ------------------------------------------
+        # ! -------------------------------------------- Client selection process ------------------------------------------
         # ? Call Random client selection module to select random clients.
         selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
                                                  debug_mode=False).randomClientSelection()
@@ -91,18 +94,18 @@ if __name__ == '__main__':
                                    number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
                                    number_powerful_nodes=number_powerful_nodes, K=selection_percentage)
 
-    # ! -------------------------------------------- End of client selection process -----------------------------------
+        # ! -------------------------------------------- End of client selection process -----------------------------------
 
-    # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
+        # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
 
         # ? Split dataset into the clients.
         sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
         print("test")
         exit(0)
 
-    # ! ---------------------------------------------------- End ! -----------------------------------------------------
+        # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
-    # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
+        # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
 
         # ? Begin training on each client.
 
