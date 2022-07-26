@@ -87,7 +87,7 @@ def sampling_data_to_clients(data, selected_client: list):
 
 def split_nodes_networks(nodes):
     number_of_nodes = len(nodes)
-    clients_chunk = chunk_list(lst=nodes, chunk_size=int(number_of_nodes / 10))
+    clients_chunk = chunk_list(lst=nodes, chunk_size=int(number_of_nodes / 5))
     i = 1
     networks = []
     for c in clients_chunk:
