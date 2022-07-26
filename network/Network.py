@@ -4,6 +4,7 @@ class Network(object):
         self.network_number = network_number
         self.debug_mode = debug_mode
         self.prefix_ip = "192.168.{0}.".format(network_number)
+        self.network_leader = None
 
     def assign_ip_addresses(self):
         index = 2
@@ -17,3 +18,9 @@ class Network(object):
 
     def get_nodes(self) -> list:
         return self.nodes
+
+    def get_network_leader(self):
+        return self.network_leader
+
+    def set_network_leader(self, network_leader):
+        self.network_leader = network_leader
