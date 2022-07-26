@@ -1,13 +1,28 @@
 import random
 from colorama import Fore, Style
+from time import sleep
+from network.Network import Network
 from clientSelection.ClientSelection import ClientSelection
 
 
 class LeaderClientSelection(ClientSelection):
-    def __init__(self, nodes: list, K: float = 0.1, debug_mode: bool = False):
+    def __init__(self, nodes: list, networks: list, K: float = 0.1, debug_mode: bool = False):
         super().__init__(nodes, debug_mode)
+        self.networks = networks
         self.K = K
         self.debug_mode = debug_mode
+
+    def gathering_process(self):
+        print("{0}[*] Start Gathering Process !!!".format(Fore.LIGHTBLUE_EX))
+        for i in range(0, 7):
+            for network in self.networks:
+                leader = network.get_network_leader()
+                clients = network.get_nodes()
+                for client in clients:
+                    rsrc_info = client.get_resources_information()
+                    leader_data = leader.get_gathered_data()
+                    leader.set_gathered_data(leader_data + rsrc_info)
+            sleep(120)
 
     def leaderClientSelection(self) -> list:
         selectedClients = []
