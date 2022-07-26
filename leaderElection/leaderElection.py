@@ -13,4 +13,5 @@ class LeaderElection(object):
             leader_id = int(leader.get_id(), 16)
             if leader_id > int(self.nodes[i].get_id(), 16):
                 leader = self.nodes[i]
+        leader.set_leader(True)
         return leader
