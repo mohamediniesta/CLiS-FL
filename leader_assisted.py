@@ -1,5 +1,6 @@
 from utils.stats import count_clients, display_client_information, draw_graph, count_rejected_clients, show_results
-from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients, choose_dataset
+from utils.generation import generateNodes, selected_to_dict, sampling_data_to_clients, choose_dataset, \
+    split_nodes_networks
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from distribuedLearning.DistribuedLearning import dist_learning
 from clientSelection import RandomClientSelection
@@ -38,12 +39,20 @@ if __name__ == '__main__':
 
     # ? Generate the number chosen of nodes.
     clients = generateNodes(number_of_nodes=number_of_nodes)
-
-    leaderElection = LeaderElection(nodes=clients, debug_mode=False)
-
-    leader = leaderElection.MinFind()
-
-    print("The leader ID is : {0}".format(leader.get_id()))
+    # ? Split each number of nodes into a single network.
+    networks = split_nodes_networks(nodes=clients)
+    # ? Choose leader for each network.
+    print("{0}[*] Choosing the leader of each network".format(Fore.LIGHTBLUE_EX))
+    for network in networks:
+        clients = network.get_nodes()
+        leaderElection = LeaderElection(nodes=clients, debug_mode=False)
+        leader = leaderElection.MinFind()
+        network.set_network_leader(leader)
+        print("{0}[+] The leader ID of network {1} is : {2} (ID = {3}, IP :{4})".format(Fore.LIGHTYELLOW_EX,
+                                                                                        network.get_network_number(),
+                                                                                        leader.get_name(),
+                                                                                        leader.get_id(),
+                                                                                        leader.get_ip_addr()))
 
     exit(0)
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
@@ -66,7 +75,7 @@ if __name__ == '__main__':
 
         global_model.train()
 
-    # ! -------------------------------------------- Client selection process ------------------------------------------
+        # ! -------------------------------------------- Client selection process ------------------------------------------
         # ? Call Random client selection module to select random clients.
         selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
                                                  debug_mode=False).randomClientSelection()
@@ -82,18 +91,18 @@ if __name__ == '__main__':
                                    number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
                                    number_powerful_nodes=number_powerful_nodes, K=selection_percentage)
 
-    # ! -------------------------------------------- End of client selection process -----------------------------------
+        # ! -------------------------------------------- End of client selection process -----------------------------------
 
-    # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
+        # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
 
         # ? Split dataset into the clients.
         sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
         print("test")
         exit(0)
 
-    # ! ---------------------------------------------------- End ! -----------------------------------------------------
+        # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
-    # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
+        # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
 
         # ? Begin training on each client.
 
@@ -120,7 +129,7 @@ if __name__ == '__main__':
 
     show_results(train_loss=train_loss, clients_acc=clients_acc)  # ? Print loss and the accuracy of each node.
 
-    method = "Vanila FL"
+    method = "Leader-assisted Client selection"
 
     number_rejected_clients = count_rejected_clients(clients)
 
