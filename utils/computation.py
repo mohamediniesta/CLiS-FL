@@ -12,3 +12,10 @@ def average_weights(w):
             w_avg[key] += w[i][key]
         w_avg[key] = torch.div(w_avg[key], len(w))
     return w_avg
+
+
+def chunk_list(lst: list, chunk_size: int):
+    chunked_list = list()
+    for i in range(0, len(lst), chunk_size):
+        chunked_list.append(lst[i:i + chunk_size])
+    return chunked_list
