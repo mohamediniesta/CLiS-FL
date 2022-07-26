@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
         global_model.train()
 
-        # ! -------------------------------------------- Client selection process ------------------------------------------
+    # ! -------------------------------------------- Client selection process ------------------------------------------
         # ? Call Random client selection module to select random clients.
         selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
                                                  debug_mode=False).randomClientSelection()
@@ -91,18 +91,18 @@ if __name__ == '__main__':
                                    number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
                                    number_powerful_nodes=number_powerful_nodes, K=selection_percentage)
 
-        # ! -------------------------------------------- End of client selection process -----------------------------------
+    # ! -------------------------------------------- End of client selection process -----------------------------------
 
-        # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
+    # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
 
         # ? Split dataset into the clients.
         sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
         print("test")
         exit(0)
 
-        # ! ---------------------------------------------------- End ! -----------------------------------------------------
+    # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
-        # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
+    # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
 
         # ? Begin training on each client.
 
