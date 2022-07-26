@@ -117,8 +117,8 @@ class Node(object):
     def get_resources_information(self):
         # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,CurrentStorage,BatteryUsage, TotalEnergy,
         # ? EnergyConsumption, CurrentEnergy, DataLength, Time
-        return \
+        return str(self.name) + "," + \
             str(self.cpu_power) + "," + str(self.cpu_usage) + "," + str(self.memory) + "," + str(self.memory_usage) + \
             "," + str(self.total_storage) + "," + str(self.current_storage) + "," + str(self.battery_usage) + "," + \
             str(self.total_energy) + "," + str(self.energy_consumption) + "," + str(self.current_energy) + "," + \
-            (len(self.data)) + "," + datetime.now()
+            (len(self.data)) + "," + datetime.now() + "|"
