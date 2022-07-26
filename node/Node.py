@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 
 def generate_node_id() -> str:
@@ -112,3 +113,12 @@ class Node(object):
 
     def set_gathered_data(self, gathered_data):
         self.gathered_data = gathered_data
+
+    def get_resources_information(self):
+        # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,CurrentStorage,BatteryUsage, TotalEnergy,
+        # ? EnergyConsumption, CurrentEnergy, DataLength, Time
+        return \
+            str(self.cpu_power) + "," + str(self.cpu_usage) + "," + str(self.memory) + "," + str(self.memory_usage) + \
+            "," + str(self.total_storage) + "," + str(self.current_storage) + "," + str(self.battery_usage) + "," + \
+            str(self.total_energy) + "," + str(self.energy_consumption) + "," + str(self.current_energy) + "," + \
+            (len(self.data)) + "," + datetime.now()
