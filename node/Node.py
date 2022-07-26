@@ -8,6 +8,7 @@ def generate_node_id() -> str:
 
 class Node(object):
     def __init__(self, name: str, data: str, data_type: str, mobility_mode: bool = False):
+        self.ip_addr = None
         self.node_id: str = generate_node_id()
         if not mobility_mode:
             self.mobility: int = None
@@ -89,3 +90,9 @@ class Node(object):
     def set_data(self, data: str, data_type: str):
         self.data: list = data
         self.data_type: str = data_type
+
+    def get_ip_addr(self):
+        return self.ip_addr
+
+    def set_ip_addr(self, ip_addr):
+        self.ip_addr = ip_addr
