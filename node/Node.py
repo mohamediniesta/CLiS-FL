@@ -36,7 +36,7 @@ class Node(object):
         # ? For Leader election.
         self.leader = False
         # ? The data gathered from other nodes.
-        self.gathered_data = None
+        self.gathered_data = ""
 
     def get_status(self):
         return self.status
@@ -121,4 +121,4 @@ class Node(object):
             str(self.cpu_power) + "," + str(self.cpu_usage) + "," + str(self.memory) + "," + str(self.memory_usage) + \
             "," + str(self.total_storage) + "," + str(self.current_storage) + "," + str(self.battery_usage) + "," + \
             str(self.total_energy) + "," + str(self.energy_consumption) + "," + str(self.current_energy) + "," + \
-            (len(self.data)) + "," + datetime.now() + "|"
+            str(len(self.data)) + "," + str(datetime.now()) + "|"
