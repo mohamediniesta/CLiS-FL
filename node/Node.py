@@ -18,20 +18,24 @@ class Node(object):
         self.data_type: str = data_type
         self.name: str = name
         self.status: int = 1
-        #  Energy Model
+        #  ? Energy Model.
         self.battery_usage: int = None
         self.total_energy: float = None
         self.energy_consumption: float = None
         self.current_energy: float = None
-        #  Storage Model
+        #  ? Storage Model.
         self.total_storage: int = None
         self.current_storage: int = None
-
+        # ? CPU Model.
         self.cpu_power: float = None
         self.cpu_usage: int = None
-
+        # ? Memory Model.
         self.memory: int = None
         self.memory_usage: int = None
+        # ? For Leader election.
+        self.leader = False
+        # ? The data gathered from other nodes.
+        self.gathered_data = None
 
     def get_status(self):
         return self.status
@@ -96,3 +100,15 @@ class Node(object):
 
     def set_ip_addr(self, ip_addr):
         self.ip_addr = ip_addr
+
+    def get_leader(self):
+        return self.leader
+
+    def set_leader(self, leader: bool):
+        self.leader = leader
+
+    def get_gathered_data(self):
+        return self.gathered_data
+
+    def set_gathered_data(self, gathered_data):
+        self.gathered_data = gathered_data
