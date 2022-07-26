@@ -7,6 +7,8 @@ from node import PowNode, MidNode, LowNode
 from consumptionModel.StorageModel.StorageModel import StorageModel
 from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
 from torchvision import transforms
+from network.Network import Network
+from utils.computation import chunk_list
 
 
 def generate_node_id() -> str:
@@ -81,3 +83,16 @@ def sampling_data_to_clients(data, selected_client: list):
         CLIENT.set_data(data=client_data, data_type="mnist")
         storage_model.add_to_storage(number_of_mega_bytes=5 * num_items)  # 5 Mega bytes per image (num_items)
         all_idxs = list(set(all_idxs) - CLIENT.get_data())
+
+
+def split_nodes_networks(nodes):
+    number_of_nodes = len(nodes)
+    clients_chunk = chunk_list(lst=nodes, chunk_size=int(number_of_nodes / 10))
+    i = 1
+    networks = []
+    for c in clients_chunk:
+        network = Network(nodes=c, network_number=i, debug_mode=False)
+        network.assign_ip_addresses()
+        networks.append(network)
+        i += 1
+    return networks
