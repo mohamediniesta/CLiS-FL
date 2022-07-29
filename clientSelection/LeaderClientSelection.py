@@ -2,6 +2,7 @@ import random
 from colorama import Fore, Style
 from time import sleep
 from clientSelection.ClientSelection import ClientSelection
+import pandas as pd
 
 
 class LeaderClientSelection(ClientSelection):
@@ -15,29 +16,35 @@ class LeaderClientSelection(ClientSelection):
         print("{0}[*] Start Gathering Process !!!".format(Fore.LIGHTBLUE_EX))
         for network in self.networks:
             leader = network.get_network_leader()
+            df = pd.DataFrame()
             clients = network.get_nodes()
             for i in range(0, 7):
                 for client in clients:
                     rsrc_info = client.get_resources_information()
-                    leader_data = leader.get_gathered_data()
-                    leader.set_gathered_data(leader_data + rsrc_info)
-                sleep(60)
-            data = leader.get_gathered_data().split("|")
-            return data
+                    name, cpu_power, cpu_usage, memory, memory_usage, total_storage, current_storage, battery_usage, \
+                    total_energy, energy_consumption, current_energy, data_length, date = rsrc_info
+
+                    data = {"Node": client, "Name": name, "cpu_power": cpu_power, "cpu_usage": cpu_usage,
+                            "memory": memory, "memory_usage": memory_usage, "total_storage": total_storage,
+                            "current_storage": current_storage, "battery_usage": battery_usage,
+                            "total_energy": total_energy, "energy_consumption": energy_consumption,
+                            "current_energy": current_energy, "data_length": data_length, "Date": date}
+                    df = pd.concat([df, pd.DataFrame.from_records([data])])
+
+            leader.set_gathered_data(gathered_data=df)
 
     def leaderClientSelection(self) -> list:
         selectedClients = []
-        percentage = round(len(self.nodes) * self.K)
-        for i in range(0, percentage):
-            client = random.choices(self.nodes)[0]
-            if self.debug_mode:
-                print(
-                    "[*] The client {0}{1}{2} with id : {3}{4},{5} has been selected".format(Fore.YELLOW,
-                                                                                             client.get_name(),
-                                                                                             Style.RESET_ALL,
-                                                                                             Fore.MAGENTA,
-                                                                                             client.get_id(),
-                                                                                             Style.RESET_ALL))
-            selectedClients.append(client)
+        percentage = len(self.nodes) * self.K
+
+        for network in self.networks:
+            leader = network.get_network_leader()
+            leader_data = leader.get_gathered_data()
+            leader_data['avg_power'] = leader_data[['total_energy', 'total_storage', 'cpu_power', 'memory']].mean(
+                axis=1)
+            local_percentage = int(percentage / len(self.networks))
+            selected_nodes = leader_data.nlargest(n=local_percentage, columns=['avg_power']).Node.values
+            for node in selected_nodes:
+                selectedClients.append(node)
 
         return selectedClients
