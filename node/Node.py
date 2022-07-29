@@ -1,5 +1,6 @@
 import uuid
 from datetime import datetime
+import pandas as pd
 
 
 def generate_node_id() -> str:
@@ -108,17 +109,15 @@ class Node(object):
     def set_leader(self, leader: bool):
         self.leader = leader
 
-    def get_gathered_data(self):
+    def get_gathered_data(self) -> pd.DataFrame:
         return self.gathered_data
 
-    def set_gathered_data(self, gathered_data):
+    def set_gathered_data(self, gathered_data: pd.DataFrame):
         self.gathered_data = gathered_data
 
     def get_resources_information(self):
         # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,CurrentStorage,BatteryUsage, TotalEnergy,
         # ? EnergyConsumption, CurrentEnergy, DataLength, Time
-        return str(self.name) + "," + \
-            str(self.cpu_power) + "," + str(self.cpu_usage) + "," + str(self.memory) + "," + str(self.memory_usage) + \
-            "," + str(self.total_storage) + "," + str(self.current_storage) + "," + str(self.battery_usage) + "," + \
-            str(self.total_energy) + "," + str(self.energy_consumption) + "," + str(self.current_energy) + "," + \
-            str(len(self.data)) + "," + str(datetime.now()) + "|"
+        return self.name, self.cpu_power, self.cpu_usage, self.memory, self.memory_usage, \
+               self.total_storage, self.current_storage, self.battery_usage, self.total_energy, \
+               self.energy_consumption, self.current_energy, len(self.data), datetime.now()
