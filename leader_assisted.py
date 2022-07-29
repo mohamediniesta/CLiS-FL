@@ -3,7 +3,7 @@ from utils.generation import generateNodes, selected_to_dict, sampling_data_to_c
     split_nodes_networks
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from distribuedLearning.DistribuedLearning import dist_learning
-from clientSelection import LeaderClientSelection, RandomClientSelection
+from clientSelection import LeaderClientSelection
 from constants.federated_learning import ROUNDS, FINAL_ACCURACY
 from leaderElection.leaderElection import LeaderElection
 from utils.displays import display_author
@@ -44,8 +44,8 @@ if __name__ == '__main__':
     # ? Choose leader for each network.
     print("{0}[*] Choosing the leader of each network".format(Fore.LIGHTBLUE_EX))
     for network in networks:
-        clients = network.get_nodes()
-        leaderElection = LeaderElection(nodes=clients, debug_mode=False)
+        network_clients = network.get_nodes()
+        leaderElection = LeaderElection(nodes=network_clients, debug_mode=False)
         leader = leaderElection.MinFind()
         network.set_network_leader(leader)
         print("{0}[+] The leader ID of network {1} is : {2} (ID = {3}, IP :{4})".format(Fore.LIGHTYELLOW_EX,
@@ -53,11 +53,6 @@ if __name__ == '__main__':
                                                                                         leader.get_name(),
                                                                                         leader.get_id(),
                                                                                         leader.get_ip_addr()))
-
-    leader_selection = LeaderClientSelection(nodes=clients, K=0.1, networks=networks, debug_mode=False) \
-        .gathering_process()
-
-    exit(0)
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
     # ! -------------------------------------------- Generic Model ----------------------------------------------------
@@ -78,10 +73,13 @@ if __name__ == '__main__':
 
         global_model.train()
 
-        # ! -------------------------------------------- Client selection process ------------------------------------------
-        # ? Call Random client selection module to select random clients.
-        selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
-                                                 debug_mode=False).randomClientSelection()
+    # ! -------------------------------------------- Client selection process ------------------------------------------
+        # ? Gathering Process.
+        LeaderClientSelection(nodes=clients, K=0.1, networks=networks, debug_mode=False).gathering_process()
+
+        # ? Call Leader client selection module to select eligible clients.
+        selected_clients = LeaderClientSelection(nodes=clients, K=selection_percentage, networks=networks,
+                                                 debug_mode=False).leaderClientSelection()
 
         # ? Convert the output of random clients to list.
         selected_clients_list = selected_to_dict(selected_clients=selected_clients)
@@ -94,18 +92,16 @@ if __name__ == '__main__':
                                    number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
                                    number_powerful_nodes=number_powerful_nodes, K=selection_percentage)
 
-        # ! -------------------------------------------- End of client selection process -----------------------------------
+    # ! -------------------------------------------- End of client selection process -----------------------------------
 
-        # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
+    # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
 
         # ? Split dataset into the clients.
         sampling_data_to_clients(data=train_dataset, selected_client=selected_clients)
-        print("test")
-        exit(0)
 
-        # ! ---------------------------------------------------- End ! -----------------------------------------------------
+    # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
-        # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
+    # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
 
         # ? Begin training on each client.
 
