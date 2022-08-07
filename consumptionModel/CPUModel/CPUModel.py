@@ -21,4 +21,7 @@ class CPUModel(object):
             return True
 
     def update_cpu(self, cpu_usage):
-        self.node.set_cpu_usage(self.node.get_cpu_usage() + cpu_usage)
+        if self.node.cpu_usage + cpu_usage >= 99:
+            self.node.set_status(0)
+        else:
+            self.node.set_cpu_usage(self.node.get_cpu_usage() + cpu_usage)

@@ -21,4 +21,7 @@ class MemoryModel(object):
             return True
 
     def update_memory(self, memory_usage):
-        self.node.set_memory_usage(self.node.get_memory_usage() + memory_usage)
+        if self.node.memory_usage + memory_usage >= 99:
+            self.node.set_status(0)
+        else:
+            self.node.set_memory_usage(self.node.get_memory_usage() + memory_usage)

@@ -13,7 +13,7 @@ class StorageModel(object):
 
     def add_to_storage(self, number_of_mega_bytes: float) -> float:
         if number_of_mega_bytes > self.node.current_storage:
-            print("Insufficient space! in {0}".format(self.node.get_name()))
+            # print("Insufficient space! in {0}".format(self.node.getName()))
             self.node.set_status(0)
         else:
             self.node.set_current_storage(self.node.get_current_storage() - number_of_mega_bytes)
