@@ -37,9 +37,13 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
         # ? Calculate the percentage of storage.
         storage_percent = (client.get_current_storage() / client.get_total_storage()) * 100
 
-        print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f}%)"
+        memory_usage = client.get_memory_usage()
+
+        cpu_usage = client.get_cpu_usage()
+
+        print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f}%, Memory : {:.1f}%, CPU : {:.1f}%)"
               .format(Fore.GREEN, client.get_name(),
-                      battery_percent, storage_percent))
+                      battery_percent, storage_percent, memory_usage, cpu_usage))
         index += 1
 
     global_weights = average_weights(local_weights)  # ? Model's aggregation.
