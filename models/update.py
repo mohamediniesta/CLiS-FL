@@ -54,8 +54,8 @@ class ClientUpdate(object):
         self.trainLoader, self.validLoader, self.testLoader = trainValTest(dataset, list(idxs))
 
         # ? Increase CPU and memory usage randomly.
-        self.memory_model.update_memory(random.randint(3, 5))
-        self.cpu_model.update_cpu(random.randint(3, 5))
+        self.memory_model.updateMemory(random.randint(3, 5))
+        self.cpu_model.updateCpu(random.randint(3, 5))
 
         # ? Using CPU as device and not GPU.
         self.device = 'cpu'
@@ -63,7 +63,7 @@ class ClientUpdate(object):
         self.criterion = nn.NLLLoss().to(self.device)
 
     def updateWeights(self, model, global_round):
-        if self.node.get_status() == 0:
+        if self.node.getStatus() == 0:
             return
         # ? Set mode to train model
         energy = 0
@@ -74,11 +74,11 @@ class ClientUpdate(object):
         optimizer = torch.optim.SGD(model.parameters(), lr=LR, momentum=MOMENTUM)
         for iteration in range(LOCAL_EP):
 
-            if self.node.get_total_energy() is not None:
+            if self.node.getTotalEnergy() is not None:
                 # ? Battery consumption.
-                new_energy = self.energy_model.consume_energy()
-                self.node.set_current_energy(new_energy)
-                energy = energy + self.node.get_energy_consumption()
+                new_energy = self.energy_model.consumeEnergy()
+                self.node.setCurrentEnergy(new_energy)
+                energy = energy + self.node.getEnergyConsumption()
 
             batch_loss = []
 
@@ -100,11 +100,11 @@ class ClientUpdate(object):
 
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
         # ? Adding the model size to the storage of device.
-        self.storage_model.add_to_storage(number_of_mega_bytes=100)
+        self.storage_model.addToStorage(number_of_mega_bytes=100)
         # ? Increase CPU and memory usage randomly.
-        self.memory_model.update_memory(random.randint(30, 60))
-        self.cpu_model.update_cpu(random.randint(30, 60))
-        if self.node.get_status() == 0:
+        self.memory_model.updateMemory(random.randint(30, 60))
+        self.cpu_model.updateCpu(random.randint(30, 60))
+        if self.node.getStatus() == 0:
             return
 
         return model.state_dict(), sum(epoch_loss) / len(epoch_loss), energy
@@ -116,10 +116,10 @@ class ClientUpdate(object):
         model.eval()
         loss, total, correct = 0.0, 0.0, 0.0
 
-        if self.node.get_total_energy() is not None:
+        if self.node.getTotalEnergy() is not None:
             # ? Battery consumption.
-            new_energy = self.energy_model.consume_energy()
-            self.node.set_current_energy(new_energy)
+            new_energy = self.energy_model.consumeEnergy()
+            self.node.setCurrentEnergy(new_energy)
 
         for batch_idx, (images, labels) in enumerate(self.testLoader):
             images, labels = images.to(self.device), labels.to(self.device)

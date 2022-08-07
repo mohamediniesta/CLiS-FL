@@ -2,7 +2,7 @@ import copy
 import torch
 
 
-def average_weights(w):
+def averageWeights(w):
     """
     Returns the average of the weights.
     """
@@ -14,7 +14,7 @@ def average_weights(w):
     return w_avg
 
 
-def chunk_list(lst: list, chunk_size: int):
+def chunkList(lst: list, chunk_size: int):
     chunked_list = list()
     for i in range(0, len(lst), chunk_size):
         chunked_list.append(lst[i:i + chunk_size])

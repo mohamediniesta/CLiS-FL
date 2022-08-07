@@ -5,15 +5,10 @@ from time import sleep
 from colorama import Fore
 from torchvision import transforms
 from network.Network import Network
-from utils.computation import chunk_list
+from utils.computation import chunkList
 from node import PowNode, MidNode, LowNode
 from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
 from consumptionModel.StorageModel.StorageModel import StorageModel
-
-
-def generateNode_id() -> str:
-    node_id: str = uuid.uuid4().hex
-    return node_id
 
 
 def generateNodes(number_of_nodes: int, data) -> list:
@@ -29,10 +24,10 @@ def generateNodes(number_of_nodes: int, data) -> list:
         # ? Set the data.
         num_items = random.randint(min_length, len(data) / 10)
         client_data = set(np.random.choice(dataID_list, num_items, replace=False))
-        node.set_data(data=client_data, data_type="mnist")
+        node.setData(data=client_data, data_type="mnist")
 
         StorageModel(node=node). \
-            add_to_storage(number_of_mega_bytes=2 * num_items)  # ? 2 Mega bytes per image (num_items)
+            addToStorage(number_of_mega_bytes=2 * num_items)  # ? 2 Mega bytes per image (num_items)
 
         nodes.append(node)
 
@@ -83,7 +78,7 @@ def selectedToDict(selected_clients: list) -> dict:
 
 def splitNodesNetworks(nodes):
     number_of_nodes = len(nodes)
-    clients_chunk = chunk_list(lst=nodes, chunk_size=int(number_of_nodes / 5))
+    clients_chunk = chunkList(lst=nodes, chunk_size=int(number_of_nodes / 5))
     i = 1
     networks = []
     for c in clients_chunk:

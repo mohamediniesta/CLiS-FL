@@ -20,7 +20,7 @@ class LeaderClientSelection(ClientSelection):
             clients = network.getNodes()
             for i in range(0, 7):
                 for client in clients:
-                    rsrc_info = client.get_resources_information()
+                    rsrc_info = client.getResourcesInformation()
                     name, cpu_power, cpu_usage, memory, memory_usage, total_storage, current_storage, battery_usage, \
                     total_energy, energy_consumption, current_energy, data_length, date = rsrc_info
 
@@ -31,7 +31,7 @@ class LeaderClientSelection(ClientSelection):
                             "current_energy": current_energy, "data_length": data_length, "Date": date}
                     df = pd.concat([df, pd.DataFrame.from_records([data])])
 
-            leader.set_gathered_data(gathered_data=df)
+            leader.setGatheredData(gathered_data=df)
 
     def leaderClientSelection(self) -> list:
         selectedClients = []
@@ -39,7 +39,7 @@ class LeaderClientSelection(ClientSelection):
 
         for network in self.networks:
             leader = network.getNetworkLeader()
-            leader_data = leader.get_gathered_data()
+            leader_data = leader.getGatheredData()
             leader_data['avg_power'] = leader_data[['total_energy', 'total_storage', 'cpu_power', 'memory']].mean(
                 axis=1)
             local_percentage = int(percentage / len(self.networks))

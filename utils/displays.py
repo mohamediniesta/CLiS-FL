@@ -1,7 +1,7 @@
 from colorama import Fore
 
 
-def display_author():
+def displayAuthor():
     print("""{}
      ______ _                  _____ _                 _       _   _             
     |  ____| |                / ____(_)               | |     | | (_)            

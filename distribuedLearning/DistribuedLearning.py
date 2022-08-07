@@ -1,7 +1,7 @@
 import copy
 from colorama import Fore
 from models.update import ClientUpdate
-from utils.computation import average_weights
+from utils.computation import averageWeights
 
 
 def distLearning(train_dataset, selected_clients: list, global_model, global_round: int) -> (float, list, dict, float):
@@ -11,7 +11,7 @@ def distLearning(train_dataset, selected_clients: list, global_model, global_rou
 
     for client in selected_clients:  # ? For each client in the selected clients.
 
-        if client.get_status() == 0:  # ? Check the status of client it's down or not.
+        if client.getStatus() == 0:  # ? Check the status of client it's down or not.
             print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.getName()))
             index += 1
             continue
@@ -35,22 +35,22 @@ def distLearning(train_dataset, selected_clients: list, global_model, global_rou
         local_losses.append(copy.deepcopy(local_loss))
 
         # ? if the node is on battery mode.
-        battery_percent = (client.get_current_energy() / client.get_total_energy()) * 100 \
-            if client.get_total_energy() is not None else 100
+        battery_percent = (client.getCurrentEnergy() / client.getTotalEnergy()) * 100 \
+            if client.getTotalEnergy() is not None else 100
 
         # ? Calculate the percentage of storage.
-        storage_percent = (client.get_current_storage() / client.get_total_storage()) * 100
+        storage_percent = (client.getCurrentStorage() / client.getTotalStorage()) * 100
 
-        memory_usage = client.get_memory_usage()
+        memory_usage = client.getMemoryUsage()
 
-        cpu_usage = client.get_cpu_usage()
+        cpu_usage = client.getCpuUsage()
 
         print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f}%, Memory : {:.1f}%, CPU : {:.1f}%)"
               .format(Fore.GREEN, client.getName(),
                       battery_percent, storage_percent, memory_usage, cpu_usage))
         index += 1
 
-    global_weights = average_weights(local_weights)  # ? Model's aggregation.
+    global_weights = averageWeights(local_weights)  # ? Model's aggregation.
     global_model.load_state_dict(global_weights)
     loss_avg = sum(local_losses) / len(local_losses)
 

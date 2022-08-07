@@ -5,23 +5,23 @@ class EnergyModel(object):
     def __init__(self, node: Node):
         self.node = node
 
-    def get_node(self) -> Node:
+    def getNode(self) -> Node:
         return self.node()
 
-    def set_node(self, node: Node):
+    def setNode(self, node: Node):
         self.node = node
 
-    def consume_energy(self) -> float:
-        node_energy_consumption = self.node.get_energy_consumption()
-        node_current_energy = self.node.get_current_energy()
+    def consumeEnergy(self) -> float:
+        node_energy_consumption = self.node.getEnergyConsumption()
+        node_current_energy = self.node.getCurrentEnergy()
         new_energy = node_current_energy - node_energy_consumption
         return new_energy
 
-    def check_battery(self) -> bool:
-        battery_p = (self.node.get_current_energy() / self.node.get_total_energy()) * 100
+    def checkBattery(self) -> bool:
+        battery_p = (self.node.getCurrentEnergy() / self.node.getTotalEnergy()) * 100
 
         if battery_p <= 5:
-            self.node.set_status(0)
+            self.node.setStatus(0)
             return False
         else:
             return True

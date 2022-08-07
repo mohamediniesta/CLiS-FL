@@ -14,8 +14,8 @@ def sampling_data_to_clients(data, selected_client: list):
     for CLIENT in selected_client:
         storage_model = StorageModel(node=CLIENT)
         client_data = set(np.random.choice(all_idxs, num_items, replace=False))
-        CLIENT.set_data(data=client_data, data_type="mnist")
-        storage_model.add_to_storage(number_of_mega_bytes=5 * num_items)  # 5 Mega bytes per image (num_items)
+        CLIENT.setData(data=client_data, data_type="mnist")
+        storage_model.addToStorage(number_of_mega_bytes=5 * num_items)  # 5 Mega bytes per image (num_items)
         all_idxs = list(set(all_idxs) - CLIENT.getData())
 
 

@@ -5,7 +5,7 @@ from distribuedLearning.DistribuedLearning import distLearning
 from clientSelection import LeaderClientSelection
 from constants.federated_learning import ROUNDS, FINAL_ACCURACY
 from leaderElection.leaderElection import LeaderElection
-from utils.displays import display_author
+from utils.displays import displayAuthor
 from models.CNN.CNNMnist import CNNMnist
 from models.CNN.CNNCifar import CNNCifar
 from colorama import init, Fore
@@ -26,7 +26,7 @@ init(autoreset=True)
 # TODO : Fix IPs.
 
 if __name__ == '__main__':
-    display_author()  # * Display authors information
+    displayAuthor()  # * Display authors information
 
     # ! -------------------------------------------- Generation process ------------------------------------------------
 

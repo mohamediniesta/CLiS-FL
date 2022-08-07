@@ -50,7 +50,7 @@ def drawGraph(accuracy_data: dict = None, energy_data: dict = None, down_data: d
 def countRejectedClients(clients: list) -> int:
     n = 0
     for client in clients:
-        if client.get_status() == 0:
+        if client.getStatus() == 0:
             n = n + 1
     return n
 

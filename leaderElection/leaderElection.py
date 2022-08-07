@@ -10,8 +10,8 @@ class LeaderElection(object):
     def MinFind(self) -> Node:
         leader = self.nodes[0]
         for i in range(1, len(self.nodes)):
-            leader_id = int(leader.get_id(), 16)
-            if leader_id > int(self.nodes[i].get_id(), 16):
+            leader_id = int(leader.getId(), 16)
+            if leader_id > int(self.nodes[i].getId(), 16):
                 leader = self.nodes[i]
-        leader.set_leader(True)
+        leader.setLeader(True)
         return leader

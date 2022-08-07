@@ -10,7 +10,7 @@ class Network(object):
         index = 2
         for node in self.nodes:
             ip_addr = self.prefix_ip + str(index)
-            node.set_ip_addr(ip_addr)
+            node.setIpAddr(ip_addr)
             index += 1
 
     def getNetworkNumber(self):
