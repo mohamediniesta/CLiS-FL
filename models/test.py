@@ -16,7 +16,7 @@ def sampling_data_to_clients(data, selected_client: list):
         client_data = set(np.random.choice(all_idxs, num_items, replace=False))
         CLIENT.set_data(data=client_data, data_type="mnist")
         storage_model.add_to_storage(number_of_mega_bytes=5 * num_items)  # 5 Mega bytes per image (num_items)
-        all_idxs = list(set(all_idxs) - CLIENT.get_data())
+        all_idxs = list(set(all_idxs) - CLIENT.getData())
 
 
 # ! From here ---------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ exit(0)
 
 sampling_data_to_clients(data=x_train, selected_client=clients)
 
-print(clients[2].get_data())
+print(clients[2].getData())
 
 exit(0)
 

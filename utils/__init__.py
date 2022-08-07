@@ -1,1 +1,1 @@
-from utils.generation import generate_node_id
+from utils.generation import generateNode_id

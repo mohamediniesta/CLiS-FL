@@ -12,12 +12,12 @@ class LeaderClientSelection(ClientSelection):
         self.K = K
         self.debug_mode = debug_mode
 
-    def gathering_process(self):
+    def GatheringProcess(self):
         print("{0}[*] Start Gathering Process !!!".format(Fore.LIGHTBLUE_EX))
         for network in self.networks:
-            leader = network.get_network_leader()
+            leader = network.getNetworkLeader()
             df = pd.DataFrame()
-            clients = network.get_nodes()
+            clients = network.getNodes()
             for i in range(0, 7):
                 for client in clients:
                     rsrc_info = client.get_resources_information()
@@ -38,7 +38,7 @@ class LeaderClientSelection(ClientSelection):
         percentage = len(self.nodes) * self.K
 
         for network in self.networks:
-            leader = network.get_network_leader()
+            leader = network.getNetworkLeader()
             leader_data = leader.get_gathered_data()
             leader_data['avg_power'] = leader_data[['total_energy', 'total_storage', 'cpu_power', 'memory']].mean(
                 axis=1)

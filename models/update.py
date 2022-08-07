@@ -1,10 +1,13 @@
 import torch
+import random
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from constants.federated_learning import LOCAL_EP
 from constants.model_constants import LR, MOMENTUM, LOCAL_BS
 from consumptionModel.EnergyModel.EnergyModel import EnergyModel
 from consumptionModel.StorageModel.StorageModel import StorageModel
+from consumptionModel.MemoryModel.MemoryModel import MemoryModel
+from consumptionModel.CPUModel.CPUModel import CPUModel
 
 
 class DatasetSplit(Dataset):
@@ -23,32 +26,45 @@ class DatasetSplit(Dataset):
         return image.clone().detach(), torch.tensor(label)
 
 
-def train_val_test(dataset, idxs):
-    """
-    Returns train, validation and test dataLoaders for a given dataset
-    and user indexes.
-    """
+def trainValTest(dataset, idxs):
     # ? Split indexes for train, validation, and test (80, 10, 10)
-    idxs_train = idxs[:int(0.8 * len(idxs))]
-    idxs_val = idxs[int(0.8 * len(idxs)):int(0.9 * len(idxs))]
-    idxs_test = idxs[int(0.9 * len(idxs)):]
-    trainLoader = DataLoader(DatasetSplit(dataset, idxs_train), batch_size=LOCAL_BS, shuffle=True)
-    validLoader = DataLoader(DatasetSplit(dataset, idxs_val), batch_size=int(len(idxs_val) / 10), shuffle=False)
-    testLoader = DataLoader(DatasetSplit(dataset, idxs_test), batch_size=int(len(idxs_test) / 10), shuffle=False)
+    idxs_train, idxs_val, idxs_test = \
+        idxs[:int(0.8 * len(idxs))], \
+        idxs[int(0.8 * len(idxs)):int(0.9 * len(idxs))], \
+        idxs[int(0.9 * len(idxs)):]
+
+    trainLoader, validLoader, testLoader = \
+        DataLoader(DatasetSplit(dataset, idxs_train), batch_size=LOCAL_BS, shuffle=True), \
+        DataLoader(DatasetSplit(dataset, idxs_val), batch_size=32, shuffle=False), \
+        DataLoader(DatasetSplit(dataset, idxs_test), batch_size=32, shuffle=False)
+
     return trainLoader, validLoader, testLoader
 
 
 class ClientUpdate(object):
     def __init__(self, dataset, idxs, node):
-        self.trainLoader, self.validLoader, self.testLoader = train_val_test(dataset, list(idxs))
-        self.device = 'cpu'
-        # ? Default criterion set to NLL loss function
         self.node = node
-        self.criterion = nn.NLLLoss().to(self.device)
+        # ? Init our resources consumption Models.
         self.energy_model = EnergyModel(node=self.node)
         self.storage_model = StorageModel(node=self.node)
+        self.memory_model = MemoryModel(node=self.node)
+        self.cpu_model = CPUModel(node=self.node)
 
-    def update_weights(self, model, global_round):
+        # ? Split the data.
+        self.trainLoader, self.validLoader, self.testLoader = trainValTest(dataset, list(idxs))
+
+        # ? Increase CPU and memory usage randomly.
+        self.memory_model.update_memory(random.randint(3, 5))
+        self.cpu_model.update_cpu(random.randint(3, 5))
+
+        # ? Using CPU as device and not GPU.
+        self.device = 'cpu'
+        # ? Default criterion set to NLL loss function
+        self.criterion = nn.NLLLoss().to(self.device)
+
+    def updateWeights(self, model, global_round):
+        if self.node.get_status() == 0:
+            return
         # ? Set mode to train model
         energy = 0
         model.train()
@@ -85,6 +101,11 @@ class ClientUpdate(object):
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
         # ? Adding the model size to the storage of device.
         self.storage_model.add_to_storage(number_of_mega_bytes=100)
+        # ? Increase CPU and memory usage randomly.
+        self.memory_model.update_memory(random.randint(30, 60))
+        self.cpu_model.update_cpu(random.randint(30, 60))
+        if self.node.get_status() == 0:
+            return
 
         return model.state_dict(), sum(epoch_loss) / len(epoch_loss), energy
 
@@ -94,6 +115,11 @@ class ClientUpdate(object):
 
         model.eval()
         loss, total, correct = 0.0, 0.0, 0.0
+
+        if self.node.get_total_energy() is not None:
+            # ? Battery consumption.
+            new_energy = self.energy_model.consume_energy()
+            self.node.set_current_energy(new_energy)
 
         for batch_idx, (images, labels) in enumerate(self.testLoader):
             images, labels = images.to(self.device), labels.to(self.device)

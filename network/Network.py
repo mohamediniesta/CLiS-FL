@@ -6,21 +6,21 @@ class Network(object):
         self.prefix_ip = "192.168.{0}.".format(network_number)
         self.network_leader = None
 
-    def assign_ip_addresses(self):
+    def assignIpAddresses(self):
         index = 2
         for node in self.nodes:
             ip_addr = self.prefix_ip + str(index)
             node.set_ip_addr(ip_addr)
             index += 1
 
-    def get_network_number(self):
+    def getNetworkNumber(self):
         return self.network_number
 
-    def get_nodes(self) -> list:
+    def getNodes(self) -> list:
         return self.nodes
 
-    def get_network_leader(self):
+    def getNetworkLeader(self):
         return self.network_leader
 
-    def set_network_leader(self, network_leader):
+    def setNetworkLeader(self, network_leader):
         self.network_leader = network_leader

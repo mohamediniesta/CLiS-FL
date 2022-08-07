@@ -94,13 +94,13 @@ class Node(object):
     def set_current_storage(self, current_storage: int):
         self.current_storage = current_storage
 
-    def get_id(self) -> str:
+    def getId(self) -> str:
         return self.node_id
 
-    def get_name(self) -> str:
+    def getName(self) -> str:
         return self.name
 
-    def get_data(self) -> list:
+    def getData(self) -> list:
         return self.data
 
     def get_data_type(self) -> str:
@@ -110,7 +110,7 @@ class Node(object):
         self.data: list = data
         self.data_type: str = data_type
 
-    def get_ip_addr(self):
+    def getIpAddr(self):
         return self.ip_addr
 
     def set_ip_addr(self, ip_addr):
