@@ -1,4 +1,5 @@
 import uuid
+import random
 from datetime import datetime
 import pandas as pd
 
@@ -30,14 +31,14 @@ class Node(object):
         self.current_storage: int = None
         # ? CPU Model.
         self.cpu_power: float = None
-        self.cpu_usage: int = None
+        self.cpu_usage: int = random.randint(30, 100)
         # ? Memory Model.
         self.memory: int = None
-        self.memory_usage: int = None
+        self.memory_usage: int = random.randint(15, 100)
         # ? For Leader election.
         self.leader = False
         # ? The data gathered from other nodes.
-        self.gathered_data = ""
+        self.gathered_data = None
 
     def get_status(self):
         return self.status
@@ -68,6 +69,18 @@ class Node(object):
 
     def get_memory(self) -> int:
         return self.memory
+
+    def get_memory_usage(self) -> int:
+        return self.memory_usage
+
+    def set_memory_usage(self, memory_usage):
+        self.memory_usage = memory_usage
+
+    def get_cpu_usage(self) -> int:
+        return self.cpu_usage
+
+    def set_cpu_usage(self, cpu_usage):
+        self.cpu_usage = cpu_usage
 
     def get_total_storage(self) -> int:
         return self.total_storage
