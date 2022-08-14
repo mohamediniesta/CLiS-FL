@@ -18,7 +18,8 @@ class EnergyModel(object):
         return new_energy
 
     def checkBattery(self) -> bool:
-        battery_p = (self.node.getCurrentEnergy() / self.node.getTotalEnergy()) * 100
+        battery_p = (self.node.getCurrentEnergy() /
+                     self.node.getTotalEnergy()) * 100
 
         if battery_p <= 5:
             self.node.setStatus(0)

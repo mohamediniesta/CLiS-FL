@@ -12,12 +12,12 @@ class LeaderClientSelection(ClientSelection):
         self.K = K
         self.debug_mode = debug_mode
 
-    def GatheringProcess(self):
+    def gathering_process(self):
         print("{0}[*] Start Gathering Process !!!".format(Fore.LIGHTBLUE_EX))
         for network in self.networks:
-            leader = network.getNetworkLeader()
+            leader = network.get_network_leader()
             df = pd.DataFrame()
-            clients = network.getNodes()
+            clients = network.get_nodes()
             for i in range(0, 7):
                 for client in clients:
                     rsrc_info = client.getResourcesInformation()
@@ -33,18 +33,19 @@ class LeaderClientSelection(ClientSelection):
 
             leader.setGatheredData(gathered_data=df)
 
-    def leaderClientSelection(self) -> list:
-        selectedClients = []
+    def leader_client_selection(self) -> list:
+        print("{0}[*] Starting Leader-assisted client selection".format(Fore.LIGHTYELLOW_EX))
+        selected_clients = []
         percentage = len(self.nodes) * self.K
 
         for network in self.networks:
-            leader = network.getNetworkLeader()
+            leader = network.get_network_leader()
             leader_data = leader.getGatheredData()
             leader_data['avg_power'] = leader_data[['total_energy', 'total_storage', 'cpu_power', 'memory']].mean(
                 axis=1)
             local_percentage = int(percentage / len(self.networks))
             selected_nodes = leader_data.nlargest(n=local_percentage, columns=['avg_power']).Node.values
             for node in selected_nodes:
-                selectedClients.append(node)
+                selected_clients.append(node)
 
-        return selectedClients
+        return selected_clients

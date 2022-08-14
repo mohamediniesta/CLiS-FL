@@ -16,10 +16,12 @@ class StorageModel(object):
             # print("Insufficient space! in {0}".format(self.node.getName()))
             self.node.setStatus(0)
         else:
-            self.node.setCurrentStorage(self.node.getCurrentStorage() - number_of_mega_bytes)
+            self.node.setCurrentStorage(self.node.getCurrentStorage()
+                                        - number_of_mega_bytes)
 
     def checkStorage(self) -> bool:
-        storage_p = (self.node.getCurrentStorage() / self.node.getTotalStorage()) * 100
+        storage_p = (self.node.getCurrentStorage() /
+                     self.node.getTotalStorage()) * 100
 
         if storage_p <= 0:
             self.node.setStatus(0)

@@ -4,7 +4,7 @@ from colorama import Fore
 import numpy as np
 
 
-def showResults(train_loss, clients_acc):
+def show_results(train_loss, clients_acc):
     print("-" * 30)
     print(f'Global Training Loss : {np.mean(np.array(train_loss))}')
     print("Local accuracy of each client : ")
@@ -13,7 +13,7 @@ def showResults(train_loss, clients_acc):
     print("-" * 30)
 
 
-def drawGraph(accuracy_data: dict = None, energy_data: dict = None, down_data: dict = None):
+def draw_graph(accuracy_data: dict = None, energy_data: dict = None, down_data: dict = None):
     methods = list(accuracy_data.keys())
     values = list(accuracy_data.values())
 
@@ -47,7 +47,7 @@ def drawGraph(accuracy_data: dict = None, energy_data: dict = None, down_data: d
     plt.show()
 
 
-def countRejectedClients(clients: list) -> int:
+def count_rejected_clients(clients: list) -> int:
     n = 0
     for client in clients:
         if client.getStatus() == 0:
@@ -55,7 +55,7 @@ def countRejectedClients(clients: list) -> int:
     return n
 
 
-def countClients(selected_clients: list) -> (int, int, int):
+def count_clients(selected_clients: list) -> (int, int, int):
     number_weak_nodes = 0
     number_mid_nodes = 0
     number_powerful_nodes = 0
@@ -71,8 +71,8 @@ def countClients(selected_clients: list) -> (int, int, int):
     return number_weak_nodes, number_mid_nodes, number_powerful_nodes
 
 
-def displayClientInformation(selected_clients_list: dict, selected_clients: list, number_weak_nodes: int,
-                             number_mid_nodes: int, number_powerful_nodes: int, K: float):
+def display_client_information(selected_clients_list: dict, selected_clients: list, number_weak_nodes: int,
+                               number_mid_nodes: int, number_powerful_nodes: int, K: float):
     print("{0}Selected clients are : ".format(Fore.MAGENTA))
     print("{0}---------------------------------------------------------".format(Fore.MAGENTA))
     print(selected_clients_list)

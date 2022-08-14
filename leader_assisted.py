@@ -1,11 +1,11 @@
-from utils.stats import countClients, displayClientInformation, drawGraph, countRejectedClients, showResults
-from utils.generation import generateNodes, selectedToDict, chooseDataset, splitNodesNetworks
+from utils.stats import count_clients, display_client_information, draw_graph, count_rejected_clients, show_results
+from utils.generation import generate_nodes, selected_to_dict, choose_dataset, split_nodes_networks
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
-from distribuedLearning.DistribuedLearning import distLearning
+from distribuedLearning.DistribuedLearning import dist_learning
 from clientSelection import LeaderClientSelection
 from constants.federated_learning import ROUNDS, FINAL_ACCURACY
 from leaderElection.leaderElection import LeaderElection
-from utils.displays import displayAuthor
+from utils.displays import display_author
 from models.CNN.CNNMnist import CNNMnist
 from models.CNN.CNNCifar import CNNCifar
 from colorama import init, Fore
@@ -26,7 +26,7 @@ init(autoreset=True)
 # TODO : Fix IPs.
 
 if __name__ == '__main__':
-    displayAuthor()  # * Display authors information
+    display_author()  # * Display authors information
 
     # ! -------------------------------------------- Generation process ------------------------------------------------
 
@@ -38,19 +38,19 @@ if __name__ == '__main__':
                                      format(Fore.LIGHTYELLOW_EX))) / 100
 
     # ? Choosing the dataset ( 1 = MNIST, 2 = Fashion MNIST, 3 = CIFAR 100).
-    dataset_id, train_dataset, test_dataset = chooseDataset()
+    dataset_id, train_dataset, test_dataset = choose_dataset()
 
     # ? Generate the number chosen of nodes.
-    clients = generateNodes(number_of_nodes=number_of_nodes, data=train_dataset)
+    clients = generate_nodes(number_of_nodes=number_of_nodes, data=train_dataset)
     # ? Split each number of nodes into a single network.
-    networks = splitNodesNetworks(nodes=clients)
+    networks = split_nodes_networks(nodes=clients)
     # ? Choose leader for each network.
     print("{0}[*] Choosing the leader of each network".format(Fore.LIGHTBLUE_EX))
     for network in networks:
-        leader = LeaderElection(nodes=network.getNodes(), debug_mode=False).MinFind()
-        network.setNetworkLeader(leader)
+        leader = LeaderElection(nodes=network.get_nodes(), debug_mode=False).min_find()
+        network.set_network_leader(leader)
         print("{0}[+] The leader ID of network {1} is : {2} (ID = {3}, IP :{4})".format(Fore.LIGHTYELLOW_EX,
-                                                                                        network.getNetworkNumber(),
+                                                                                        network.get_network_number(),
                                                                                         leader.getName(),
                                                                                         leader.getId(),
                                                                                         leader.getIpAddr()))
@@ -76,41 +76,33 @@ if __name__ == '__main__':
 
     # ! -------------------------------------------- Client selection process ------------------------------------------
         # ? Gathering Process.
-        LeaderClientSelection(nodes=clients, K=selection_percentage, networks=networks, debug_mode=False)\
-            .GatheringProcess()
+        LeaderClientSelection(nodes=clients, K=selection_percentage, networks=networks, debug_mode=False) \
+            .gathering_process()
 
         # ? Call Leader client selection module to select eligible clients.
         selected_clients = LeaderClientSelection(nodes=clients, K=selection_percentage, networks=networks,
-                                                 debug_mode=False).leaderClientSelection()
+                                                 debug_mode=False).leader_client_selection()
 
         # ? Convert the output of random clients to list.
-        selected_clients_list = selectedToDict(selected_clients=selected_clients)
+        selected_clients_list = selected_to_dict(selected_clients=selected_clients)
 
         # ? Get the number of weak, mid and powerful nodes.
-        number_weak_nodes, number_mid_nodes, number_powerful_nodes = countClients(selected_clients=selected_clients)
+        number_weak_nodes, number_mid_nodes, number_powerful_nodes = count_clients(selected_clients=selected_clients)
 
         # ? Display some stats about selected clients.
-        displayClientInformation(selected_clients_list=selected_clients_list, selected_clients=selected_clients,
-                                 number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
-                                 number_powerful_nodes=number_powerful_nodes, K=selection_percentage)
+        display_client_information(selected_clients_list=selected_clients_list, selected_clients=selected_clients,
+                                   number_weak_nodes=number_weak_nodes, number_mid_nodes=number_mid_nodes,
+                                   number_powerful_nodes=number_powerful_nodes, K=selection_percentage)
 
     # ! -------------------------------------------- End of client selection process -----------------------------------
-
-    # ! -------------------------------------------- Dataset, Encoding, Sampling  --------------------------------------
-
-        # ? Split dataset into the clients.
-        # dataDistribution(data=train_dataset, clients=selected_clients)
-
-    # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
     # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
 
         # ? Begin training on each client.
 
-        loss_avg, list_acc, clients_acc, energy = distLearning(selected_clients=selected_clients,
-                                                               train_dataset=train_dataset,
-                                                               global_model=global_model,
-                                                               global_round=epoch)
+        loss_avg, list_acc, clients_acc, energy = dist_learning(train_dataset=train_dataset,
+                                                                selected_clients=selected_clients,
+                                                                global_model=global_model, global_round=epoch)
 
         global_acc = sum(list_acc) / len(list_acc)
 
@@ -128,16 +120,16 @@ if __name__ == '__main__':
 
     # ! ---------------------------------------------------- Results ---------------------------------------------------
 
-    showResults(train_loss=train_loss, clients_acc=clients_acc)  # ? Print loss and the accuracy of each node.
+    show_results(train_loss=train_loss, clients_acc=clients_acc)  # ? Print loss and the accuracy of each node.
 
     method = "Leader-assisted Client selection"
 
-    number_rejected_clients = countRejectedClients(clients)
+    number_rejected_clients = count_rejected_clients(clients)
 
     accuracy_data, energy_data, down_data = {method: 100 * train_accuracy[-1]}, \
                                             {method: total_energy}, \
                                             {method: number_rejected_clients}
 
-    drawGraph(accuracy_data=accuracy_data, energy_data=energy_data, down_data=down_data)
+    draw_graph(accuracy_data=accuracy_data, energy_data=energy_data, down_data=down_data)
 
     # ! ---------------------------------------------------- End ! -----------------------------------------------------

@@ -9,8 +9,9 @@ class RandomClientSelection(ClientSelection):
         self.K = K
         self.debug_mode = debug_mode
 
-    def randomClientSelection(self) -> list:
-        selectedClients = []
+    def random_client_selection(self) -> list:
+        print("{0}[*] Starting Random client selection".format(Fore.LIGHTYELLOW_EX))
+        selected_clients = []
         percentage = round(len(self.nodes) * self.K)
         for i in range(0, percentage):
             client = random.choices(self.nodes)[0]
@@ -22,6 +23,6 @@ class RandomClientSelection(ClientSelection):
                                                                                              Fore.MAGENTA,
                                                                                              client.getId(),
                                                                                              Style.RESET_ALL))
-            selectedClients.append(client)
+            selected_clients.append(client)
 
-        return selectedClients
+        return selected_clients

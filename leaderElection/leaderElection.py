@@ -7,7 +7,7 @@ class LeaderElection(object):
         self.nodes = nodes
         self.debug_mode = debug_mode
 
-    def MinFind(self) -> Node:
+    def min_find(self) -> Node:
         leader = self.nodes[0]
         for i in range(1, len(self.nodes)):
             leader_id = int(leader.getId(), 16)

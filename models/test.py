@@ -2,10 +2,10 @@ import numpy as np
 from tensorflow import keras
 from models.Keras.model import create_model
 from consumptionModel.StorageModel.StorageModel import StorageModel
-from utils.generation import generateNodes
+from utils.generation import generate_nodes
 
 
-def sampling_data_to_clients(data, selected_client: list):
+def samplingDataToClients(data, selected_client: list):
     num_clients = len(selected_client)
     num_items = int(data.shape[0] / num_clients)
     dict_users, all_idxs = {}, [i for i in range(len(data))]
@@ -21,7 +21,7 @@ def sampling_data_to_clients(data, selected_client: list):
 
 # ! From here ---------------------------------------------------------------------------------------------------------
 
-clients = generateNodes(number_of_nodes=200)
+clients = generate_nodes(number_of_nodes=200, data=)
 
 num_classes = 10
 
@@ -48,13 +48,11 @@ print(x_test.shape[0], "test samples")
 
 exit(0)
 
-sampling_data_to_clients(data=x_train, selected_client=clients)
+samplingDataToClients(data=x_train, selected_client=clients)
 
 print(clients[2].getData())
 
 exit(0)
-
-
 
 # convert class vectors to binary class matrices
 y_train = keras.utils.to_categorical(y_train, num_classes)

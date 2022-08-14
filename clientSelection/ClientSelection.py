@@ -4,8 +4,8 @@ class ClientSelection(object):
         self.nodes = nodes
         self.debug_mode = debug_mode
 
-    def getNodes(self) -> list:
+    def get_nodes(self) -> list:
         return self.nodes
 
-    def getDebugMode(self) -> bool:
+    def get_debug_mode(self) -> bool:
         return self.debug_mode

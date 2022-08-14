@@ -5,23 +5,24 @@ from time import sleep
 from colorama import Fore
 from torchvision import transforms
 from network.Network import Network
-from utils.computation import chunkList
+from utils.computation import chunk_list
 from node import PowNode, MidNode, LowNode
 from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
 from consumptionModel.StorageModel.StorageModel import StorageModel
 
 
-def generateNodes(number_of_nodes: int, data) -> list:
+def generate_nodes(number_of_nodes: int, data) -> list:
     print("{0}[*] Generating {1} node(s) with random data".format(Fore.LIGHTMAGENTA_EX, number_of_nodes))
     nodes = []
     min_length = int(len(data) / number_of_nodes)
     dataID_list = [i for i in range(len(data))]
     for i in range(0, number_of_nodes):
         rate = random.randint(0, 2)
-        node = LowNode(name="Node {}".format(i), data="test") if rate == 0 else \
-            MidNode(name="Node {}".format(i), data="test") if rate == 1 else \
-                PowNode(name="Node {}".format(i), data="test")
-        # ? Set the data.
+        # ? Randomly pick a category of node.
+        node = LowNode(name="Node {}".format(i)) if rate == 0 else \
+            MidNode(name="Node {}".format(i)) if rate == 1 else \
+            PowNode(name="Node {}".format(i))
+        # ? Set the data. ( Using CPU usage, etc .. ), randomly set the data size.
         num_items = random.randint(min_length, len(data) / 10)
         client_data = set(np.random.choice(dataID_list, num_items, replace=False))
         node.setData(data=client_data, data_type="mnist")
@@ -34,7 +35,7 @@ def generateNodes(number_of_nodes: int, data) -> list:
     return nodes
 
 
-def chooseDataset():
+def choose_dataset():
     dataset_list = {1: "mnist", 2: "fashion_mnist", 3: "cifar"}
     dataset_id = int(input('''{0}Which dataset do you want to use ?{1}
     1 - Mnist
@@ -69,21 +70,21 @@ def chooseDataset():
     return dataset_id, train_dataset, test_dataset
 
 
-def selectedToDict(selected_clients: list) -> dict:
+def selected_to_dict(selected_clients: list) -> dict:
     clients = {}
     for client in selected_clients:
         clients[client.getName()] = client.getId()
     return clients
 
 
-def splitNodesNetworks(nodes):
+def split_nodes_networks(nodes):
     number_of_nodes = len(nodes)
-    clients_chunk = chunkList(lst=nodes, chunk_size=int(number_of_nodes / 5))
+    clients_chunk = chunk_list(lst=nodes, chunk_size=int(number_of_nodes / 5))
     i = 1
     networks = []
     for c in clients_chunk:
         network = Network(nodes=c, network_number=i, debug_mode=False)
-        network.assignIpAddresses()
+        network.assign_ip_addresses()
         networks.append(network)
         i += 1
     return networks

@@ -3,11 +3,11 @@ import random
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from constants.federated_learning import LOCAL_EP
+from consumptionModel.CPUModel.CPUModel import CPUModel
 from constants.model_constants import LR, MOMENTUM, LOCAL_BS
 from consumptionModel.EnergyModel.EnergyModel import EnergyModel
-from consumptionModel.StorageModel.StorageModel import StorageModel
 from consumptionModel.MemoryModel.MemoryModel import MemoryModel
-from consumptionModel.CPUModel.CPUModel import CPUModel
+from consumptionModel.StorageModel.StorageModel import StorageModel
 
 
 class DatasetSplit(Dataset):
@@ -104,8 +104,9 @@ class ClientUpdate(object):
         # ? Increase CPU and memory usage randomly.
         self.memory_model.updateMemory(random.randint(30, 60))
         self.cpu_model.updateCpu(random.randint(30, 60))
+
         if self.node.getStatus() == 0:
-            return
+            return 
 
         return model.state_dict(), sum(epoch_loss) / len(epoch_loss), energy
 
