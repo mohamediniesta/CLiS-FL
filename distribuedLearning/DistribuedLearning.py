@@ -57,7 +57,7 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
                       battery_percent, storage_percent, memory_usage, cpu_usage))
         index += 1
 
-    if len(local_weight) > 0:
+    if len(local_weights) > 0:
         print("{0}[*] Aggregation ".format(Fore.LIGHTGREEN_EX))
         global_weights = average_weights(local_weights)  # ? Model's aggregation.
         global_model.load_state_dict(global_weights)
