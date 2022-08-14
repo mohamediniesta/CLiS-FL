@@ -3,8 +3,8 @@ import random
 
 
 class MidNode(Node):
-    def __init__(self, name: str, data: str, mobility_mode: bool = False):
-        super().__init__(name, data, mobility_mode)
+    def __init__(self, name: str, mobility_mode: bool = False):
+        super().__init__(name, mobility_mode)
         super().setTotalEnergy(2000)  # [mAh]
         current_energy = random.uniform(1000, 2000)
         super().setCurrentEnergy(current_energy)

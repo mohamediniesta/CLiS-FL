@@ -3,8 +3,8 @@ import random
 
 
 class PowNode(Node):
-    def __init__(self, name: str, data: str, mobility_mode: bool = False):
-        super().__init__(name, data, mobility_mode)
+    def __init__(self, name: str, mobility_mode: bool = False):
+        super().__init__(name, mobility_mode)
         self.battery_mode = random.randint(0, 1)  # Battery (1) or in charge (0).
         if self.battery_mode == 1:
             super().setTotalEnergy(6000)  # [mAh]
