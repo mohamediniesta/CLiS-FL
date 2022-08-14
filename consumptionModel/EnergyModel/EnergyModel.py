@@ -1,4 +1,5 @@
 from node.Node import Node
+from constants.resource_constants import MIN_BATTERY
 
 
 class EnergyModel(object):
@@ -17,12 +18,6 @@ class EnergyModel(object):
         new_energy = node_current_energy - node_energy_consumption
         return new_energy
 
-    def check_battery(self) -> bool:
-        battery_p = (self.node.get_current_energy() /
-                     self.node.get_total_energy()) * 100
-
-        if battery_p <= 5:
+    def check_battery(self):
+        if ((self.node.get_current_energy() / self.node.get_total_energy()) * 100) <= MIN_BATTERY:
             self.node.set_status(0)
-            return False
-        else:
-            return True

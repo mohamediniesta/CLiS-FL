@@ -95,7 +95,8 @@ if __name__ == '__main__':
         total_energy = total_energy + energy
 
         if global_acc >= FINAL_ACCURACY / 100:
-            print("{0}[+] Global accuracy reached !! No more rounds for FL".format(Fore.LIGHTGREEN_EX))
+            print("{0}[+] Global accuracy reached !! No more rounds for FL ( Round : {1} )".format(Fore.LIGHTGREEN_EX,
+                                                                                                   epoch + 1))
             break
 
     # ! ---------------------------------------------------- End ! -----------------------------------------------------

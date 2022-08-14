@@ -7,6 +7,7 @@ from network.Network import Network
 from utils.computation import chunk_list
 from node import PowNode, MidNode, LowNode
 from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
+from constants.resource_constants import IMAGE_SIZE
 from consumptionModel.StorageModel.StorageModel import StorageModel
 
 
@@ -22,12 +23,12 @@ def generate_nodes(number_of_nodes: int, data) -> list:
             MidNode(name="Node {}".format(i)) if rate == 1 else \
             PowNode(name="Node {}".format(i))
         # ? Set the data. ( Using CPU usage, etc .. ), randomly set the data size.
-        num_items = random.randint(min_length, len(data) / 10)
+        num_items = random.randint(min_length, len(data) / 100)
         client_data = set(np.random.choice(dataID_list, num_items, replace=False))
         node.set_data(data=client_data, data_type="mnist")
 
         StorageModel(node=node). \
-            add_to_storage(number_of_mega_bytes=2 * num_items)  # ? 2 Mega bytes per image (num_items)
+            add_to_storage(number_of_mega_bytes=IMAGE_SIZE * num_items)  # ? 800 Kilo bytes per image (num_items)
 
         nodes.append(node)
 

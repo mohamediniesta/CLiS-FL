@@ -1,6 +1,4 @@
-import random
 from colorama import Fore, Style
-from time import sleep
 from clientSelection.ClientSelection import ClientSelection
 import pandas as pd
 
