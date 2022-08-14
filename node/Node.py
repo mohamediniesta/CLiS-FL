@@ -10,7 +10,7 @@ def generateNode_id() -> str:
 
 
 class Node(object):
-    def __init__(self, name: str, data: str, data_type: str, mobility_mode: bool = False):
+    def __init__(self, name: str, data: str = None, data_type: str = None, mobility_mode: bool = False):
         self.ip_addr = None
         self.node_id: str = generateNode_id()
         if not mobility_mode:
