@@ -1,4 +1,3 @@
-import uuid
 import random
 import numpy as np
 from time import sleep
@@ -25,10 +24,10 @@ def generate_nodes(number_of_nodes: int, data) -> list:
         # ? Set the data. ( Using CPU usage, etc .. ), randomly set the data size.
         num_items = random.randint(min_length, len(data) / 10)
         client_data = set(np.random.choice(dataID_list, num_items, replace=False))
-        node.setData(data=client_data, data_type="mnist")
+        node.set_data(data=client_data, data_type="mnist")
 
         StorageModel(node=node). \
-            addToStorage(number_of_mega_bytes=2 * num_items)  # ? 2 Mega bytes per image (num_items)
+            add_to_storage(number_of_mega_bytes=2 * num_items)  # ? 2 Mega bytes per image (num_items)
 
         nodes.append(node)
 
@@ -73,7 +72,7 @@ def choose_dataset():
 def selected_to_dict(selected_clients: list) -> dict:
     clients = {}
     for client in selected_clients:
-        clients[client.getName()] = client.getId()
+        clients[client.get_name()] = client.get_id()
     return clients
 
 

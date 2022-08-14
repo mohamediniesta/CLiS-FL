@@ -11,8 +11,8 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
 
     for client in selected_clients:  # ? For each client in the selected clients.
 
-        if client.getStatus() == 0:  # ? Check the status of client it's down or not.
-            print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.getName()))
+        if client.get_status() == 0:  # ? Check the status of client it's down or not.
+            print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.get_name()))
             index += 1
             continue
 
@@ -20,16 +20,16 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
               format(Fore.CYAN,
                      index,
                      global_round + 1,
-                     client.getName(),
-                     client.getId(),
-                     len(client.getData())))
+                     client.get_name(),
+                     client.get_id(),
+                     len(client.get_data())))
 
-        local_model = ClientUpdate(dataset=train_dataset, idxs=client.getData(), node=client)
+        local_model = ClientUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
 
-        results = local_model.updateWeights(model=copy.deepcopy(global_model), global_round=global_round)
+        results = local_model.update_weights(model=copy.deepcopy(global_model), global_round=global_round)
 
         if results is None:  # ? if the client is down.
-            print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.getName()))
+            print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.get_name()))
             index += 1
             continue
 
@@ -42,18 +42,18 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
         local_losses.append(copy.deepcopy(local_loss))
 
         # ? if the node is on battery mode.
-        battery_percent = (client.getCurrentEnergy() / client.getTotalEnergy()) * 100 \
-            if client.getTotalEnergy() is not None else 100
+        battery_percent = (client.get_current_energy() / client.get_total_energy()) * 100 \
+            if client.get_total_energy() is not None else 100
 
         # ? Calculate the percentage of storage.
-        storage_percent = (client.getCurrentStorage() / client.getTotalStorage()) * 100
+        storage_percent = (client.get_current_storage() / client.get_total_storage()) * 100
 
-        memory_usage = client.getMemoryUsage()
+        memory_usage = client.get_memory_usage()
 
-        cpu_usage = client.getCpuUsage()
+        cpu_usage = client.get_cpu_usage()
 
         print("{}Learning is complete for {} (Battery : {:.1f}%, Storage : {:.1f}%, Memory : {:.1f}%, CPU : {:.1f}%)"
-              .format(Fore.GREEN, client.getName(),
+              .format(Fore.GREEN, client.get_name(),
                       battery_percent, storage_percent, memory_usage, cpu_usage))
         index += 1
 
@@ -68,9 +68,9 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
     # ? Inference Phase (Test our model on test data).
 
     for client in selected_clients:
-        local_model = ClientUpdate(dataset=train_dataset, idxs=client.getData(), node=client)
+        local_model = ClientUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
         acc, loss = local_model.inference(model=global_model)
-        clients_acc[client.getName()] = "{:.2f}%".format(100 * acc)
+        clients_acc[client.get_name()] = "{:.2f}%".format(100 * acc)
         list_acc.append(acc)
         list_loss.append(loss)
 

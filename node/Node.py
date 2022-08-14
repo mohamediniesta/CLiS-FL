@@ -40,95 +40,95 @@ class Node(object):
         # ? The data gathered from other nodes.
         self.gathered_data = None
 
-    def getStatus(self):
+    def get_status(self):
         return self.status
 
-    def setStatus(self, status: int):
+    def set_status(self, status: int):
         self.status = status
 
-    def getTotalEnergy(self) -> float:
+    def get_total_energy(self) -> float:
         return self.total_energy
 
-    def setTotalEnergy(self, total_energy: float):
+    def set_total_energy(self, total_energy: float):
         self.total_energy = total_energy
 
-    def getEnergyConsumption(self) -> float:
+    def get_energy_consumption(self) -> float:
         return self.energy_consumption
 
-    def setEnergyConsumption(self, energy_consumption: float):
+    def set_energy_consumption(self, energy_consumption: float):
         self.energy_consumption = energy_consumption
 
-    def getCurrentEnergy(self) -> float:
+    def get_current_energy(self) -> float:
         return self.current_energy
 
-    def setCurrentEnergy(self, current_energy: float):
+    def set_current_energy(self, current_energy: float):
         self.current_energy = current_energy
 
-    def getCpuPower(self) -> float:
+    def get_cpu_power(self) -> float:
         return self.cpu_power
 
-    def getMemory(self) -> int:
+    def get_memory(self) -> int:
         return self.memory
 
-    def getMemoryUsage(self) -> int:
+    def get_memory_usage(self) -> int:
         return self.memory_usage
 
-    def setMemoryUsage(self, memory_usage):
+    def set_memory_usage(self, memory_usage):
         self.memory_usage = memory_usage
 
-    def getCpuUsage(self) -> int:
+    def get_cpu_usage(self) -> int:
         return self.cpu_usage
 
-    def setCpuUsage(self, cpu_usage):
+    def set_cpu_usage(self, cpu_usage):
         self.cpu_usage = cpu_usage
 
-    def getTotalStorage(self) -> int:
+    def get_total_storage(self) -> int:
         return self.total_storage
 
-    def setTotalStorage(self, total_storage: int):
+    def set_total_storage(self, total_storage: int):
         self.total_storage = total_storage
 
-    def getCurrentStorage(self) -> int:
+    def get_current_storage(self) -> int:
         return self.current_storage
 
-    def setCurrentStorage(self, current_storage: int):
+    def set_current_storage(self, current_storage: int):
         self.current_storage = current_storage
 
-    def getId(self) -> str:
+    def get_id(self) -> str:
         return self.node_id
 
-    def getName(self) -> str:
+    def get_name(self) -> str:
         return self.name
 
-    def getDataType(self) -> str:
+    def get_data_type(self) -> str:
         return self.data_type
 
-    def getData(self) -> list:
+    def get_data(self) -> list:
         return self.data
 
-    def setData(self, data: str, data_type: str):
+    def set_data(self, data: str, data_type: str):
         self.data: list = data
         self.data_type: str = data_type
 
-    def getIpAddr(self):
+    def get_ip_addr(self):
         return self.ip_addr
 
-    def setIpAddr(self, ip_addr):
+    def set_ip_addr(self, ip_addr):
         self.ip_addr = ip_addr
 
-    def getLeader(self):
+    def get_leader(self):
         return self.leader
 
-    def setLeader(self, leader: bool):
+    def set_leader(self, leader: bool):
         self.leader = leader
 
-    def getGatheredData(self) -> pd.DataFrame:
+    def get_gathered_data(self) -> pd.DataFrame:
         return self.gathered_data
 
-    def setGatheredData(self, gathered_data: pd.DataFrame):
+    def set_gathered_data(self, gathered_data: pd.DataFrame):
         self.gathered_data = gathered_data
 
-    def getResourcesInformation(self):
+    def get_resources_information(self):
         # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,CurrentStorage,BatteryUsage, TotalEnergy,
         # ? EnergyConsumption, CurrentEnergy, DataLength, Time
         return self.name, self.cpu_power, self.cpu_usage, self.memory, self.memory_usage, \

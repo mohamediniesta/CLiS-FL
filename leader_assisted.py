@@ -51,9 +51,9 @@ if __name__ == '__main__':
         network.set_network_leader(leader)
         print("{0}[+] The leader ID of network {1} is : {2} (ID = {3}, IP :{4})".format(Fore.LIGHTYELLOW_EX,
                                                                                         network.get_network_number(),
-                                                                                        leader.getName(),
-                                                                                        leader.getId(),
-                                                                                        leader.getIpAddr()))
+                                                                                        leader.get_name(),
+                                                                                        leader.get_id(),
+                                                                                        leader.get_ip_addr()))
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
 
     # ! -------------------------------------------- Generic Model ----------------------------------------------------

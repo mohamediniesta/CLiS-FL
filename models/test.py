@@ -14,19 +14,20 @@ def samplingDataToClients(data, selected_client: list):
     for CLIENT in selected_client:
         storage_model = StorageModel(node=CLIENT)
         client_data = set(np.random.choice(all_idxs, num_items, replace=False))
-        CLIENT.setData(data=client_data, data_type="mnist")
-        storage_model.addToStorage(number_of_mega_bytes=5 * num_items)  # 5 Mega bytes per image (num_items)
-        all_idxs = list(set(all_idxs) - CLIENT.getData())
+        CLIENT.set_data(data=client_data, data_type="mnist")
+        storage_model.add_to_storage(number_of_mega_bytes=5 * num_items)  # 5 Mega bytes per image (num_items)
+        all_idxs = list(set(all_idxs) - CLIENT.get_data())
 
 
 # ! From here ---------------------------------------------------------------------------------------------------------
 
-clients = generate_nodes(number_of_nodes=200, data=)
 
 num_classes = 10
 
 # Load the data and split it between train and test sets
 train_dataset, test_dataset = keras.datasets.mnist.load_data()
+
+clients = generate_nodes(number_of_nodes=200, data=train_dataset)
 
 print(train_dataset[0])
 exit(0)
@@ -45,12 +46,11 @@ print("x_train shape:", x_train.shape)
 print(x_train.shape[0], "train samples")
 print(x_test.shape[0], "test samples")
 
-
 exit(0)
 
 samplingDataToClients(data=x_train, selected_client=clients)
 
-print(clients[2].getData())
+print(clients[2].get_data())
 
 exit(0)
 

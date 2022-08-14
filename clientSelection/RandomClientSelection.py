@@ -18,10 +18,10 @@ class RandomClientSelection(ClientSelection):
             if self.debug_mode:
                 print(
                     "[*] The client {0}{1}{2} with id : {3}{4},{5} has been selected".format(Fore.YELLOW,
-                                                                                             client.getName(),
+                                                                                             client.get_name(),
                                                                                              Style.RESET_ALL,
                                                                                              Fore.MAGENTA,
-                                                                                             client.getId(),
+                                                                                             client.get_id(),
                                                                                              Style.RESET_ALL))
             selected_clients.append(client)
 
