@@ -26,7 +26,7 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
 
         local_model = ClientUpdate(dataset=train_dataset, idxs=client.getData(), node=client)
 
-        results = local_model.updataddieWeights(model=copy.deepcopy(global_model), global_round=global_round)
+        results = local_model.updateWeights(model=copy.deepcopy(global_model), global_round=global_round)
 
         if results is None:  # ? if the client is down.
             print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.getName()))
