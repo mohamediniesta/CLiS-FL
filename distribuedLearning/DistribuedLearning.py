@@ -57,15 +57,17 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
                       battery_percent, storage_percent, memory_usage, cpu_usage))
         index += 1
 
-    global_weights = average_weights(local_weights)  # ? Model's aggregation.
-    global_model.load_state_dict(global_weights)
-    loss_avg = sum(local_losses) / len(local_losses)
+    if len(local_weight) > 0:
+        print("{0}[*] Aggregation ".format(Fore.LIGHTGREEN_EX))
+        global_weights = average_weights(local_weights)  # ? Model's aggregation.
+        global_model.load_state_dict(global_weights)
+        loss_avg = sum(local_losses) / len(local_losses)
+
+    # ? Inference Phase (Test our model on test data).
 
     list_acc, list_loss = [], []
     global_model.eval()
     clients_acc = {}
-
-    # ? Inference Phase (Test our model on test data).
 
     for client in selected_clients:
         local_model = ClientUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
