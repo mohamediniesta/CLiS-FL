@@ -2,7 +2,9 @@ import torch
 import random
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
+from constants.model_constants import BATCH_SIZE
 from constants.federated_learning import LOCAL_EP
+from constants.resource_constants import MODEL_SIZE
 from consumptionModel.CPUModel.CPUModel import CPUModel
 from constants.model_constants import LR, MOMENTUM, LOCAL_BS
 from consumptionModel.EnergyModel.EnergyModel import EnergyModel
@@ -35,8 +37,8 @@ def trainValTest(dataset, idxs):
 
     trainLoader, validLoader, testLoader = \
         DataLoader(DatasetSplit(dataset, idxs_train), batch_size=LOCAL_BS, shuffle=True), \
-        DataLoader(DatasetSplit(dataset, idxs_val), batch_size=32, shuffle=False), \
-        DataLoader(DatasetSplit(dataset, idxs_test), batch_size=32, shuffle=False)
+        DataLoader(DatasetSplit(dataset, idxs_val), batch_size=BATCH_SIZE, shuffle=False), \
+        DataLoader(DatasetSplit(dataset, idxs_test), batch_size=BATCH_SIZE, shuffle=False)
 
     return trainLoader, validLoader, testLoader
 
@@ -63,34 +65,37 @@ class ClientUpdate(object):
         self.criterion = nn.NLLLoss().to(self.device)
 
     def update_weights(self, model, global_round):
+        # ? check battery energy and node status.
+        if self.node.get_total_energy() is not None:
+            self.energy_model.check_battery()
         if self.node.get_status() == 0:
             return
+
         # ? Set mode to train model
-        energy = 0
+        energy, epoch_loss = 0, []
         model.train()
-        epoch_loss = []
 
         # ? Set optimizer for the local updates
         optimizer = torch.optim.SGD(model.parameters(), lr=LR, momentum=MOMENTUM)
         for iteration in range(LOCAL_EP):
-
+            # ? check battery energy and node status.
             if self.node.get_total_energy() is not None:
-                # ? Battery consumption.
-                new_energy = self.energy_model.consume_energy()
-                self.node.set_current_energy(new_energy)
-                energy = energy + self.node.get_energy_consumption()
+                self.energy_model.check_battery()
+            if self.node.get_status() == 0:
+                return
 
             batch_loss = []
 
             for batch_idx, (images, labels) in enumerate(self.trainLoader):
-                images, labels = images.to(self.device), labels.to(self.device)
 
+                images, labels = images.to(self.device), labels.to(self.device)
                 model.zero_grad()
                 log_probs = model(images)
                 loss = self.criterion(log_probs, labels)
                 loss.backward()
                 optimizer.step()
                 verbose = 0
+
                 if verbose and (batch_idx % 10 == 0):
                     print('| Global Round : {} | Local Epoch : {} | [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                         global_round, iteration, batch_idx * len(images),
@@ -99,14 +104,22 @@ class ClientUpdate(object):
                 batch_loss.append(loss.item())
 
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
-        # ? Adding the model size to the storage of device.
-        self.storage_model.add_to_storage(number_of_mega_bytes=100)
-        # ? Increase CPU and memory usage randomly.
-        self.memory_model.update_memory(random.randint(30, 60))
-        self.cpu_model.update_cpu(random.randint(30, 60))
+            # ? Increase CPU and memory usage randomly.
+            self.memory_model.update_memory(random.randint(3, 6))
+            self.cpu_model.update_cpu(random.randint(3, 6))
+            # ? Battery consumption.
+            if self.node.get_total_energy() is not None:
+                new_energy = self.energy_model.consume_energy()
+                self.node.set_current_energy(new_energy)
+                energy = energy + self.node.get_energy_consumption()
 
+        # ? Adding the model size to the storage of device.
+        self.storage_model.add_to_storage(number_of_mega_bytes=MODEL_SIZE)
+        # ? check battery energy and node status.
+        if self.node.get_total_energy() is not None:
+            self.energy_model.check_battery()
         if self.node.get_status() == 0:
-            return 
+            return
 
         return model.state_dict(), sum(epoch_loss) / len(epoch_loss), energy
 
