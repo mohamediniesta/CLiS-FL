@@ -1,10 +1,10 @@
 import copy
 from colorama import Fore
 from models.update import ClientUpdate
-from utils.computation import averageWeights
+from utils.computation import average_weights
 
 
-def distLearning(train_dataset, selected_clients: list, global_model, global_round: int) -> (float, list, dict, float):
+def dist_learning(train_dataset, selected_clients: list, global_model, global_round: int) -> (float, list, dict, float):
     local_weights, local_losses = [], []
     energy = 0
     index = 1
@@ -16,17 +16,24 @@ def distLearning(train_dataset, selected_clients: list, global_model, global_rou
             index += 1
             continue
 
-        print("{0}Client Nº{1} -  Begin training with {2} ({3} ( Data length : {4})".
+        print("{0}Client Nº{1} [Round {2}] -  Begin training with {3} ({4} ( Data length : {5})".
               format(Fore.CYAN,
                      index,
+                     global_round + 1,
                      client.getName(),
                      client.getId(),
                      len(client.getData())))
 
         local_model = ClientUpdate(dataset=train_dataset, idxs=client.getData(), node=client)
 
-        local_weight, local_loss, local_energy = local_model.updateWeights(model=copy.deepcopy(global_model),
-                                                                           global_round=global_round)
+        results = local_model.updataddieWeights(model=copy.deepcopy(global_model), global_round=global_round)
+
+        if results is None:  # ? if the client is down.
+            print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.getName()))
+            index += 1
+            continue
+
+        local_weight, local_loss, local_energy = results
 
         energy = energy + local_energy
 
@@ -50,7 +57,7 @@ def distLearning(train_dataset, selected_clients: list, global_model, global_rou
                       battery_percent, storage_percent, memory_usage, cpu_usage))
         index += 1
 
-    global_weights = averageWeights(local_weights)  # ? Model's aggregation.
+    global_weights = average_weights(local_weights)  # ? Model's aggregation.
     global_model.load_state_dict(global_weights)
     loss_avg = sum(local_losses) / len(local_losses)
 
