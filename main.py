@@ -91,7 +91,8 @@ if __name__ == '__main__':
         print("Global accuracy : {0} %".format(global_acc * 100))
 
         train_accuracy.append(global_acc)
-        train_loss.append(loss_avg)
+        if loss_avg is not None:
+            train_loss.append(loss_avg)
         total_energy = total_energy + energy
 
         if global_acc >= FINAL_ACCURACY / 100:
