@@ -62,6 +62,8 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
         global_weights = average_weights(local_weights)  # ? Model's aggregation.
         global_model.load_state_dict(global_weights)
         loss_avg = sum(local_losses) / len(local_losses)
+    else:
+        loss_avg = None
 
     # ? Inference Phase (Test our model on test data).
 
