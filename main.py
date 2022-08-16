@@ -14,10 +14,6 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 init(autoreset=True)
 
-# TODO : Optimize Battery Modeling.
-
-# TODO : Adding noise process to clients randomly.
-
 # TODO: Generating sphinx documentations.
 
 # TODO: Transform data to IMBD dataset.

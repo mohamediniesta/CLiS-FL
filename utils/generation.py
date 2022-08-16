@@ -7,8 +7,8 @@ from network.Network import Network
 from utils.computation import chunk_list
 from node import PowNode, MidNode, LowNode
 from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
-from constants.resource_constants import IMAGE_SIZE
 from consumptionModel.StorageModel.StorageModel import StorageModel
+from constants.resource_constants import IMAGE_SIZE, LOW_NODE_DISTRIBUTION, POW_NODE_DISTRIBUTION, MED_NODE_DISTRIBUTION
 
 
 def generate_nodes(number_of_nodes: int, data) -> list:
@@ -16,14 +16,16 @@ def generate_nodes(number_of_nodes: int, data) -> list:
     nodes = []
     min_length = int(len(data) / number_of_nodes)
     dataID_list = [i for i in range(len(data))]
+    random_node_list = [0, 1, 2]  # ? 0 = Low , 1 = Medium , 2 = Pow
     for i in range(0, number_of_nodes):
-        rate = random.randint(0, 2)
+        rate = random.choices(random_node_list,
+                              [LOW_NODE_DISTRIBUTION, MED_NODE_DISTRIBUTION, POW_NODE_DISTRIBUTION])[0]
         # ? Randomly pick a category of node.
         node = LowNode(name="Node {}".format(i)) if rate == 0 else \
             MidNode(name="Node {}".format(i)) if rate == 1 else \
             PowNode(name="Node {}".format(i))
         # ? Set the data. ( Using CPU usage, etc .. ), randomly set the data size.
-        num_items = random.randint(min_length, len(data) / 100)
+        num_items = random.randint(min_length, len(data) / 10)
         client_data = set(np.random.choice(dataID_list, num_items, replace=False))
         node.set_data(data=client_data, data_type="mnist")
 

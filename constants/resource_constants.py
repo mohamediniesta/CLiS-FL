@@ -1,3 +1,6 @@
 IMAGE_SIZE = 0.8  # ? 800 Kilo bytes
-MODEL_SIZE = 100  # ? 100 Mega bytes
+MODEL_SIZE = 50  # ? 100 Mega bytes
 MIN_BATTERY = 5  # ? 5% of battery.
+POW_NODE_DISTRIBUTION = 0.5
+MED_NODE_DISTRIBUTION = 0.25
+LOW_NODE_DISTRIBUTION = 0.25
