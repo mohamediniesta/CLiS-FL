@@ -120,6 +120,9 @@ class ClientUpdate(object):
             self.energy_model.check_battery()
         if self.node.get_status() == 0:
             return
+        # ? when the node finish training the memory and cpu usage will decrease again.
+        self.memory_model.update_memory(random.randint(-60, -30))
+        self.cpu_model.update_cpu(random.randint(-60, -30))
 
         return model.state_dict(), sum(epoch_loss) / len(epoch_loss), energy
 
