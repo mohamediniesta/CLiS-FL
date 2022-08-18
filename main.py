@@ -14,10 +14,6 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 init(autoreset=True)
 
-# TODO : Optimize Battery Modeling.
-
-# TODO : Adding noise process to clients randomly.
-
 # TODO: Generating sphinx documentations.
 
 # TODO: Transform data to IMBD dataset.
@@ -91,11 +87,13 @@ if __name__ == '__main__':
         print("Global accuracy : {0} %".format(global_acc * 100))
 
         train_accuracy.append(global_acc)
-        train_loss.append(loss_avg)
+        if loss_avg is not None:
+            train_loss.append(loss_avg)
         total_energy = total_energy + energy
 
         if global_acc >= FINAL_ACCURACY / 100:
-            print("{0}[+] Global accuracy reached !! No more rounds for FL".format(Fore.LIGHTGREEN_EX))
+            print("{0}[+] Global accuracy reached !! No more rounds for FL ( Round : {1} )".format(Fore.LIGHTGREEN_EX,
+                                                                                                   epoch + 1))
             break
 
     # ! ---------------------------------------------------- End ! -----------------------------------------------------

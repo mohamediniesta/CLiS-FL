@@ -29,7 +29,7 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
         results = local_model.update_weights(model=copy.deepcopy(global_model), global_round=global_round)
 
         if results is None:  # ? if the client is down.
-            print("{0}[-] {1} is down, Skipping ..".format(Fore.RED, client.get_name()))
+            print("{0}Learning not completed ! [-] {1} is down, Skipping ..".format(Fore.RED, client.get_name()))
             index += 1
             continue
 
@@ -57,15 +57,19 @@ def dist_learning(train_dataset, selected_clients: list, global_model, global_ro
                       battery_percent, storage_percent, memory_usage, cpu_usage))
         index += 1
 
-    global_weights = average_weights(local_weights)  # ? Model's aggregation.
-    global_model.load_state_dict(global_weights)
-    loss_avg = sum(local_losses) / len(local_losses)
+    if len(local_weights) > 0:
+        print("{0}[*] Aggregation ".format(Fore.LIGHTGREEN_EX))
+        global_weights = average_weights(local_weights)  # ? Model's aggregation.
+        global_model.load_state_dict(global_weights)
+        loss_avg = sum(local_losses) / len(local_losses)
+    else:
+        loss_avg = None
+
+    # ? Inference Phase (Test our model on test data).
 
     list_acc, list_loss = [], []
     global_model.eval()
     clients_acc = {}
-
-    # ? Inference Phase (Test our model on test data).
 
     for client in selected_clients:
         local_model = ClientUpdate(dataset=train_dataset, idxs=client.get_data(), node=client)
