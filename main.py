@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # ? Choosing the dataset ( 1 = MNIST, 2 = Fashion MNIST, 3 = CIFAR 100).
     dataset_id, train_dataset, test_dataset = choose_dataset()
 
-    # ? Generate the number chosen of nodes.
+    # ? Generate the chosen number of nodes.
     clients = generate_nodes(number_of_nodes=number_of_nodes, data=train_dataset)
 
     # ! ---------------------------------------------------- End ! -----------------------------------------------------
