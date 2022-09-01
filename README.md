@@ -2,6 +2,14 @@
 
 A simulator of the client selection step in federated learning written in python language.
 
+# Full Documentation
+
+You can consult all the documentation and details of the modules in PDF and web version on :
+
+PDF : [CS_FedSim’s documentation.pdf](https://github.com/mohamediniesta/FedSim/blob/develop/CS_FedSim%E2%80%99s%20documentation.pdf)
+
+Web Link : [CS_FedSIM Documentation ReadTheDoc](https://aiche-mohamed-fedsim.readthedocs-hosted.com/en/latest/)
+
 ## Note
 This project is licensed under the terms of the MIT license.
 
