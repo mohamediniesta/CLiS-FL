@@ -17,6 +17,8 @@ This project is licensed under the terms of the MIT license.
 
 ![](examples/results.png)
 
+![](examples/results2.png)
+
 ## Reference
 
 * The part of the deep learning models and their configuration was taken from [Federated-Learning-PyTorch](https://github.com/AshwinRJ/Federated-Learning-PyTorch), a FL vanilla program developed with PyTorch
