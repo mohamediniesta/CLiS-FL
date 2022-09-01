@@ -2,7 +2,7 @@ from utils.stats import count_clients, display_client_information, draw_graph, c
 from utils.generation import generate_nodes, selected_to_dict, choose_dataset
 from constants.model_constants import NUM_CLASSES, NUM_CHANNELS
 from constants.federated_learning import ROUNDS, FINAL_ACCURACY
-from distribuedLearning.DistribuedLearning import dist_learning
+from distributedLearning.DistributedLearning import dist_learning
 from clientSelection import RandomClientSelection
 from utils.displays import display_author
 from models.CNN.CNNMnist import CNNMnist
