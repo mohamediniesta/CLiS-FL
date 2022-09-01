@@ -4,12 +4,60 @@ from clientSelection.ClientSelection import ClientSelection
 
 
 class RandomClientSelection(ClientSelection):
+    """
+     A class that inherits the client selection module, which selects clients randomly.
+
+     ...
+
+     Attributes
+     ----------
+     nodes : list
+         The list of all nodes in the environment.
+     K : float
+         the percentage of the selection.
+     debug_mode : bool
+         Indicates if the debug mode is enabled or not.
+
+     Methods
+     -------
+     random_client_selection():
+         Returns a randomly selected list of clients with a percentage K.
+
+     """
     def __init__(self, nodes: list, K: float = 0.1, debug_mode: bool = False):
+        """
+        Constructs all the necessary attributes for the RandomClientSelection object.
+
+        Parameters
+        ----------
+            nodes : list
+                The list of all nodes in the environment.
+            K : float
+                the percentage of the selection.
+            debug_mode : bool, optional
+                Indicates if the debug mode is enabled or not.
+
+        """
         super().__init__(nodes, debug_mode)
         self.K = K
         self.debug_mode = debug_mode
 
     def random_client_selection(self) -> list:
+        """
+        Return the list of selected nodes randomlu.
+
+        Parameters
+        ----------
+
+
+        Returns
+        -------
+            selected_clients (list): the list of the nodes.
+
+        Examples
+        --------
+        >>> randomClientSelection.random_client_selection()
+        """
         print("{0}[*] Starting Random client selection".format(Fore.LIGHTYELLOW_EX))
         selected_clients = []
         percentage = round(len(self.nodes) * self.K)

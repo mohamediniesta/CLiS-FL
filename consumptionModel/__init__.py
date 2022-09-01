@@ -1,2 +1,4 @@
 from consumptionModel.EnergyModel.EnergyModel import EnergyModel
 from consumptionModel.StorageModel.StorageModel import StorageModel
+from consumptionModel.CPUModel.CPUModel import CPUModel
+from consumptionModel.MemoryModel.MemoryModel import MemoryModel
