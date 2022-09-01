@@ -20,3 +20,22 @@ Client selection
    :maxdepth: 1
    :caption: Contents:
 
+Consumption Model
+=================================
+
+
+.. automodule:: consumptionModel
+    :members: CPUModel, EnergyModel, MemoryModel, StorageModel
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+Network Module
+=================================
+
+
+.. automodule:: network
+    :members: Network
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:

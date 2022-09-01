@@ -220,6 +220,16 @@ title="Print to PDF"
    Client selection
   </a>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-consumptionModel">
+   Consumption Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-network">
+   Network Module
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -247,6 +257,16 @@ title="Print to PDF"
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#module-clientSelection">
    Client selection
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-consumptionModel">
+   Consumption Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-network">
+   Network Module
   </a>
  </li>
 </ul>
@@ -435,6 +455,599 @@ their resources.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">resourceClientSelection</span><span class="o">.</span><span class="n">resource_client_selection</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-consumptionModel">
+<span id="consumption-model"></span><h1>Consumption Model<a class="headerlink" href="#module-consumptionModel" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="consumptionModel.CPUModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">consumptionModel.</span></span><span class="sig-name descname"><span class="pre">CPUModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.CPUModel" title="Permalink to this definition"></a></dt>
+<dd><p>A class that represents the module of the processor consumption model of the nodes.</p>
+<p>…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node</strong><span class="classifier">Node</span></dt><dd><p>The node assigned to this model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_node(): Node</strong></p></td>
+<td><p>Return the node.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_node():</strong></p></td>
+<td><p>Assign this consumption model to a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>check_cpu():</strong></p></td>
+<td><p>Check if the node has reached the maximum CPU consumption level.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>update_cpu():</strong></p></td>
+<td><p>Update the CPU consumption percentage of the node.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.CPUModel.check_cpu">
+<span class="sig-name descname"><span class="pre">check_cpu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#consumptionModel.CPUModel.check_cpu" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the node has reached the maximum CPU consumption level.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>status (bool): If the maximum level of consumption is reached or not.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cpuModel</span><span class="o">.</span><span class="n">check_cpu</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.CPUModel.get_node">
+<span class="sig-name descname"><span class="pre">get_node</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">node.Node.Node</span></span></span><a class="headerlink" href="#consumptionModel.CPUModel.get_node" title="Permalink to this definition"></a></dt>
+<dd><p>Return the instance of the node.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>nodes (Node): The node’s instance.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cpuModel</span><span class="o">.</span><span class="n">get_node</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.CPUModel.set_node">
+<span class="sig-name descname"><span class="pre">set_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.CPUModel.set_node" title="Permalink to this definition"></a></dt>
+<dd><p>Assign this consumption model to a node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node: Node</strong></dt><dd><p>the node’s instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cpuModel</span><span class="o">.</span><span class="n">set_node</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.CPUModel.update_cpu">
+<span class="sig-name descname"><span class="pre">update_cpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cpu_usage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.CPUModel.update_cpu" title="Permalink to this definition"></a></dt>
+<dd><p>Update the CPU consumption percentage of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cpu_usage: float</strong></dt><dd><p>the new level of processor consumption.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cpuModel</span><span class="o">.</span><span class="n">update_cpu</span><span class="p">(</span><span class="mi">65</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="consumptionModel.EnergyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">consumptionModel.</span></span><span class="sig-name descname"><span class="pre">EnergyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.EnergyModel" title="Permalink to this definition"></a></dt>
+<dd><p>A class that represents the module of the energy consumption model of the nodes.</p>
+<p>…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node</strong><span class="classifier">Node</span></dt><dd><p>The node assigned to this model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_node(): Node</strong></p></td>
+<td><p>Return the node.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_node():</strong></p></td>
+<td><p>Assign this consumption model to a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>consume_energy():</strong></p></td>
+<td><p>Consume a certain level of energy from the node according to its category.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>check_battery():</strong></p></td>
+<td><p>Update the CPU consumption percentage of the node.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.EnergyModel.check_battery">
+<span class="sig-name descname"><span class="pre">check_battery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.EnergyModel.check_battery" title="Permalink to this definition"></a></dt>
+<dd><p>Check that the node ‘s battery is not depleted.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cpuModel</span><span class="o">.</span><span class="n">check_battery</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.EnergyModel.consume_energy">
+<span class="sig-name descname"><span class="pre">consume_energy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#consumptionModel.EnergyModel.consume_energy" title="Permalink to this definition"></a></dt>
+<dd><p>Consume a certain level of energy from the node according to its category.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>new_energy (float): The new energy level of the node.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">energyModel</span><span class="o">.</span><span class="n">consume_energy</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.EnergyModel.get_node">
+<span class="sig-name descname"><span class="pre">get_node</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">node.Node.Node</span></span></span><a class="headerlink" href="#consumptionModel.EnergyModel.get_node" title="Permalink to this definition"></a></dt>
+<dd><p>Return the instance of the node.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>nodes (Node): The node’s instance.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">energyModel</span><span class="o">.</span><span class="n">get_node</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.EnergyModel.set_node">
+<span class="sig-name descname"><span class="pre">set_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.EnergyModel.set_node" title="Permalink to this definition"></a></dt>
+<dd><p>Assign this consumption model to a node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node: Node</strong></dt><dd><p>the node’s instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">energyModel</span><span class="o">.</span><span class="n">set_node</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="consumptionModel.MemoryModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">consumptionModel.</span></span><span class="sig-name descname"><span class="pre">MemoryModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.MemoryModel" title="Permalink to this definition"></a></dt>
+<dd><p>A class that represents the module of the memory consumption model of the nodes.</p>
+<p>…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node</strong><span class="classifier">Node</span></dt><dd><p>The node assigned to this model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_node(): Node</strong></p></td>
+<td><p>Return the node.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_node():</strong></p></td>
+<td><p>Assign this consumption model to a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>check_memory():</strong></p></td>
+<td><p>Check if the node has reached the maximum Memory consumption level.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>update_memory():</strong></p></td>
+<td><p>Update the Memory consumption percentage of the node.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.MemoryModel.check_memory">
+<span class="sig-name descname"><span class="pre">check_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#consumptionModel.MemoryModel.check_memory" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the node has reached the maximum Memory consumption level.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>status (bool): If the maximum level of consumption is reached or not.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">memoryModel</span><span class="o">.</span><span class="n">check_memory</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.MemoryModel.get_node">
+<span class="sig-name descname"><span class="pre">get_node</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">node.Node.Node</span></span></span><a class="headerlink" href="#consumptionModel.MemoryModel.get_node" title="Permalink to this definition"></a></dt>
+<dd><p>Return the instance of the node.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>nodes (Node): The node’s instance.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">memoryModel</span><span class="o">.</span><span class="n">get_node</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.MemoryModel.set_node">
+<span class="sig-name descname"><span class="pre">set_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.MemoryModel.set_node" title="Permalink to this definition"></a></dt>
+<dd><p>Assign this consumption model to a node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node: Node</strong></dt><dd><p>the node’s instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">memoryModel</span><span class="o">.</span><span class="n">set_node</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.MemoryModel.update_memory">
+<span class="sig-name descname"><span class="pre">update_memory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memory_usage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.MemoryModel.update_memory" title="Permalink to this definition"></a></dt>
+<dd><p>Update the Memory consumption percentage of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>memory_usage: float</strong></dt><dd><p>the new level of processor consumption.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">memoryModel</span><span class="o">.</span><span class="n">update_cpu</span><span class="p">(</span><span class="mi">57</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="consumptionModel.StorageModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">consumptionModel.</span></span><span class="sig-name descname"><span class="pre">StorageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.StorageModel" title="Permalink to this definition"></a></dt>
+<dd><p>A class that represents the module of the storage consumption model of the nodes.</p>
+<p>…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node</strong><span class="classifier">Node</span></dt><dd><p>The node assigned to this model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_node(): Node</strong></p></td>
+<td><p>Return the node.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_node():</strong></p></td>
+<td><p>Assign this consumption model to a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>check_storage():</strong></p></td>
+<td><p>Check if the node has reached the maximum storage consumption level.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>add_to_storage():</strong></p></td>
+<td><p>Add files to the node and thus fill the storage.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.StorageModel.add_to_storage">
+<span class="sig-name descname"><span class="pre">add_to_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_mega_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#consumptionModel.StorageModel.add_to_storage" title="Permalink to this definition"></a></dt>
+<dd><p>Add files to the node and thus fill the storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>number_of_mega_bytes: float</strong></dt><dd><p>The size of the files added to the storage.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">storageModel</span><span class="o">.</span><span class="n">add_to_storage</span><span class="p">(</span><span class="mi">658</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.StorageModel.check_storage">
+<span class="sig-name descname"><span class="pre">check_storage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#consumptionModel.StorageModel.check_storage" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the node has reached the maximum Storage consumption level.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>status (bool): If the maximum level of consumption is reached or not.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">storageModel</span><span class="o">.</span><span class="n">check_storage</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.StorageModel.get_node">
+<span class="sig-name descname"><span class="pre">get_node</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">node.Node.Node</span></span></span><a class="headerlink" href="#consumptionModel.StorageModel.get_node" title="Permalink to this definition"></a></dt>
+<dd><p>Return the instance of the node.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>nodes (Node): The node’s instance.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">storageModel</span><span class="o">.</span><span class="n">get_node</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="consumptionModel.StorageModel.set_node">
+<span class="sig-name descname"><span class="pre">set_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">node.Node.Node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#consumptionModel.StorageModel.set_node" title="Permalink to this definition"></a></dt>
+<dd><p>Assign this consumption model to a node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node: Node</strong></dt><dd><p>the node’s instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">storageModel</span><span class="o">.</span><span class="n">set_node</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-network">
+<span id="network-module"></span><h1>Network Module<a class="headerlink" href="#module-network" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="network.Network">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">network.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#network.Network" title="Permalink to this definition"></a></dt>
+<dd><p>A class that represents the module of a network of nodes.</p>
+<p>…</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>nodes</strong><span class="classifier">list</span></dt><dd><p>The list of all nodes in the environment.</p>
+</dd>
+<dt><strong>network_number</strong><span class="classifier">int</span></dt><dd><p>The network number.</p>
+</dd>
+<dt><strong>debug_mode</strong><span class="classifier">bool</span></dt><dd><p>Indicates if the debug mode is enabled or not.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>assign_ip_addresses():</strong></p></td>
+<td><p>Give an ip address to all nodes assigned to this network.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_network_number():</strong></p></td>
+<td><p>Return the number of the network.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_nodes():</strong></p></td>
+<td><p>Return the list of all nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_network_leader():</strong></p></td>
+<td><p>Return the leader of the network.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_network_leader():</strong></p></td>
+<td><p>Assign a leader to the network.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="network.Network.get_network_leader">
+<span class="sig-name descname"><span class="pre">get_network_leader</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.Network.get_network_leader" title="Permalink to this definition"></a></dt>
+<dd><p>Return the leader of the network.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>network_leader (Node): the instance of the leader node of the network.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">network</span><span class="o">.</span><span class="n">get_network_leader</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="network.Network.get_network_number">
+<span class="sig-name descname"><span class="pre">get_network_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.Network.get_network_number" title="Permalink to this definition"></a></dt>
+<dd><p>Return the number of the network.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>network_number (int): The network number.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">network</span><span class="o">.</span><span class="n">get_network_number</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="network.Network.get_nodes">
+<span class="sig-name descname"><span class="pre">get_nodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#network.Network.get_nodes" title="Permalink to this definition"></a></dt>
+<dd><p>Return the list of the nodes.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><blockquote>
+<div></div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>nodes (list): the list of the nodes.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">network</span><span class="o">.</span><span class="n">get_nodes</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="network.Network.set_network_leader">
+<span class="sig-name descname"><span class="pre">set_network_leader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_leader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#network.Network.set_network_leader" title="Permalink to this definition"></a></dt>
+<dd><p>Assign a leader to the network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>network_leader</strong><span class="classifier">Node</span></dt><dd><p>The new node leader for the network.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>network_leader (Node): the instance of the leader node of the network.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">network</span><span class="o">.</span><span class="n">set_network_leader</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
