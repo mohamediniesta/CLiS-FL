@@ -1,0 +1,37 @@
+constants package
+=================
+
+Submodules
+----------
+
+constants.federated\_learning module
+------------------------------------
+
+.. automodule:: constants.federated_learning
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+constants.model\_constants module
+---------------------------------
+
+.. automodule:: constants.model_constants
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+constants.resource\_constants module
+------------------------------------
+
+.. automodule:: constants.resource_constants
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: constants
+   :members:
+   :undoc-members:
+   :show-inheritance:

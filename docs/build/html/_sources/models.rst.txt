@@ -1,0 +1,39 @@
+models package
+==============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   models.CNN
+   models.Keras
+   models.MLP
+
+Submodules
+----------
+
+models.test module
+------------------
+
+.. automodule:: models.test
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+models.update module
+--------------------
+
+.. automodule:: models.update
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: models
+   :members:
+   :undoc-members:
+   :show-inheritance:
