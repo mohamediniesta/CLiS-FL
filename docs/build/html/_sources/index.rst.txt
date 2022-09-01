@@ -3,12 +3,28 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to CS_FedSim's documentation!
+CS_FedSIM's documentation!
 ====================================
+
+CS_FedSIM is a simulator framework of client selection in FL that handles resource consumption.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+
+Node Module
+=================================
+
+
+.. automodule:: node
+    :members: Node, PowNode, MidNode, LowNode
+    :show-inheritance:
+    :member-order: bysource
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
 
 Client selection
 =================================
@@ -36,6 +52,27 @@ Network Module
 
 .. automodule:: network
     :members: Network
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+
+Distributed Learning
+=================================
+
+
+.. automodule:: distribuedLearning
+    :members: dist_learning
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+Utility & Generation functions
+=================================
+
+
+.. automodule:: utils
+    :members: dist_learning
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
