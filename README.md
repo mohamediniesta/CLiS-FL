@@ -1,4 +1,5 @@
-# CS_FedSIM (a simulator framework of client selection in FL that handles resource consumption in multiple IoT environnement with different capacities)
+# CLiS-FL ( FL client selection simulator framework that manages resource utilization in various
+IoT environments)
 
 A simulator framework of the client selection step in federated learning written in python language. The simulator also considers the resources used during federated learning with various IoT device categories. 
 
