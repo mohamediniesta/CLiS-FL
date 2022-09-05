@@ -1,5 +1,4 @@
-# CLiS-FL ( FL client selection simulator framework that manages resource utilization in various
-IoT environments)
+# CLiS-FL ( FL client selection simulator framework that manages resource utilization in various IoT environments)
 
 A simulator framework of the client selection step in federated learning written in python language. The simulator also considers the resources used during federated learning with various IoT device categories. 
 
