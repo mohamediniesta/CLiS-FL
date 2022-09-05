@@ -1,0 +1,37 @@
+clientSelection package
+=======================
+
+Submodules
+----------
+
+clientSelection.ClientSelection module
+--------------------------------------
+
+.. automodule:: clientSelection.ClientSelection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+clientSelection.RandomClientSelection module
+--------------------------------------------
+
+.. automodule:: clientSelection.RandomClientSelection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+clientSelection.ResourceClientSelection module
+----------------------------------------------
+
+.. automodule:: clientSelection.ResourceClientSelection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: clientSelection
+   :members:
+   :undoc-members:
+   :show-inheritance:

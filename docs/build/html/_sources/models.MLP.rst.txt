@@ -1,0 +1,21 @@
+models.MLP package
+==================
+
+Submodules
+----------
+
+models.MLP.MLP module
+---------------------
+
+.. automodule:: models.MLP.MLP
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: models.MLP
+   :members:
+   :undoc-members:
+   :show-inheritance:

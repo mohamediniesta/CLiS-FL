@@ -1,0 +1,21 @@
+consumptionModel.MemoryModel package
+====================================
+
+Submodules
+----------
+
+consumptionModel.MemoryModel.MemoryModel module
+-----------------------------------------------
+
+.. automodule:: consumptionModel.MemoryModel.MemoryModel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: consumptionModel.MemoryModel
+   :members:
+   :undoc-members:
+   :show-inheritance:

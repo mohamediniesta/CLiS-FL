@@ -1,0 +1,21 @@
+consumptionModel.EnergyModel package
+====================================
+
+Submodules
+----------
+
+consumptionModel.EnergyModel.EnergyModel module
+-----------------------------------------------
+
+.. automodule:: consumptionModel.EnergyModel.EnergyModel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: consumptionModel.EnergyModel
+   :members:
+   :undoc-members:
+   :show-inheritance:

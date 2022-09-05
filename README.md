@@ -1,4 +1,4 @@
-# CS_FedSIM (a simulator framework of client selection in FL that handles resource consumption in multiple IoT environnement with different capacities)
+# CLiS-FL ( FL client selection simulator framework that manages resource utilization in various IoT environments)
 
 A simulator framework of the client selection step in federated learning written in python language. The simulator also considers the resources used during federated learning with various IoT device categories. 
 
@@ -83,8 +83,12 @@ These hyperparameters are included in [constants](/constants/). The parameters a
 | MED_NODE_DISTRIBUTION | The distribution of medium power nodes in the environment. |
 | LOW_NODE_DISTRIBUTION | The distribution of low power nodes in the environment. |
 
+## :chart: Example of Node's module architecture
+<center>
+<img src="examples/Node.png" width="600 ">
+</center>
 
-## :chart: Analysis Results Examples
+## :bar_chart: Analysis Results Examples
 
 ![](examples/results.png)
 

@@ -1,0 +1,21 @@
+network package
+===============
+
+Submodules
+----------
+
+network.Network module
+----------------------
+
+.. automodule:: network.Network
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: network
+   :members:
+   :undoc-members:
+   :show-inheritance:

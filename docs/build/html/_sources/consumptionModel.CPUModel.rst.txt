@@ -1,0 +1,21 @@
+consumptionModel.CPUModel package
+=================================
+
+Submodules
+----------
+
+consumptionModel.CPUModel.CPUModel module
+-----------------------------------------
+
+.. automodule:: consumptionModel.CPUModel.CPUModel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: consumptionModel.CPUModel
+   :members:
+   :undoc-members:
+   :show-inheritance:

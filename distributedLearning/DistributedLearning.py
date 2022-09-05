@@ -5,6 +5,31 @@ from utils.computation import average_weights
 
 
 def dist_learning(train_dataset, selected_clients: list, global_model, global_round: int) -> (float, list, dict, float):
+    """
+    The function of distributed learning of nodes.
+
+    Parameters
+    ----------
+        train_dataset : any
+            The training dataset used for distributed learning.
+        selected_clients : list
+            The selected clients.
+        global_model : any
+            The model global.
+        global_round : int
+            The current global round.
+
+    Returns
+    -------
+        loss_avg (float): the avereage loss.
+        list_acc (list): the full list of all accuracy.
+        clients_acc (dict) : the full list of clients accuracy as dict format.
+        energy (float) : The total energy consumed during distributed learning.
+
+    Examples
+    --------
+    >>> loss_avg, list_acc, clients_acc, energy = dist_learning(train_dataset=train_dataset, selected_clients=selected_clients, global_model=global_model, global_round=epoch)
+    """
     local_weights, local_losses = [], []
     energy = 0
     index = 1
