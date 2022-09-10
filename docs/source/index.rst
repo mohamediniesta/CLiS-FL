@@ -3,10 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. |br| raw:: html
+
+   <br />
+
 CS_FedSIM's documentation!
 ====================================
 
-CS_FedSIM is a simulator framework of client selection in FL that handles resource consumption.
+CS_FedSIM is a simulator framework of the client selection step in federated learning written in python language. The simulator also considers the resources used during federated learning with various IoT device categories.
+
+Users have the option to create and test their own client selection techniques using the framework thanks to its modularity. Modifications also can be made to the nodes, their categories, and the resource consumption models.
+
+The goal of this framework is to help researchers to simulate their methods in the federated learning steps, due to the lack of simulators in this field. The framework was developed in a relatively modular manner to provide the researchers complete control.
 
 .. toctree::
    :maxdepth: 2
@@ -15,6 +23,11 @@ CS_FedSIM is a simulator framework of client selection in FL that handles resour
 
 Node Module
 =================================
+
+.. image:: Node.png
+     :alt: Node Module
+
+|br|
 
 
 .. automodule:: node
@@ -61,7 +74,7 @@ Distributed Learning
 =================================
 
 
-.. automodule:: distribuedLearning
+.. automodule:: distributedLearning
     :members: dist_learning
 .. toctree::
    :maxdepth: 1

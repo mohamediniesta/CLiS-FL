@@ -1,7 +1,7 @@
 from node.Node import Node
 
 
-class MemoryModel(object):
+class MemoryModel:
     """
      A class that represents the module of the memory consumption model of the nodes.
 
@@ -92,8 +92,7 @@ class MemoryModel(object):
         if memory_percentage >= 90:
             self.node.set_status(0)
             return False
-        else:
-            return True
+        return True
 
     def update_memory(self, memory_usage):
         """

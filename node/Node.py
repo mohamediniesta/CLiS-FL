@@ -1,10 +1,12 @@
+# pylint: disable = C0114, C0115, C0116, C0103
+
 import uuid
 import random
 from datetime import datetime
 import pandas as pd
 
 
-def generateNode_id() -> str:
+def generate_node_id() -> str:
     """
     Generate a unique and random identifier for a new node.
 
@@ -14,13 +16,13 @@ def generateNode_id() -> str:
 
     Examples
     --------
-    >>> node.generateNode_id()
+    >>> node.generate_node_id()
     """
     node_id: str = uuid.uuid4().hex
     return node_id
 
 
-class Node(object):
+class Node:
     """
      A class that represents the basis of the node's module.
 
@@ -74,10 +76,12 @@ class Node(object):
 
      Notes
      -----
-     The other methods are a group of getters and setters, so they are not explained for this module.
+     The other methods are a group of getters and setters, so they are not explained
+     for this module.
 
      """
-    def __init__(self, name: str, data: str = None, data_type: str = None, mobility_mode: bool = False):
+    def __init__(self, name: str, data: str = None, data_type: str = None,
+                 mobility_mode: bool = False):
         """
         Constructs all the necessary attributes for the node object.
 
@@ -98,7 +102,7 @@ class Node(object):
 
         """
         self.ip_addr = None
-        self.node_id: str = generateNode_id()
+        self.node_id: str = generate_node_id()
         if not mobility_mode:
             self.mobility: int = None
         else:
@@ -226,7 +230,8 @@ class Node(object):
         --------
         >>> node.get_resources_information()
         """
-        # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,CurrentStorage,BatteryUsage, TotalEnergy,
+        # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,
+        # ? CurrentStorage,BatteryUsage, TotalEnergy,
         # ? EnergyConsumption, CurrentEnergy, DataLength, Time
         return self.name, self.cpu_power, self.cpu_usage, self.memory, self.memory_usage, \
                self.total_storage, self.current_storage, self.battery_usage, self.total_energy, \

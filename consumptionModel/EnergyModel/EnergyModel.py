@@ -2,7 +2,7 @@ from node.Node import Node
 from constants.resource_constants import MIN_BATTERY
 
 
-class EnergyModel(object):
+class EnergyModel:
     """
      A class that represents the module of the energy consumption model of the nodes.
 

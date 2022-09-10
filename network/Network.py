@@ -1,4 +1,6 @@
-class Network(object):
+# pylint: disable = C0114, C0115, C0116, C0103
+
+class Network:
     """
      A class that represents the module of a network of nodes.
 
@@ -43,10 +45,17 @@ class Network(object):
         self.nodes = nodes
         self.network_number = network_number
         self.debug_mode = debug_mode
-        self.prefix_ip = "192.168.{0}.".format(network_number)
+        self.prefix_ip = f"192.168.{network_number}."
         self.network_leader = None
 
     def assign_ip_addresses(self):
+        """
+        Assign an ip address to all nodes on the network.
+
+        Examples
+        --------
+        >>> network.assign_ip_addresses()
+        """
         index = 2
         for node in self.nodes:
             ip_addr = self.prefix_ip + str(index)

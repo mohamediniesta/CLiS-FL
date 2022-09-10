@@ -1,5 +1,7 @@
-from node import Node
+# pylint: disable = C0114, C0115, C0116, C0103
+
 import random
+from node import Node
 
 
 class PowNode(Node):
@@ -36,7 +38,8 @@ class PowNode(Node):
         self.battery_mode = random.randint(0, 1)  # ? Battery (1) or in charge (0).
         if self.battery_mode == 1:
             super().set_total_energy(6000)  # ? [mAh]
-            current_energy = random.randint(2500, 6000)  # ? current battery capacity, from 2500 to 6000 [mAh]
+            # ? current battery capacity, from 2500 to 6000 [mAh]
+            current_energy = random.randint(2500, 6000)
             super().set_current_energy(current_energy)  # ? [mAh]
             energy_consumption = random.uniform(25, 50)
             super().set_energy_consumption(energy_consumption)

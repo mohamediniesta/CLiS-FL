@@ -1,7 +1,9 @@
+# pylint: disable = C0114, C0115, C0116, C0103
+
 from node.Node import Node
 
 
-class CPUModel(object):
+class CPUModel:
     """
      A class that represents the module of the processor consumption model of the nodes.
 
@@ -92,8 +94,7 @@ class CPUModel(object):
         if cpu_percentage >= 85:
             self.node.set_status(0)
             return False
-        else:
-            return True
+        return True
 
     def update_cpu(self, cpu_usage):
         """

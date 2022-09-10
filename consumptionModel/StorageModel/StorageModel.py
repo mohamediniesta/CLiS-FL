@@ -1,7 +1,7 @@
 from node.Node import Node
 
 
-class StorageModel(object):
+class StorageModel:
     """
      A class that represents the module of the storage consumption model of the nodes.
 
@@ -113,5 +113,4 @@ class StorageModel(object):
         if storage_p <= 0:
             self.node.set_status(0)
             return False
-        else:
-            return True
+        return True
