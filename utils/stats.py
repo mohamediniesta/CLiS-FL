@@ -1,7 +1,7 @@
-from node import PowNode, MidNode, LowNode
-import matplotlib.pyplot as plt
-from colorama import Fore
 import numpy as np
+from colorama import Fore
+import matplotlib.pyplot as plt
+from node import PowNode, MidNode, LowNode
 
 
 def show_results(train_loss, clients_acc):

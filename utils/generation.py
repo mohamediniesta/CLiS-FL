@@ -3,10 +3,10 @@ import numpy as np
 from time import sleep
 from colorama import Fore
 from torchvision import transforms
+from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
 from network.Network import Network
 from utils.computation import chunk_list
 from node import PowNode, MidNode, LowNode
-from torchvision.datasets import MNIST, FashionMNIST, CIFAR100
 from consumptionModel.StorageModel.StorageModel import StorageModel
 from constants.resource_constants import IMAGE_SIZE, LOW_NODE_DISTRIBUTION, POW_NODE_DISTRIBUTION, MED_NODE_DISTRIBUTION
 

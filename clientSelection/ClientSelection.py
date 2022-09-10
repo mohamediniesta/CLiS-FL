@@ -1,5 +1,5 @@
 
-class ClientSelection(object):
+class ClientSelection():
     """
      A class that represents the basis of the client selection module.
 

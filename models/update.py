@@ -43,7 +43,7 @@ def trainValTest(dataset, idxs):
     return trainLoader, validLoader, testLoader
 
 
-class ClientUpdate(object):
+class ClientUpdate:
     def __init__(self, dataset, idxs, node):
         self.node = node
         # ? Init our resources consumption Models.

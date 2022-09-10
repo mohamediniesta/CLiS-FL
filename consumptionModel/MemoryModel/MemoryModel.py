@@ -1,7 +1,7 @@
 from node.Node import Node
 
 
-class MemoryModel(object):
+class MemoryModel:
     """
      A class that represents the module of the memory consumption model of the nodes.
 

@@ -1,4 +1,4 @@
-class Network(object):
+class Network:
     """
      A class that represents the module of a network of nodes.
 

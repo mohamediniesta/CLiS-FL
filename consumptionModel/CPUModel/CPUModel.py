@@ -1,7 +1,7 @@
 from node.Node import Node
 
 
-class CPUModel(object):
+class CPUMode:
     """
      A class that represents the module of the processor consumption model of the nodes.
 

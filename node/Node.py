@@ -20,7 +20,7 @@ def generateNode_id() -> str:
     return node_id
 
 
-class Node(object):
+class Node:
     """
      A class that represents the basis of the node's module.
 
