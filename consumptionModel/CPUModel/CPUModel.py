@@ -1,7 +1,7 @@
 from node.Node import Node
 
 
-class CPUMode:
+class CPUModel:
     """
      A class that represents the module of the processor consumption model of the nodes.
 
@@ -92,8 +92,7 @@ class CPUMode:
         if cpu_percentage >= 85:
             self.node.set_status(0)
             return False
-        else:
-            return True
+        return True
 
     def update_cpu(self, cpu_usage):
         """

@@ -71,13 +71,14 @@ def count_clients(selected_clients: list) -> (int, int, int):
     return number_weak_nodes, number_mid_nodes, number_powerful_nodes
 
 
-def display_client_information(selected_clients_list: dict, selected_clients: list, number_weak_nodes: int,
-                               number_mid_nodes: int, number_powerful_nodes: int, K: float):
-    print("{0}Selected clients are : ".format(Fore.MAGENTA))
-    print("{0}---------------------------------------------------------".format(Fore.MAGENTA))
+def display_client_information(selected_clients_list: dict, selected_clients: list,
+                               number_weak_nodes: int, number_mid_nodes: int,
+                               number_powerful_nodes: int, K: float):
+    print(f"{Fore.MAGENTA}Selected clients are : ")
+    print(f"{Fore.MAGENTA}---------------------------------------------------------")
     print(selected_clients_list)
-    print("{0}---------------------------------------------------------".format(Fore.MAGENTA))
-    print("[*] {0}{1} ({2}%) clients has been selected".format(Fore.MAGENTA, len(selected_clients), K * 100))
-    print("[*] {0} There is {1} Weak nodes".format(Fore.RED, number_weak_nodes))
-    print("[*] {0} There is {1} Medium power nodes".format(Fore.YELLOW, number_mid_nodes))
-    print("[*] {0} There is {1} Powerful nodes".format(Fore.GREEN, number_powerful_nodes))
+    print(f"{Fore.MAGENTA}---------------------------------------------------------")
+    print(f"[*] {Fore.MAGENTA}{len(selected_clients)} ({K * 100}%) clients has been selected")
+    print(f"[*] {Fore.RED} There is {number_weak_nodes} Weak nodes")
+    print(f"[*] {Fore.YELLOW} There is {number_mid_nodes} Medium power nodes")
+    print(f"[*] {Fore.GREEN} There is {number_powerful_nodes} Powerful nodes")

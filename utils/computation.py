@@ -15,7 +15,7 @@ def average_weights(w):
 
 
 def chunk_list(lst: list, chunk_size: int):
-    chunked_list = list()
+    chunked_list = []
     for i in range(0, len(lst), chunk_size):
         chunked_list.append(lst[i:i + chunk_size])
     return chunked_list

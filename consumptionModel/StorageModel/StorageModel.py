@@ -113,5 +113,4 @@ class StorageModel:
         if storage_p <= 0:
             self.node.set_status(0)
             return False
-        else:
-            return True
+        return True

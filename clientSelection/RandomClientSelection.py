@@ -59,20 +59,14 @@ class RandomClientSelection(ClientSelection):
         --------
         >>> randomClientSelection.random_client_selection()
         """
-        print("{0}[*] Starting Random client selection".format(Fore.LIGHTYELLOW_EX))
+        print(f"{Fore.LIGHTYELLOW_EX}[*] Starting Random client selection".format(Fore.LIGHTYELLOW_EX))
         selected_clients = []
         percentage = round(len(self.nodes) * self.K)
         for _ in range(0, percentage):
             client = random.choices(self.nodes)[0]
             if self.debug_mode:
-                print(
-                    "[*] The client {0}{1}{2} with id : {3}{4},{5} has been selected".format(
-                        Fore.YELLOW,
-                        client.get_name(),
-                        Style.RESET_ALL,
-                        Fore.MAGENTA,
-                        client.get_id(),
-                        Style.RESET_ALL))
+                print(f"[*] The client {Fore.YELLOW}{client.get_name()}{Style.RESET_ALL} with id : "
+                      f"{Fore.MAGENTA}{client.get_id()},{Style.RESET_ALL} has been selected")
             selected_clients.append(client)
 
         return selected_clients

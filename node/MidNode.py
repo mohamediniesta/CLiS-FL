@@ -1,5 +1,5 @@
-from node import Node
 import random
+from node import Node
 
 
 class MidNode(Node):

@@ -92,8 +92,7 @@ class MemoryModel:
         if memory_percentage >= 90:
             self.node.set_status(0)
             return False
-        else:
-            return True
+        return True
 
     def update_memory(self, memory_usage):
         """

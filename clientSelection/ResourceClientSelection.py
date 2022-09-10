@@ -1,12 +1,12 @@
+import pandas as pd
 from colorama import Fore
 from clientSelection.ClientSelection import ClientSelection
-import pandas as pd
 
 
 class ResourceClientSelection(ClientSelection):
     """
-     A class that inherits the client selection module, which selects clients according to the strength of
-     their resources.
+     A class that inherits the client selection module, which selects clients
+     according to the strength of their resources.
 
      ...
 
@@ -25,6 +25,7 @@ class ResourceClientSelection(ClientSelection):
          Returns a list of clients selected according to their power ranking.
 
      """
+
     # ? Select clients according to their resources. (The top ones with average power)
     def __init__(self, nodes: list, K: float = 0.1, debug_mode: bool = False):
         """
@@ -61,15 +62,16 @@ class ResourceClientSelection(ClientSelection):
         >>> resourceClientSelection.resource_client_selection()
 
         """
-        print("{0}[*] Starting client selection by resources".format(Fore.LIGHTYELLOW_EX))
+        print(f"{Fore.LIGHTYELLOW_EX}[*] Starting client selection by resources")
         selected_clients = []
         percentage = len(self.nodes) * self.K
 
         for node in self.nodes:
             # ? Collect the node's resources.
             rsrc_info = node.get_resources_information()
-            name, cpu_power, cpu_usage, memory, memory_usage, total_storage, current_storage, battery_usage, \
-            total_energy, energy_consumption, current_energy, data_length, date = rsrc_info
+            name, cpu_power, cpu_usage, memory, memory_usage, total_storage, \
+            current_storage, battery_usage, total_energy, energy_consumption, current_energy, * \
+                data_length, date = rsrc_info
 
             data = {"Node": node, "Name": name, "cpu_power": cpu_power, "cpu_usage": cpu_usage,
                     "memory": memory, "memory_usage": memory_usage, "total_storage": total_storage,
@@ -79,8 +81,8 @@ class ResourceClientSelection(ClientSelection):
             # ? Put collected resources on DataFrame.
             resource_df = pd.concat([resource_df, pd.DataFrame.from_records([data])])
 
-            resource_df['avg_power'] = resource_df[['total_energy', 'total_storage', 'cpu_power', 'memory']].mean(
-                axis=1)
+            resource_df['avg_power'] = resource_df[['total_energy', 'total_storage',
+                                                    'cpu_power', 'memory']].mean(axis=1)
             # ? The top ones with average power
             selected_nodes = resource_df.nlargest(n=percentage, columns=['avg_power']).Node.values
             for client in selected_nodes:
