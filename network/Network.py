@@ -1,3 +1,5 @@
+# pylint: disable = C0114, C0115, C0116, C0103
+
 class Network:
     """
      A class that represents the module of a network of nodes.

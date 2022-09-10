@@ -1,3 +1,5 @@
+# pylint: disable = C0114, C0115, C0116, C0103
+
 import random
 from colorama import Fore, Style
 from clientSelection.ClientSelection import ClientSelection

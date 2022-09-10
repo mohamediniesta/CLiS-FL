@@ -1,5 +1,6 @@
+# pylint: disable = C0114, C0115, C0116, C0103
 
-class ClientSelection():
+class ClientSelection:
     """
      A class that represents the basis of the client selection module.
 

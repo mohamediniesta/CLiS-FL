@@ -1,3 +1,5 @@
+# pylint: disable = C0114, C0115, C0116, C0103
+
 import pandas as pd
 from colorama import Fore
 from clientSelection.ClientSelection import ClientSelection
