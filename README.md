@@ -1,6 +1,6 @@
-# CLiS-FL ( FL client selection simulator framework)
+# CLiS-FL (FL client selection simulator framework)
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7e9184d45d6a427297c71817a62da091)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mohamediniesta/CLiS-FL&amp;utm_campaign=Badge_Grade) [![License Badge](https://img.shields.io/github/license/mohamediniesta/CLiS-FL)](https://img.shields.io/github/license/mohamediniesta/CLiS-FL)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7e9184d45d6a427297c71817a62da091)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mohamediniesta/CLiS-FL&amp;utm_campaign=Badge_Grade) [![License Badge](https://img.shields.io/github/license/mohamediniesta/CLiS-FL)](https://img.shields.io/github/license/mohamediniesta/CLiS-FL) ![Depfu](https://img.shields.io/depfu/mohamediniesta/CLiS-FL)
 
 A simulator framework of the client selection step in federated learning written in python language. The simulator also considers the resources used during federated learning with various IoT device categories. 
 
