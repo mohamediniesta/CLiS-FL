@@ -4,9 +4,6 @@
 
 [![Codacy Badge](https://img.shields.io/github/license/mohamediniesta/CLiS-FL)](https://img.shields.io/github/license/mohamediniesta/CLiS-FL)
 
-
-https://img.shields.io/github/license/mohamediniesta/CLiS-FL
-
 A simulator framework of the client selection step in federated learning written in python language. The simulator also considers the resources used during federated learning with various IoT device categories. 
 
 Users have the option to create and test their own client selection techniques using the framework thanks to its modularity. Modifications also can be made to the nodes, their categories, and the resource consumption models.
