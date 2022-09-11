@@ -20,6 +20,7 @@ def generate_nodes(number_of_nodes: int, data) -> list:
     min_length = int(len(data) / number_of_nodes)
     data_id_list = list(range(len(data)))
     random_node_list = [0, 1, 2]  # ? 0 = Low , 1 = Medium , 2 = Pow
+    data_percentage = 0.05  # ? 5%
     for i in range(0, number_of_nodes):
         rate = random.choices(random_node_list,
                               [LOW_NODE_DISTRIBUTION, MED_NODE_DISTRIBUTION,
@@ -29,7 +30,7 @@ def generate_nodes(number_of_nodes: int, data) -> list:
             MidNode(name=f"Node {i}") if rate == 1 else \
             PowNode(name=f"Node {i}")
         # ? Set the data. ( Using CPU usage, etc .. ), randomly set the data size.
-        num_items = random.randint(min_length, len(data) / 100)
+        num_items = random.randint(min_length, len(data) * data_percentage)
         client_data = set(np.random.choice(data_id_list, num_items, replace=False))
         # ? Put the random data on nodes.
         node.set_data(data=client_data, data_type="mnist")
