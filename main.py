@@ -14,6 +14,15 @@ from utils.displays import display_author
 from models.CNN.CNNMnist import CNNMnist
 from models.CNN.CNNCifar import CNNCifar
 
+# TODO : Adding cause of down.
+
+# TODO : Consuming Battery depending on cpu power used.
+
+# TODO : Memory consumed depending on the size of data.
+
+# TODO : CPU consumed depending on memory usage.
+
+
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 init(autoreset=True)
 
@@ -58,7 +67,7 @@ if __name__ == '__main__':
 
         global_model.train()
 
-        # ! -------------------------------------------- Client selection process ------------------------------------------
+    # ! -------------------------------------------- Client selection process ------------------------------------------
         # ? Call Random client selection module to select random clients.
         selected_clients = RandomClientSelection(nodes=clients, K=selection_percentage,
                                                  debug_mode=False).random_client_selection()
@@ -78,9 +87,9 @@ if __name__ == '__main__':
                                    number_powerful_nodes=number_powerful_nodes,
                                    K=selection_percentage)
 
-        # ! -------------------------------------------- End of client selection process -----------------------------------
+    # ! -------------------------------------------- End of client selection process -----------------------------------
 
-        # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
+    # ! -------------------------------------------- Start Distributed Learning  ---------------------------------------
 
         # ? Begin training on each client.
 

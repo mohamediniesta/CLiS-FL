@@ -67,6 +67,7 @@ class ResourceClientSelection(ClientSelection):
         print(f"{Fore.LIGHTYELLOW_EX}[*] Starting client selection by resources")
         selected_clients = []
         percentage = len(self.nodes) * self.K
+        resource_df = pd.DataFrame()
 
         for node in self.nodes:
             # ? Collect the node's resources.
