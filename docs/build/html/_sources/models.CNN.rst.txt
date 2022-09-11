@@ -1,0 +1,37 @@
+models.CNN package
+==================
+
+Submodules
+----------
+
+models.CNN.CNNCifar module
+--------------------------
+
+.. automodule:: models.CNN.CNNCifar
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+models.CNN.CNNFashion\_Mnist module
+-----------------------------------
+
+.. automodule:: models.CNN.CNNFashion_Mnist
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+models.CNN.CNNMnist module
+--------------------------
+
+.. automodule:: models.CNN.CNNMnist
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: models.CNN
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,21 @@
+distribuedLearning package
+==========================
+
+Submodules
+----------
+
+distribuedLearning.DistribuedLearning module
+--------------------------------------------
+
+.. automodule:: distribuedLearning.DistribuedLearning
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: distribuedLearning
+   :members:
+   :undoc-members:
+   :show-inheritance:

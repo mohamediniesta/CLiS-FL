@@ -1,0 +1,15 @@
+FedSim
+======
+
+.. toctree::
+   :maxdepth: 4
+
+   clientSelection
+   constants
+   consumptionModel
+   distribuedLearning
+   main
+   models
+   network
+   node
+   utils

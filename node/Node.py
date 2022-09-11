@@ -1,18 +1,108 @@
+# pylint: disable = C0114, C0115, C0116, C0103
+
 import uuid
 import random
 from datetime import datetime
 import pandas as pd
 
 
-def generateNode_id() -> str:
+def generate_node_id() -> str:
+    """
+    Generate a unique and random identifier for a new node.
+
+    Returns
+    -------
+        node_id (str): The node identifier, represented by a hash.
+
+    Examples
+    --------
+    >>> node.generate_node_id()
+    """
     node_id: str = uuid.uuid4().hex
     return node_id
 
 
-class Node(object):
-    def __init__(self, name: str, data: str = None, data_type: str = None, mobility_mode: bool = False):
+class Node:
+    """
+     A class that represents the basis of the node's module.
+
+     ...
+
+     Attributes
+     ----------
+     name : str
+         The name of the node to be identified with.
+     data : str
+         The data available in the node.
+     data_type : str
+         The type of the data in the node.
+     mobility_mode : bool
+        Indicates if the node is mobile or not.
+     node_id : str
+        The node identifier, represented by a hash.
+     ip_addr : str
+        The IP address of the node in the network.
+     status : int
+        Indicates the status of the node if it is available and can be contacted. (1 = Yes, 0 = No)
+     leader : bool
+        Indicates whether the node is the leader of its network or not.
+     gathered_data : any
+        Data collected from other nodes or the server.
+     battery_usage: int
+        The percentage of the node's battery usage.
+     total_energy: float
+        The total energy capacity of the node.
+     energy_consumption: float
+        Indicates how much energy this node consumes in an operation.
+     current_energy: float
+        The current energy capacity in mAh.
+     total_storage: int
+        The total storage capacity of the node.
+     current_storage: int
+        The current storage capacity of the node.
+     cpu_power: float
+        The total power of the processor.
+     cpu_usage: int
+        The percentage of CPU usage.
+     memory: int
+        The memory capacity of the node.
+     memory_usage: int
+        The memory usage percentage of the node.
+
+     Methods
+     -------
+     get_resources_information():
+         Take all the information about the resources of this node.
+
+     Notes
+     -----
+     The other methods are a group of getters and setters, so they are not explained
+     for this module.
+
+     """
+    def __init__(self, name: str, data: str = None, data_type: str = None,
+                 mobility_mode: bool = False):
+        """
+        Constructs all the necessary attributes for the node object.
+
+        Parameters
+        ----------
+            name : str
+                The name of the node to be identified with.
+            data : str, optional
+                The data available in the node.
+            data_type : str, optional
+                The type of the data in the node.
+            mobility_mode : bool, optional
+                Indicates if the node is mobile or not.
+
+        Examples
+        --------
+        >>> node = Node(name='node1')
+
+        """
         self.ip_addr = None
-        self.node_id: str = generateNode_id()
+        self.node_id: str = generate_node_id()
         if not mobility_mode:
             self.mobility: int = None
         else:
@@ -31,10 +121,10 @@ class Node(object):
         self.current_storage: int = None
         # ? CPU Model.
         self.cpu_power: float = None
-        self.cpu_usage: int = random.randint(30, 100)
+        self.cpu_usage: int = random.randint(30, 70)
         # ? Memory Model.
         self.memory: int = None
-        self.memory_usage: int = random.randint(15, 100)
+        self.memory_usage: int = random.randint(15, 70)
         # ? For Leader election.
         self.leader = False
         # ? The data gathered from other nodes.
@@ -129,7 +219,19 @@ class Node(object):
         self.gathered_data = gathered_data
 
     def get_resources_information(self):
-        # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,CurrentStorage,BatteryUsage, TotalEnergy,
+        """
+        Take all the information about the resources of this node.
+
+        Returns
+        -------
+           information (tuple): All resource information represented by a tuple of 13 information.
+
+        Examples
+        --------
+        >>> node.get_resources_information()
+        """
+        # ? Structure : CPUPower, CPU Usage,Memory,MemoryUsage,TotalStorage,
+        # ? CurrentStorage,BatteryUsage, TotalEnergy,
         # ? EnergyConsumption, CurrentEnergy, DataLength, Time
         return self.name, self.cpu_power, self.cpu_usage, self.memory, self.memory_usage, \
                self.total_storage, self.current_storage, self.battery_usage, self.total_energy, \

@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>node package &#8212; CS_FedSIM v1 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">CS_FedSIM v1 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/mohamediniesta/FedSim"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mohamediniesta/FedSim/issues/new?title=Issue%20on%20page%20%2Fnode.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/mohamediniesta/FedSim/edit/master/node.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.LowNode">
+   node.LowNode module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.MidNode">
+   node.MidNode module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.Node">
+   node.Node module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.PowNode">
+   node.PowNode module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node">
+   Module contents
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>node package</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.LowNode">
+   node.LowNode module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.MidNode">
+   node.MidNode module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.Node">
+   node.Node module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node.PowNode">
+   node.PowNode module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-node">
+   Module contents
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="node-package">
+<h1>node package<a class="headerlink" href="#node-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-node.LowNode">
+<span id="node-lownode-module"></span><h2>node.LowNode module<a class="headerlink" href="#module-node.LowNode" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="node.LowNode.LowNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">node.LowNode.</span></span><span class="sig-name descname"><span class="pre">LowNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mobility_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.LowNode.LowNode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#node.Node.Node" title="node.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">node.Node.Node</span></code></a></p>
+<p>A class that represents the module of a low power node.</p>
+<p>…</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="node.LowNode.LowNode.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#node.LowNode.LowNode.name" title="Permalink to this definition"></a></dt>
+<dd><p>The node of the node to identify it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="node.LowNode.LowNode.mobility_mode">
+<span class="sig-name descname"><span class="pre">mobility_mode</span></span><a class="headerlink" href="#node.LowNode.LowNode.mobility_mode" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether the node is mobile or stationary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_cpu_power</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_data_type</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_id</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_memory</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_name</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_resources_information</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_total_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_total_storage</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="node.LowNode.LowNode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mobility_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.LowNode.LowNode.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs all the necessary attributes for the MidNode object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The node of the node to identify it.</p></li>
+<li><p><strong>mobility_mode</strong> (<em>bool</em><em>, </em><em>optional</em>) – Indicates whether the node is mobile or stationary.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-examples admonition">
+<p class="admonition-title">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">LowNode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-node.MidNode">
+<span id="node-midnode-module"></span><h2>node.MidNode module<a class="headerlink" href="#module-node.MidNode" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="node.MidNode.MidNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">node.MidNode.</span></span><span class="sig-name descname"><span class="pre">MidNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mobility_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.MidNode.MidNode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#node.Node.Node" title="node.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">node.Node.Node</span></code></a></p>
+<p>A class that represents the module of a medium power node.</p>
+<p>…</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="node.MidNode.MidNode.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#node.MidNode.MidNode.name" title="Permalink to this definition"></a></dt>
+<dd><p>The node of the node to identify it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="node.MidNode.MidNode.mobility_mode">
+<span class="sig-name descname"><span class="pre">mobility_mode</span></span><a class="headerlink" href="#node.MidNode.MidNode.mobility_mode" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether the node is mobile or stationary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_cpu_power</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_data_type</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_id</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_memory</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_name</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_resources_information</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_total_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_total_storage</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="node.MidNode.MidNode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mobility_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.MidNode.MidNode.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs all the necessary attributes for the MidNode object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The node of the node to identify it.</p></li>
+<li><p><strong>mobility_mode</strong> (<em>bool</em><em>, </em><em>optional</em>) – Indicates whether the node is mobile or stationary.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-examples admonition">
+<p class="admonition-title">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">PowNode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-node.Node">
+<span id="node-node-module"></span><h2>node.Node module<a class="headerlink" href="#module-node.Node" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="node.Node.Node">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">node.Node.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mobility_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_cpu_power</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_data_type</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_id</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_memory</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_name</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_resources_information</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_total_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_total_storage</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_cpu_power">
+<span class="sig-name descname"><span class="pre">get_cpu_power</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#node.Node.Node.get_cpu_power" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_cpu_usage">
+<span class="sig-name descname"><span class="pre">get_cpu_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#node.Node.Node.get_cpu_usage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_current_energy">
+<span class="sig-name descname"><span class="pre">get_current_energy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#node.Node.Node.get_current_energy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_current_storage">
+<span class="sig-name descname"><span class="pre">get_current_storage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#node.Node.Node.get_current_storage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#node.Node.Node.get_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_data_type">
+<span class="sig-name descname"><span class="pre">get_data_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#node.Node.Node.get_data_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_energy_consumption">
+<span class="sig-name descname"><span class="pre">get_energy_consumption</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#node.Node.Node.get_energy_consumption" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_gathered_data">
+<span class="sig-name descname"><span class="pre">get_gathered_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#node.Node.Node.get_gathered_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#node.Node.Node.get_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_ip_addr">
+<span class="sig-name descname"><span class="pre">get_ip_addr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.get_ip_addr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_leader">
+<span class="sig-name descname"><span class="pre">get_leader</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.get_leader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_memory">
+<span class="sig-name descname"><span class="pre">get_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#node.Node.Node.get_memory" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_memory_usage">
+<span class="sig-name descname"><span class="pre">get_memory_usage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#node.Node.Node.get_memory_usage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#node.Node.Node.get_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_resources_information">
+<span class="sig-name descname"><span class="pre">get_resources_information</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.get_resources_information" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.get_status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_total_energy">
+<span class="sig-name descname"><span class="pre">get_total_energy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#node.Node.Node.get_total_energy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.get_total_storage">
+<span class="sig-name descname"><span class="pre">get_total_storage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#node.Node.Node.get_total_storage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_cpu_usage">
+<span class="sig-name descname"><span class="pre">set_cpu_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cpu_usage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_cpu_usage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_current_energy">
+<span class="sig-name descname"><span class="pre">set_current_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_energy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_current_energy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_current_storage">
+<span class="sig-name descname"><span class="pre">set_current_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_storage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_current_storage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_data">
+<span class="sig-name descname"><span class="pre">set_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_energy_consumption">
+<span class="sig-name descname"><span class="pre">set_energy_consumption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_consumption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_energy_consumption" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_gathered_data">
+<span class="sig-name descname"><span class="pre">set_gathered_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gathered_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_gathered_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_ip_addr">
+<span class="sig-name descname"><span class="pre">set_ip_addr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip_addr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_ip_addr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_leader">
+<span class="sig-name descname"><span class="pre">set_leader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_leader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_memory_usage">
+<span class="sig-name descname"><span class="pre">set_memory_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memory_usage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_memory_usage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_status">
+<span class="sig-name descname"><span class="pre">set_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_total_energy">
+<span class="sig-name descname"><span class="pre">set_total_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_energy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_total_energy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="node.Node.Node.set_total_storage">
+<span class="sig-name descname"><span class="pre">set_total_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_storage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.Node.Node.set_total_storage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="node.Node.generateNode_id">
+<span class="sig-prename descclassname"><span class="pre">node.Node.</span></span><span class="sig-name descname"><span class="pre">generateNode_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#node.Node.generateNode_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-node.PowNode">
+<span id="node-pownode-module"></span><h2>node.PowNode module<a class="headerlink" href="#module-node.PowNode" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="node.PowNode.PowNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">node.PowNode.</span></span><span class="sig-name descname"><span class="pre">PowNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mobility_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.PowNode.PowNode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#node.Node.Node" title="node.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">node.Node.Node</span></code></a></p>
+<p>A class that represents the module of a powerful node.</p>
+<p>…</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="node.PowNode.PowNode.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#node.PowNode.PowNode.name" title="Permalink to this definition"></a></dt>
+<dd><p>The node of the node to identify it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="node.PowNode.PowNode.mobility_mode">
+<span class="sig-name descname"><span class="pre">mobility_mode</span></span><a class="headerlink" href="#node.PowNode.PowNode.mobility_mode" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether the node is mobile or stationary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="table">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>get_cpu_power</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_data_type</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_id</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_memory</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_name</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_resources_information</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>get_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_total_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_cpu_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_current_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_current_storage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_energy_consumption</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_gathered_data</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_ip_addr</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_leader</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_memory_usage</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_status</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>set_total_energy</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>set_total_storage</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="node.PowNode.PowNode.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mobility_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#node.PowNode.PowNode.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs all the necessary attributes for the PowNode object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The node of the node to identify it.</p></li>
+<li><p><strong>mobility_mode</strong> (<em>bool</em><em>, </em><em>optional</em>) – Indicates whether the node is mobile or stationary.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-examples admonition">
+<p class="admonition-title">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">PowNode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-node">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-node" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AICHE Mohamed<br/>
+  
+      &copy; Copyright 2022, AICHE Mohamed.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
