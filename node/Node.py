@@ -121,10 +121,10 @@ class Node:
         self.current_storage: int = None
         # ? CPU Model.
         self.cpu_power: float = None
-        self.cpu_usage: int = random.randint(30, 100)
+        self.cpu_usage: int = random.randint(30, 70)
         # ? Memory Model.
         self.memory: int = None
-        self.memory_usage: int = random.randint(15, 100)
+        self.memory_usage: int = random.randint(15, 70)
         # ? For Leader election.
         self.leader = False
         # ? The data gathered from other nodes.
