@@ -1,0 +1,21 @@
+consumptionModel package
+========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   consumptionModel.CPUModel
+   consumptionModel.EnergyModel
+   consumptionModel.MemoryModel
+   consumptionModel.StorageModel
+
+Module contents
+---------------
+
+.. automodule:: consumptionModel
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,45 @@
+utils package
+=============
+
+Submodules
+----------
+
+utils.computation module
+------------------------
+
+.. automodule:: utils.computation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+utils.displays module
+---------------------
+
+.. automodule:: utils.displays
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+utils.generation module
+-----------------------
+
+.. automodule:: utils.generation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+utils.stats module
+------------------
+
+.. automodule:: utils.stats
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: utils
+   :members:
+   :undoc-members:
+   :show-inheritance:

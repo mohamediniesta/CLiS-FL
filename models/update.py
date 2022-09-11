@@ -1,5 +1,7 @@
-import torch
+# pylint: disable = C0114, C0115, C0116, C0103
+
 import random
+import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from constants.model_constants import BATCH_SIZE
@@ -43,7 +45,7 @@ def trainValTest(dataset, idxs):
     return trainLoader, validLoader, testLoader
 
 
-class ClientUpdate(object):
+class ClientUpdate:
     def __init__(self, dataset, idxs, node):
         self.node = node
         # ? Init our resources consumption Models.
@@ -97,9 +99,11 @@ class ClientUpdate(object):
                 verbose = 0
 
                 if verbose and (batch_idx % 10 == 0):
-                    print('| Global Round : {} | Local Epoch : {} | [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-                        global_round, iteration, batch_idx * len(images),
-                        len(self.trainLoader.dataset), 100. * batch_idx / len(self.trainLoader), loss.item()))
+                    print(f'| Global Round : {global_round} | '
+                          f'Local Epoch : {iteration} | '
+                          f'[{batch_idx * len(images)}/{len(self.trainLoader.dataset)} '
+                          f'({100. * batch_idx / len(self.trainLoader):.0f}%)]\t'
+                          f'Loss: {loss.item():.6f}')
 
                 batch_loss.append(loss.item())
 
