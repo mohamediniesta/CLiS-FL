@@ -1,3 +1,4 @@
 from clientSelection.RandomClientSelection import RandomClientSelection
 from clientSelection.ClientSelection import ClientSelection
 from clientSelection.ResourceClientSelection import ResourceClientSelection
+from clientSelection.LeaderClientSelection import LeaderClientSelection
