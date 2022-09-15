@@ -1,4 +1,4 @@
-# CLiS-FL (FL client selection simulator framework)
+# CLiS-FL (Leader-assisted Client selection part)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7e9184d45d6a427297c71817a62da091)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mohamediniesta/CLiS-FL&amp;utm_campaign=Badge_Grade) [![License Badge](https://img.shields.io/github/license/mohamediniesta/CLiS-FL)](https://img.shields.io/github/license/mohamediniesta/CLiS-FL) ![Depfu](https://img.shields.io/depfu/mohamediniesta/CLiS-FL)
 
@@ -7,6 +7,8 @@ A simulator framework of the client selection step in federated learning written
 Users have the option to create and test their own client selection techniques using the framework thanks to its modularity. Modifications also can be made to the nodes, their categories, and the resource consumption models.
 
 The goal of this framework is to help researchers to simulate their methods in the federated learning steps, due to the lack of simulators in this field. The framework was developed in a relatively modular manner to provide the researchers complete control.
+
+**This branch adds the selection of clients by using the leader election method.**
 
 
 # :exclamation: Requirements 
