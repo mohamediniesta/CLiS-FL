@@ -10,8 +10,7 @@ from network.Network import Network
 from utils.computation import chunk_list
 from node import PowNode, MidNode, LowNode
 from consumptionModel.StorageModel.StorageModel import StorageModel
-from constants.resource_constants import IMAGE_SIZE, LOW_NODE_DISTRIBUTION, \
-    POW_NODE_DISTRIBUTION, MED_NODE_DISTRIBUTION
+from constants.resource_constants import IMAGE_SIZE, LOW_NODE_DISTRIBUTION, POW_NODE_DISTRIBUTION, MED_NODE_DISTRIBUTION, CALCULATE_RESOURCES
 
 
 def generate_nodes(number_of_nodes: int, data) -> list:
@@ -28,16 +27,16 @@ def generate_nodes(number_of_nodes: int, data) -> list:
         # ? Randomly pick a category of node.
         node = LowNode(name=f"Node {i}") if rate == 0 else \
             MidNode(name=f"Node {i}") if rate == 1 else \
-            PowNode(name=f"Node {i}")
+                PowNode(name=f"Node {i}")
         # ? Set the data. ( Using CPU usage, etc .. ), randomly set the data size.
         num_items = random.randint(min_length, len(data) * data_percentage)
         client_data = set(np.random.choice(data_id_list, num_items, replace=False))
         # ? Put the random data on nodes.
         node.set_data(data=client_data, data_type="mnist")
-
-        StorageModel(node=node). \
-            add_to_storage(
-            number_of_mega_bytes=IMAGE_SIZE * num_items)  # ? 800 Kilo bytes per image (num_items)
+        if CALCULATE_RESOURCES:
+            StorageModel(node=node). \
+                add_to_storage(
+                number_of_mega_bytes=IMAGE_SIZE * num_items)  # ? 800 Kilo bytes per image (num_items)
 
         nodes.append(node)
 
@@ -86,20 +85,17 @@ def choose_dataset():
 
 
 def selected_to_dict(selected_clients: list) -> dict:
-    clients = {}
-    for client in selected_clients:
-        clients[client.get_name()] = client.get_id()
-    return clients
+    return {client.get_name(): client.get_id() for client in selected_clients}
 
 
 def split_nodes_networks(nodes):
     number_of_nodes = len(nodes)
     clients_chunk = chunk_list(lst=nodes, chunk_size=int(number_of_nodes / 5))
-    i = 1
     networks = []
-    for c in clients_chunk:
+
+    for i, c in enumerate(clients_chunk, start=1):
         network = Network(nodes=c, network_number=i, debug_mode=False)
         network.assign_ip_addresses()
         networks.append(network)
-        i += 1
+
     return networks
