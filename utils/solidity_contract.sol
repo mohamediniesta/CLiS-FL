@@ -17,11 +17,3 @@ contract FederatedLearning {
         epochs = _epochs;
     }
 }
-
-
-
-
-
-
-
-Demander à ChatGPT
